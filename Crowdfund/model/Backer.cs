@@ -10,10 +10,8 @@ namespace Crowdfund.model
         public string Name { get; set; }
         public string Email { get; set; }
         // a list for different projects involved
-        public List<int> ProjectIds { get; set; }
+        public List<Project> Projects { get; set; }
         // a list consists of different reward packages
-        public List<RewardPackage> RewardPackages { get; set; }
-        public List<int> RewardPackagesIds { get; set; }
-
+        public List<RewardPackage> RewardPackage { get; set; }
     }
 }

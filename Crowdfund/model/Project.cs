@@ -6,6 +6,7 @@ namespace Crowdfund.model
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Category { get; set; }
         public string Description { get; set; }
         public List<Photo> Photos { get; set; }
         public List<Video> Videos { get; set; }
@@ -14,5 +15,15 @@ namespace Crowdfund.model
         public decimal BudgetRatio { get; set; }
         public ProjectCreator ProjectCreator { get; set; }
         public List<RewardPackage> RewardPackages { get; set; }
+    }
+    public enum ProjectCategory { 
+        Tech, 
+        Art, 
+        Sports, 
+        Health, 
+        Industry, 
+        Buisness, 
+        Gadget, 
+        Clothing 
     }
 }

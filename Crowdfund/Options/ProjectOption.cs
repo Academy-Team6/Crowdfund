@@ -14,7 +14,6 @@ namespace Crowdfund.Options
         public List<string> Videos { get; set; }
         public decimal TargetBudget { get; set; }
         public decimal CurrentBudget { get; set; }
-        // project progress bar
         public decimal BudgetRatio { get; set; }
         public int ProjectCreatorId { get; set; }
         public List<int> RewardPackagesId { get; set; }

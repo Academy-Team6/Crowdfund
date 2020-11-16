@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Crowdfund.model
 {
@@ -16,9 +14,5 @@ namespace Crowdfund.model
         public decimal BudgetRatio { get; set; }
         public ProjectCreator ProjectCreator { get; set; }
         public List<RewardPackage> RewardPackages { get; set; }
-       
-        // Post status updates
-        // dont forget to update current budget and check the remaining budget until target after each reward package is bought
-
     }
 }

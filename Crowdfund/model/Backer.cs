@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Crowdfund.model
 {
@@ -9,9 +7,7 @@ namespace Crowdfund.model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        // a list for different projects involved
         public List<Project> Projects { get; set; }
-        // a list consists of different reward packages
-        public List<RewardPackage> RewardPackage { get; set; }
+        public List<RewardPackage> RewardPackages { get; set; }
     }
 }

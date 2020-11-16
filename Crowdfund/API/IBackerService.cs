@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Crowdfund.model;
-using Crowdfund.Options;
+﻿using Crowdfund.Options;
 
 namespace Crowdfund.API
 {

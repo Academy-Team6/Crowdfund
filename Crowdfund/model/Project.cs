@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Crowdfund.model
 {
@@ -9,18 +7,12 @@ namespace Crowdfund.model
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<string> Photos { get; set; }
-        public List<string> Videos { get; set; }
+        public List<Photo> Photos { get; set; }
+        public List<Video> Videos { get; set; }
         public decimal TargetBudget { get; set; }
         public decimal CurrentBudget { get; set; }
-        // project progress bar
         public decimal BudgetRatio { get; set; }
-        public int ProjectCreatorId { get; set; }
         public ProjectCreator ProjectCreator { get; set; }
         public List<RewardPackage> RewardPackages { get; set; }
-       
-        // Post status updates
-        // dont forget to update current budget and check the remaining budget until target after each reward package is bought
-
     }
 }

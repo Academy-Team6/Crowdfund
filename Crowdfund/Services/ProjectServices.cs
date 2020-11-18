@@ -72,7 +72,13 @@ namespace Crowdfund.Services
 
         public List<ProjectOption> FindBySearch(string payload)
         {
-            throw new System.NotImplementedException();
+            List<Project> projectList = db.Set<Project>().Where(p => p.Description.Contains(payload)).ToList();
+            List<ProjectOption> projectOptionList = new List<ProjectOption>();
+            foreach (Project p in projectList)
+            {
+                projectOptionList.Add(CreateProjectOption(p));
+            }
+            return projectOptionList;
         }
 
         public List<ProjectOption> FindByTrending()

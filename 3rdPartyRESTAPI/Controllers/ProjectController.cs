@@ -36,10 +36,11 @@ namespace _3rdPartyRESTAPI.Controllers
         {
             return projectService.FindByTrending();
         }
-        [HttpGet("search/category")]
-        public List<ProjectOption> GetProjectsByCategory(ProjectCategory category)
+        [HttpGet("search/{category}")]
+        public List<ProjectOption> GetProjectsByCategory(string category)
         {
-            return projectService.FindByCategory(category);
+            ProjectCategory projectCategory =(ProjectCategory) Enum.Parse(typeof(ProjectCategory), category);
+            return projectService.FindByCategory(projectCategory);
         }
         [HttpGet("search/{payload}")]
         public List<ProjectOption> GetProjectsBySearch(string payload)

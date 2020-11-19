@@ -80,7 +80,7 @@ namespace Crowdfund.Services
         }
         public List<ProjectOption> FindByTrending()
         {
-            throw new System.NotImplementedException();
+            return db.Set<ProjectOption>().OrderBy(p => p.CurrentBudget).ThenBy(p=>p.BudgetRatio).ToList();
         }
         public ProjectOption FindProject(int id)
         {

@@ -1,12 +1,14 @@
 ﻿using Crowdfund.Options;
+using System.Collections.Generic;
 
 namespace Crowdfund.API
 {
     interface IRewardPackageService
     {
-        public RewardPackageOption CreateRewardPackage(RewardPackageOption rewardPackageOption);
-        public RewardPackageOption FindRewardPackage(int id);
-        public RewardPackageOption UpdateRewardPackage(int id, RewardPackageOption rewardPackageOption);
-        public bool DeleteRewardPackage(int id);
+        RewardPackageOption CreateRewardPackage(RewardPackageOption rewardPackageOption);
+        RewardPackageOption FindRewardPackageById(int id);
+        RewardPackageOption UpdateRewardPackage(int id, RewardPackageOption rewardPackageOption);
+        bool DeleteRewardPackage(int id);
+        List<RewardPackageOption> GetAllRewardPackages();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Crowdfund.Options;
+using System.Collections.Generic;
 
 namespace Crowdfund.API
 {
@@ -8,6 +9,8 @@ namespace Crowdfund.API
         public BackerOption FindBacker(int id);
         public BackerOption UpdateBacker(int id, BackerOption backerOption);
         public bool DeleteBacker(int id);
-        public RewardPackageOption BuyPackage(int BackerId,int RewardPackageId);
+        public List<BackerOption> GetAllBackers();
+        public List<BackerOption> SearchBackers(string searchCriteria);
+
     }
 }

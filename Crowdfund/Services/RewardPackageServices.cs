@@ -1,31 +1,81 @@
 ﻿using Crowdfund.API;
+using Crowdfund.Data;
+using Crowdfund.model;
 using Crowdfund.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Crowdfund.Services
 {
+    
     public class RewardPackageServices : IRewardPackageService
     {
-        public RewardPackageOption CreateRewardPackage(RewardPackageOption rewardPackageOption)
+        private readonly CrowdfundDbContext dbContext;
+        public RewardPackageServices(CrowdfundDbContext dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
+        }
+        private static RewardPackage GetRewardPackageFromRewardPackageOption(RewardPackageOption rewardPackageOption)
+        {
+            return new RewardPackage
+            {
+                Reward = rewardPackageOption.Reward,
+                Price = rewardPackageOption.Price,
+            };
+        }
+        RewardPackageOption IRewardPackageService.CreateRewardPackage(RewardPackageOption rewardPackageOption)
+        {
+            RewardPackage rewardPackage = GetRewardPackageFromRewardPackageOption(rewardPackageOption);
+
+            dbContext.RewardPackages.Add(rewardPackage);
+            dbContext.SaveChanges();
+            rewardPackageOption.Id = rewardPackage.Id;
+            return rewardPackageOption;
         }
 
         public bool DeleteRewardPackage(int id)
         {
-            throw new NotImplementedException();
+            RewardPackage rp = dbContext.RewardPackages.Find(id);
+            if (rp == null) return false;
+            dbContext.RewardPackages.Remove(rp);
+            return true;
         }
 
-        public RewardPackageOption FindRewardPackage(int id)
+        private static RewardPackageOption GetRewardPackageOptionsFromRewardPackage(RewardPackage rewardPackage)
         {
-            throw new NotImplementedException();
+            return new RewardPackageOption
+            {
+                Reward = rewardPackage.Reward,
+                Price = rewardPackage.Price,
+                Id = rewardPackage.Id
+            };
+        }
+        List<RewardPackageOption> IRewardPackageService.GetAllRewardPackages()
+        {
+            List<RewardPackage> rewardPackages = dbContext.RewardPackages.ToList();
+            List<RewardPackageOption> rewardPackageOptions = new List<RewardPackageOption>();
+            rewardPackages.ForEach(rewardPackage => rewardPackageOptions.Add(
+                    GetRewardPackageOptionsFromRewardPackage(rewardPackage)
+            ));
+            return rewardPackageOptions;
+        }
+        public RewardPackageOption FindRewardPackageById(int id)
+        {
+            RewardPackage rewardPackage = dbContext.RewardPackages.Find(id);
+            if (rewardPackage == null) return null;
+            return GetRewardPackageOptionsFromRewardPackage(rewardPackage);
         }
 
         public RewardPackageOption UpdateRewardPackage(int id, RewardPackageOption rewardPackageOption)
         {
-            throw new NotImplementedException();
+            RewardPackage rewardPackage = dbContext.RewardPackages.Find(id);
+            rewardPackage.Reward = rewardPackageOption.Reward;
+            rewardPackage.Price = rewardPackageOption.Price;
+            dbContext.SaveChanges();
+
+            return rewardPackageOption;
         }
     }
 }

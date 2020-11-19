@@ -9,5 +9,9 @@ namespace Crowdfund.model
         public string Email { get; set; }
         public List<Project> Projects { get; set; }
         public List<RewardPackage> RewardPackages { get; set; }
+        public Backer()
+        {
+            RewardPackages = new List<RewardPackage>();
+        }
     }
 }

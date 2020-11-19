@@ -2,20 +2,27 @@
 using Crowdfund.Data;
 using Crowdfund.model;
 using Crowdfund.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Crowdfund.Services
 {
     public class ProjectServices : IProjectService
     {
-        private CrowdfundDbContext db = new CrowdfundDbContext();
+        private readonly CrowdfundDbContext dbContext;
+        public ProjectServices(CrowdfundDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public RewardPackageOption AddPackageToProject(int projectId, int rewardPackageId)
         {
-            var project = db.Set<Project>().Find(projectId);
-            var rewardPackage = db.Set<RewardPackage>().Find(rewardPackageId);
-            project.RewardPackages.Add(rewardPackage);
-            db.SaveChanges();
+            var project = dbContext.Projects.Find(projectId);
+            var rewardPackage = dbContext.RewardPackages.Find(rewardPackageId);
+            dbContext.RewardPackages.Add(rewardPackage);
+            dbContext.SaveChanges();
             return new RewardPackageOption()
             {
                 Price = rewardPackage.Price,
@@ -23,9 +30,10 @@ namespace Crowdfund.Services
                 Reward = rewardPackage.Reward
             };
         }
+
         public ProjectOption CreateProject(ProjectOption projectOption)
         {
-            ProjectCreator projectCreator = db.Set<ProjectCreator>().Find(projectOption.ProjectCreatorId);
+            ProjectCreator projectCreator = dbContext.ProjectCreators.Find(projectOption.ProjectCreatorId);
             Project project = new Project()
             {
                 CurrentBudget = projectOption.CurrentBudget,
@@ -36,72 +44,18 @@ namespace Crowdfund.Services
                 TargetBudget = projectOption.TargetBudget,
                 Title = projectOption.Title,
             };
-            db.Set<Project>().Add(project);
-            db.SaveChanges();
+            dbContext.Projects.Add(project);
+            dbContext.SaveChanges();
             return projectOption;
         }
+
         public bool DeleteProject(int id)
         {
-            Project project = db.Set<Project>().Find(id);
+            Project project = dbContext.Projects.Find(id);
             if (project == null) return false;
-            db.Set<Project>().Remove(project);
-            db.SaveChanges();
+            dbContext.Projects.Remove(project);
+            dbContext.SaveChanges();
             return true;
-        }
-        public List<ProjectOption> FindAll()
-        {
-            List<Project> projectList = db.Set<Project>().ToList();
-            List<ProjectOption> projectOptionList = new List<ProjectOption>();
-           foreach(Project p in projectList)
-            {
-                projectOptionList.Add(CreateProjectOption(p));
-            }
-            return projectOptionList;
-        }
-        public List<ProjectOption> FindByCategory(ProjectCategory projectCategory)
-        {
-            List<Project>projectList=db.Set<Project>().Where(p => p.Category == projectCategory.ToString()).ToList();
-            List<ProjectOption> projectOptionList = new List<ProjectOption>();
-            foreach (Project p in projectList)
-            {
-                projectOptionList.Add(CreateProjectOption(p));
-            }
-            return projectOptionList;
-        }
-        public List<ProjectOption> FindBySearch(string payload)
-        {
-            List<Project> projectList = db.Set<Project>().Where(p => p.Description.Contains(payload)).ToList();
-            List<ProjectOption> projectOptionList = new List<ProjectOption>();
-            foreach (Project p in projectList)
-            {
-                projectOptionList.Add(CreateProjectOption(p));
-            }
-            return projectOptionList;
-        }
-        public List<ProjectOption> FindByTrending()
-        {
-            return db.Set<ProjectOption>().OrderBy(p => p.CurrentBudget).ThenBy(p=>p.BudgetRatio).ToList();
-        }
-        public ProjectOption FindProject(int id)
-        {
-            Project project = db.Set<Project>().Find(id);
-            List<int> rewardPackagesId = new List<int>();
-            foreach(RewardPackage rewardPackage in project.RewardPackages)
-            {
-                rewardPackagesId.Add(rewardPackage.Id);
-            }
-            return CreateProjectOption(project);
-        }
-        public ProjectOption UpdateProject(int id, ProjectOption projectOption)
-        {
-            Project project = db.Set<Project>().Find(id);
-            project.Category = projectOption.Category;
-            project.Description = projectOption.Description;
-            project.CurrentBudget = projectOption.CurrentBudget;
-            project.TargetBudget = projectOption.TargetBudget;
-            project.Title = projectOption.Title;
-            db.SaveChanges();
-            return projectOption;
         }
         private ProjectOption CreateProjectOption(Project project)
         {
@@ -122,6 +76,38 @@ namespace Crowdfund.Services
                 TargetBudget = project.TargetBudget,
                 Title = project.Title
             };
+        }
+        public ProjectOption FindProject(int id)
+        {
+            Project project = dbContext.Projects.Find(id);
+            List<int> rewardPackagesId = new List<int>();
+            foreach (RewardPackage rewardPackage in project.RewardPackages)
+            {
+                rewardPackagesId.Add(rewardPackage.Id);
+            }
+            return CreateProjectOption(project);
+        }
+
+        public ProjectOption UpdateProject(int id, ProjectOption projectOption)
+        {
+            Project project = dbContext.Projects.Find(id);
+            project.Category = projectOption.Category;
+            project.Description = projectOption.Description;
+            project.CurrentBudget = projectOption.CurrentBudget;
+            project.TargetBudget = projectOption.TargetBudget;
+            project.Title = projectOption.Title;
+            dbContext.SaveChanges();
+            return projectOption;
+        }
+        public List<ProjectOption> FindByTrending()
+        {
+            return lol;
+        }
+        public List<ProjectOption> FindBySearch(string payload)
+        {
+            
+
+            return pOpt;
         }
     }
 }

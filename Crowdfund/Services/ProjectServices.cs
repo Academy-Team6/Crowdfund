@@ -58,7 +58,6 @@ namespace Crowdfund.Services
             }
             return projectOptionList;
         }
-
         public List<ProjectOption> FindByCategory(ProjectCategory projectCategory)
         {
             List<Project>projectList=db.Set<Project>().Where(p => p.Category == projectCategory.ToString()).ToList();
@@ -69,7 +68,6 @@ namespace Crowdfund.Services
             }
             return projectOptionList;
         }
-
         public List<ProjectOption> FindBySearch(string payload)
         {
             List<Project> projectList = db.Set<Project>().Where(p => p.Description.Contains(payload)).ToList();
@@ -80,13 +78,10 @@ namespace Crowdfund.Services
             }
             return projectOptionList;
         }
-
         public List<ProjectOption> FindByTrending()
         {
             throw new System.NotImplementedException();
-
         }
-
         public ProjectOption FindProject(int id)
         {
             Project project = db.Set<Project>().Find(id);

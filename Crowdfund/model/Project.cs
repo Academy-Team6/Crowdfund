@@ -16,4 +16,14 @@ namespace Crowdfund.model
         public ProjectCreator ProjectCreator { get; set; }
         public List<RewardPackage> RewardPackages { get; set; }
     }
+    public enum ProjectCategory { 
+        Tech, 
+        Art, 
+        Sports, 
+        Health, 
+        Industry, 
+        Buisness, 
+        Gadget, 
+        Clothing 
+    }
 }

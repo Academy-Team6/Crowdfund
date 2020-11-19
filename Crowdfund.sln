@@ -5,7 +5,10 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crowdfund", "Crowdfund\Crowdfund.csproj", "{39FEAE31-3700-4A70-B94E-E1E1AA2B2213}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3rdPartyRESTAPI", "3rdPartyRESTAPI\3rdPartyRESTAPI.csproj", "{8EB96A81-0420-41FC-926B-7B0F2748A760}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3rdPartyRESTAPI", "3rdPartyRESTAPI\3rdPartyRESTAPI.csproj", "{2B533C8B-E01D-4CAD-BAB2-3AFA82602D10}"
+	ProjectSection(ProjectDependencies) = postProject
+		{39FEAE31-3700-4A70-B94E-E1E1AA2B2213} = {39FEAE31-3700-4A70-B94E-E1E1AA2B2213}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +20,10 @@ Global
 		{39FEAE31-3700-4A70-B94E-E1E1AA2B2213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39FEAE31-3700-4A70-B94E-E1E1AA2B2213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39FEAE31-3700-4A70-B94E-E1E1AA2B2213}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EB96A81-0420-41FC-926B-7B0F2748A760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EB96A81-0420-41FC-926B-7B0F2748A760}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EB96A81-0420-41FC-926B-7B0F2748A760}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EB96A81-0420-41FC-926B-7B0F2748A760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B533C8B-E01D-4CAD-BAB2-3AFA82602D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B533C8B-E01D-4CAD-BAB2-3AFA82602D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B533C8B-E01D-4CAD-BAB2-3AFA82602D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B533C8B-E01D-4CAD-BAB2-3AFA82602D10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Crowdfund.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    [Migration("20201117133118_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20201120110346_NewModelsAdded")]
+    partial class NewModelsAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,7 @@ namespace Crowdfund.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Backer");
+                    b.ToTable("Backers");
                 });
 
             modelBuilder.Entity("Crowdfund.model.Media", b =>
@@ -100,7 +100,7 @@ namespace Crowdfund.Migrations
 
                     b.HasIndex("ProjectCreatorId");
 
-                    b.ToTable("Project");
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("Crowdfund.model.ProjectCreator", b =>
@@ -124,7 +124,7 @@ namespace Crowdfund.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProjectCreator");
+                    b.ToTable("ProjectCreators");
                 });
 
             modelBuilder.Entity("Crowdfund.model.RewardPackage", b =>
@@ -152,7 +152,49 @@ namespace Crowdfund.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("RewardPackage");
+                    b.ToTable("RewardPackages");
+                });
+
+            modelBuilder.Entity("Crowdfund.model.Transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("BackerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BackerId");
+
+                    b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("Crowdfund.model.TransactionPackage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("RewardPackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TransactionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RewardPackageId");
+
+                    b.HasIndex("TransactionId");
+
+                    b.ToTable("TransactionPackages");
                 });
 
             modelBuilder.Entity("Crowdfund.model.Photo", b =>
@@ -187,7 +229,7 @@ namespace Crowdfund.Migrations
                         .HasForeignKey("BackerId");
 
                     b.HasOne("Crowdfund.model.ProjectCreator", "ProjectCreator")
-                        .WithMany()
+                        .WithMany("Projects")
                         .HasForeignKey("ProjectCreatorId");
                 });
 
@@ -200,6 +242,24 @@ namespace Crowdfund.Migrations
                     b.HasOne("Crowdfund.model.Project", "Project")
                         .WithMany("RewardPackages")
                         .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("Crowdfund.model.Transaction", b =>
+                {
+                    b.HasOne("Crowdfund.model.Backer", "Backer")
+                        .WithMany()
+                        .HasForeignKey("BackerId");
+                });
+
+            modelBuilder.Entity("Crowdfund.model.TransactionPackage", b =>
+                {
+                    b.HasOne("Crowdfund.model.RewardPackage", "RewardPackage")
+                        .WithMany()
+                        .HasForeignKey("RewardPackageId");
+
+                    b.HasOne("Crowdfund.model.Transaction", "Transaction")
+                        .WithMany("TransactionPackages")
+                        .HasForeignKey("TransactionId");
                 });
 
             modelBuilder.Entity("Crowdfund.model.Photo", b =>

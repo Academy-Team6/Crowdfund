@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace _3rdPartyRESTAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProjectController : ControllerBase
     {
         private readonly ILogger<ProjectController> _logger;

@@ -2,43 +2,37 @@
 using Crowdfund.Data;
 using Crowdfund.model;
 using Crowdfund.Options;
+using System.Collections.Generic;
 
 namespace Crowdfund.Services
 {
     public class MediaServices : IMediaService
     {
         private CrowdfundDbContext db = new CrowdfundDbContext();
-        public MediaOption AddMediaToProject(int mediaId, int projectId)
+        public MediaOption CreateMedia(MediaOption mediaOption)
         {
-            Media media = db.Set<Media>().Find(mediaId);
-            Project project = db.Set<Project>().Find(projectId);
-            if (media.Type == "Photo"){
+            Media media = new Media()
+            {
+                Payload = mediaOption.Payload,
+                Type = mediaOption.Type,
+                ProjectId = mediaOption.ProjectId
+            };
+            db.Set<Media>().Add(media);
+            Project project = db.Set<Project>().Find(mediaOption.ProjectId);
+            if (media.Type == "Photo")
+            {
                 project.Photos.Add((Photo)media);
-                }
+            }
             if (media.Type == "Video")
             {
                 project.Videos.Add((Video)media);
             }
-            return new MediaOption()
-            {
-                Payload = media.Payload,
-                Type = media.Type,
-                Id = media.Id
-            };
-        }
-        public MediaOption CreateMedia(string type,string payload)
-        {
-            Media media = new Media()
-            {
-                Payload = payload,
-                Type = type
-            };
-            db.Set<Media>().Add(media);
             db.SaveChanges();
             return new MediaOption()
             {
                 Payload = media.Payload,
-                Type = media.Type
+                Type = media.Type,
+                ProjectId = mediaOption.ProjectId
             };
         }
         public bool DeleteMedia(int id)
@@ -58,6 +52,36 @@ namespace Crowdfund.Services
                 Type = media.Type
             };
         }
+
+        public List<MediaOption> FindAllMediaofProject(int projectId)
+        {
+            Project project = db.Set<Project>().Find(projectId);
+            List<MediaOption> projectMedia = new List<MediaOption>();
+            foreach(Photo photo in project.Photos)
+            {
+                MediaOption mediaOption = new MediaOption()
+                {
+                    Id = photo.Id,
+                    Payload = photo.Payload,
+                    ProjectId = photo.ProjectId,
+                    Type = photo.Type
+                };
+                projectMedia.Add(mediaOption);
+            }
+            foreach (Video video in project.Videos)
+            {
+                MediaOption mediaOption = new MediaOption()
+                {
+                    Id = video.Id,
+                    Payload = video.Payload,
+                    ProjectId = video.ProjectId,
+                    Type = video.Type
+                };
+                projectMedia.Add(mediaOption);
+            }
+            return projectMedia;
+        }
+
         public MediaOption UpdateMedia(int id, MediaOption mediaOption)
         {
             Media media = db.Set<Media>().Find(id);

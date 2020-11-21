@@ -5,10 +5,10 @@ namespace Crowdfund.API
 {
     public interface IMediaService
     {
-        public MediaOption CreateMedia(MediaOption mediaOption);
-        public bool DeleteMedia(int id);
-        public MediaOption FindMedia(int id);
-        public MediaOption UpdateMedia(int id, MediaOption mediaOption);
-        public List<MediaOption> FindAllMediaofProject(int projectId);
+        MediaOption CreateMedia(MediaOption mediaOption);
+        bool DeleteMedia(int id);
+        MediaOption FindMedia(int id);
+        MediaOption UpdateMedia(int id, MediaOption mediaOption);
+        List<MediaOption> FindAllMediaofProject(int projectId);
     }
 }

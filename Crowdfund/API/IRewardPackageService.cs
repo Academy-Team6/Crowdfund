@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Crowdfund.API
 {
-    interface IRewardPackageService
+    public interface IRewardPackageService
     {
         RewardPackageOption CreateRewardPackage(RewardPackageOption rewardPackageOption);
         RewardPackageOption FindRewardPackageById(int id);

@@ -1,4 +1,5 @@
-﻿using Crowdfund.model;
+﻿using Crowdfund.API;
+using Crowdfund.model;
 using Crowdfund.Options;
 using Crowdfund.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace _3rdPartyRESTAPI.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly ILogger<ProjectController> _logger;
-        private ProjectServices projectService = new ProjectServices();
+        private IProjectService projectService = new ProjectServices();
         public ProjectController(ILogger<ProjectController> logger)
         {
             _logger = logger;

@@ -15,7 +15,7 @@ namespace Crowdfund.Services
             {
                 Payload = mediaOption.Payload,
                 Type = mediaOption.Type,
-                ProjectId = mediaOption.ProjectId
+                Project = db.Set<Project>().Find(mediaOption.ProjectId)
             };
             db.Set<Media>().Add(media);
             Project project = db.Set<Project>().Find(mediaOption.ProjectId);
@@ -63,7 +63,7 @@ namespace Crowdfund.Services
                 {
                     Id = photo.Id,
                     Payload = photo.Payload,
-                    ProjectId = photo.ProjectId,
+                    ProjectId = photo.Project.Id,
                     Type = photo.Type
                 };
                 projectMedia.Add(mediaOption);
@@ -74,7 +74,7 @@ namespace Crowdfund.Services
                 {
                     Id = video.Id,
                     Payload = video.Payload,
-                    ProjectId = video.ProjectId,
+                    ProjectId = video.Project.Id,
                     Type = video.Type
                 };
                 projectMedia.Add(mediaOption);

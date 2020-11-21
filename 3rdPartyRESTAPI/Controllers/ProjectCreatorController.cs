@@ -1,4 +1,5 @@
-﻿using Crowdfund.Services;
+﻿using Crowdfund.Options;
+using Crowdfund.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -19,6 +20,30 @@ namespace _3rdPartyRESTAPI.Controllers
         {
             _logger = logger;
         }
-
+        [HttpGet]
+        public List<ProjectCreatorOption> GetAllProjectCreators()
+        {
+            return projectCreatorService.GetAllProjectCreators();
+        } 
+        [HttpGet("{id}")]
+        public ProjectCreatorOption FindProjectCreator(int id)
+        {
+            return projectCreatorService.FindProjectCreator(id);
+        }
+        [HttpPost]
+        public ProjectCreatorOption CreateProjectCreator(ProjectCreatorOption projectCreatorOption)
+        {
+            return projectCreatorService.CreateProjectCreator(projectCreatorOption);
+        }
+        [HttpPut("{id}")]
+        public ProjectCreatorOption UpdateProjectCreator(int id, ProjectCreatorOption projectCreatorOption)
+        {
+            return projectCreatorService.UpdateProjectCreator(id, projectCreatorOption);
+        }
+        [HttpDelete]
+        public bool DeleteProjectCreator(int id)
+        {
+            return projectCreatorService.DeleteProjectCreator(id);
+        }
     }
 }

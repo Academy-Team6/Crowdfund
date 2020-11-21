@@ -1,4 +1,5 @@
-﻿using Crowdfund.model;
+﻿using Crowdfund.API;
+using Crowdfund.model;
 using Crowdfund.Options;
 using Crowdfund.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,11 @@ using System.Threading.Tasks;
 namespace _3rdPartyRESTAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProjectController : ControllerBase
     {
         private readonly ILogger<ProjectController> _logger;
-        private ProjectServices projectService = new ProjectServices();
+        private IProjectService projectService = new ProjectServices();
         public ProjectController(ILogger<ProjectController> logger)
         {
             _logger = logger;

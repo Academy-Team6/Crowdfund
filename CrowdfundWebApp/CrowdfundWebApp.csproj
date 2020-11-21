@@ -2,12 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>_3rdPartyRESTAPI</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Crowdfund\Crowdfund.csproj" />
   </ItemGroup>
-
 
 </Project>

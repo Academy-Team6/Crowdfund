@@ -14,31 +14,22 @@ namespace Crowdfund.Data
         public DbSet<Backer> Backers { get; set; }
         public DbSet<TransactionPackage> TransactionPackages { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Media> Media { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server =localhost; " +
-            "Database =fund; " +
-            "User Id =sa; " +
-            "Password =admin!@#123;");
+            optionsBuilder.UseSqlServer("Server=tcp:crowdfund.database.windows.net,1433;Initial Catalog=CrowdfundDb;Persist Security Info=False;User ID=pmarouga;Password=Latsio12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Backer>();
-        //    modelBuilder.Entity<Project>();
-        //    modelBuilder.Entity<ProjectCreator>();
-        //    modelBuilder.Entity<RewardPackage>();
-        //    modelBuilder.Entity<Media>();
-        //    modelBuilder.Entity<ProjectPackage>();
-        //    modelBuilder.Entity<Transaction>();
-        //    modelBuilder.Entity<TransactionPackage>();
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Backer>();
+            modelBuilder.Entity<Project>();
+            modelBuilder.Entity<ProjectCreator>();
+            modelBuilder.Entity<RewardPackage>();
+            modelBuilder.Entity<Media>();
+            modelBuilder.Entity<Transaction>();
+            modelBuilder.Entity<TransactionPackage>();
 
-        //}
-        public CrowdfundDbContext(DbContextOptions<CrowdfundDbContext> options)
-              : base(options)
-        { }
-        public CrowdfundDbContext()
-        { }
-
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace Crowdfund.Services
                 Title = projectOption.Title,
             };
             db.Set<Project>().Add(project);
+            projectCreator.Projects.Add(project);
             db.SaveChanges();
             return projectOption;
         }
@@ -54,6 +55,7 @@ namespace Crowdfund.Services
             List<ProjectOption> projectOptionList = new List<ProjectOption>();
            foreach(Project p in projectList)
             {
+                ProjectCreator projectCreator = p.ProjectCreator;
                 projectOptionList.Add(CreateProjectOption(p));
             }
             return projectOptionList;
@@ -106,9 +108,12 @@ namespace Crowdfund.Services
         private ProjectOption CreateProjectOption(Project project)
         {
             List<int> rewardPackagesId = new List<int>();
-            foreach (RewardPackage rewardPackage in project.RewardPackages)
+            if (project.RewardPackages != null)
             {
-                rewardPackagesId.Add(rewardPackage.Id);
+                foreach (RewardPackage rewardPackage in project.RewardPackages)
+                {
+                    rewardPackagesId.Add(rewardPackage.Id);
+                }
             }
             return new ProjectOption()
             {
@@ -118,7 +123,6 @@ namespace Crowdfund.Services
                 Description = project.Description,
                 Id = project.Id,
                 ProjectCreatorId = project.ProjectCreator.Id,
-                RewardPackagesId = rewardPackagesId,
                 TargetBudget = project.TargetBudget,
                 Title = project.Title
             };

@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string Type { get; set; }
         public string Payload { get; set; }
+        public Project Project { get; set; }
     }
     public class Photo : Media
     {

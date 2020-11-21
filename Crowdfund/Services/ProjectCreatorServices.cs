@@ -13,11 +13,7 @@ namespace Crowdfund.Services
     
     public class ProjectCreatorServices : IProjectCreatorService
     {
-        private readonly CrowdfundDbContext dbContext;
-        public ProjectCreatorServices(CrowdfundDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        private readonly CrowdfundDbContext dbContext= new CrowdfundDbContext();
         public ProjectCreatorOption CreateProjectCreator(ProjectCreatorOption pcOption)
         {
             ProjectCreator pc = new ProjectCreator
@@ -35,7 +31,8 @@ namespace Crowdfund.Services
                 FirstName = pc.FirstName,
                 LastName = pc.LastName,
                 Description = pc.Description,
-                Email = pc.Email
+                Email = pc.Email,
+                Id=pc.Id
             };
         }
 
@@ -85,7 +82,6 @@ namespace Crowdfund.Services
 
         public List<ProjectCreatorOption> SearchProjectCreators(string searchCriteria)
         {
-            // no need dependency injection using CrowdfundDbContext dbContext = new CrowdfundDbContext();
             List<ProjectCreator> pcs = dbContext.ProjectCreators
                 .Where(pc => pc.FirstName.Contains(searchCriteria)
                || pc.LastName.Contains(searchCriteria)

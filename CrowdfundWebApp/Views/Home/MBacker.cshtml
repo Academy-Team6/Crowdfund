@@ -1,0 +1,125 @@
+﻿@model CrowdfundWebApp.Models.BackerOptionModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form id="createBackerForm">
+    <table align="center">
+        <tr align="center">
+            <td>
+                Name
+            </td>
+            <td> <input type="text" id="Name" placeholder="Name" /></td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="text" id="Email" placeholder="Email" />
+
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit" onclick="addBacker()" />
+            </td>
+        </tr>
+    </table>
+    <div id="result" name="result"></div>
+</form>
+
+<h1> Delete Backer</h1>
+
+<form>
+    <table align="center">
+
+        <tr align="center">
+            <td>
+                Backer Id
+            </td>
+            <td> <input type="text" id="Id" /></td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="deleteBacker()" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<h1> Find Backer</h1>
+
+<form>
+    <table align="center">
+
+        <tr align="center">
+            <td>
+                Backer name
+            </td>
+            <td> <input type="text" id="searchText" /></td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="findBacker()" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<h1> Update Backer</h1>
+
+<form>
+    <table align="center">
+
+        <tr align="center">
+            <td>
+                Backer Id
+            </td>
+            <td> <input type="text" id="Id" /></td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="findToUpdateBacker()" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<h1> Update Backer code = @Model.Backer.Id </h1>
+
+<form>
+    <table align="center">
+        <tr align="center">
+            <td>
+                Id
+            </td>
+            <td> <input type="text" id="Id" value="@Model.Backer.Id" readonly /></td>
+        </tr>
+
+
+        <tr align="center">
+            <td>
+                Name
+            </td>
+            <td> <input type="text" id="FirstName" value="@Model.Backer.Name" /></td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="text" id="Email" value="@Model.Backer.Email" />
+
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="updateBacker()" />
+            </td>
+        </tr>
+
+    </table>
+</form>

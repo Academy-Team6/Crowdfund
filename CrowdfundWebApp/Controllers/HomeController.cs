@@ -47,13 +47,21 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(backerModel);
         }
-        public IActionResult AddBacker()
+        public IActionResult MBacker()
         {
             return View();
+
         }
-        public IActionResult DeleteBacker()
+        public IActionResult FindBackerDisplay([FromQuery] string text)
         {
-            return View();
+            List<BackerOption> backers = backerService.SearchBackers(text);
+            BackerModel backerModel = new BackerModel
+            {
+                Backers = backers
+            };
+
+            return View("Backer", backerModel);
+
         }
         public IActionResult UpdateBacker()
         {
@@ -72,7 +80,7 @@ namespace CrowdfundWebApp.Controllers
         public IActionResult UpdateBackerWithDetails([FromRoute] int id)
         {
             BackerOption backerOptions = backerService.FindBacker(id);
-            BackerOptionModel model = new BackerOptionModel {Backer = backerOptions };
+            BackerOptionModel model = new BackerOptionModel { Backer = backerOptions };
 
             return View(model);
         }

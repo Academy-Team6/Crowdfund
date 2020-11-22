@@ -6,7 +6,7 @@
 }
 <h1> Backer Management</h1>
 <hr />
-To add a new backer press <a href="~/home/addbacker">here</a>
+To add,update or delete a backer press <a href="~/home/mbacker">here</a>
 <hr />
 
 
@@ -16,8 +16,6 @@ To add a new backer press <a href="~/home/addbacker">here</a>
         <th> Code</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Update</th>
-        <th>Delete</th>
     </tr>
 
     @{ 
@@ -27,8 +25,6 @@ To add a new backer press <a href="~/home/addbacker">here</a>
                 <td> @backer.Id</td>
                 <td> @backer.Name</td>
                 <td> @backer.Email   </td>
-                <td> <a href="~/home/updatebackerwithdetails/@backer.Id"><img src="~/images/update.png" width="25" /></a></td>
-                <td> <a href="~/home/DeleteBackerFromView/@backer.Id"><img src="~/images/delete.png" width="25" /></a></td>
             </tr>
         } 
       }

@@ -1,3 +1,4 @@
+using Crowdfund.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace CrowdfundWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddCrowdfund();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -17,13 +17,11 @@ namespace CrowdfundWebApp.Controllers
     public class BackerController : ControllerBase
     {
         private readonly IBackerService backerService;
-        private readonly IWebHostEnvironment hostingEnvironment;
 
 
-        public BackerController(IBackerService backerService, IWebHostEnvironment environment)
+        public BackerController(IBackerService backerService)
         {
             this.backerService = backerService;
-            hostingEnvironment = environment;
         }
 
         private string GetUniqueFileName(string fileName)

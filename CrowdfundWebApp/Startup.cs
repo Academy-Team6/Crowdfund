@@ -1,5 +1,9 @@
+using Crowdfund.API;
+using Crowdfund.Data;
+using Crowdfund.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +26,14 @@ namespace CrowdfundWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CrowdfundDbContext>(options => options.UseSqlServer(CrowdfundDbContext.connectionString));
+
+            services.AddScoped<IBackerService, BackerServices>();
+            services.AddScoped<IRewardPackageService, RewardPackageServices>();
+            services.AddScoped<ITransactionService, TransactionServices>();
+            services.AddScoped<IProjectService, ProjectServices>();
+            services.AddScoped<IProjectCreatorService, ProjectCreatorServices>();
+            services.AddScoped<IMediaService, MediaServices>();
             services.AddControllersWithViews();
         }
 

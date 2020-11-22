@@ -35,6 +35,7 @@ namespace CrowdfundWebApp.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Hello World!");
             return View();
         }
         public IActionResult Backer()

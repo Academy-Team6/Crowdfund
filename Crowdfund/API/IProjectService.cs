@@ -6,14 +6,14 @@ namespace Crowdfund.API
 {
     public interface IProjectService
     {
-        public ProjectOption CreateProject(ProjectOption projectOption);
-        public ProjectOption FindProject(int id);
-        public List<ProjectOption> FindAll();
-        public List<ProjectOption> FindByCategory(ProjectCategory projectCategory);
-        public List<ProjectOption> FindBySearch(string payload);
-        public List<ProjectOption> FindByTrending();
-        public ProjectOption UpdateProject(int id, ProjectOption projectOption);
-        public bool DeleteProject(int id);
-        public RewardPackageOption AddPackageToProject(int projectId, int rewardPackageId);
+        ProjectOption CreateProject(ProjectOption projectOption);
+        ProjectOption FindProject(int id);
+        List<ProjectOption> FindAll();
+        List<ProjectOption> FindByCategory(ProjectCategory projectCategory);
+        List<ProjectOption> FindBySearch(string payload);
+        List<ProjectOption> FindByTrending();
+        ProjectOption UpdateProject(int id, ProjectOption projectOption);
+        bool DeleteProject(int id);
+        RewardPackageOption AddPackageToProject(int projectId, int rewardPackageId);
     }
 }

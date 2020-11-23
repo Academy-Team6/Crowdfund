@@ -37,6 +37,15 @@ namespace CrowdfundWebApp.Controllers
         {
             return View();
         }
+        public IActionResult ProjectCreator()
+        {
+            List<ProjectCreatorOption> projectCreators = projectCreatorService.GetAllProjectCreators();
+            ProjectCreatorModel projectCreatorModel = new ProjectCreatorModel()
+            {
+                ProjectCreators = projectCreators
+            };
+            return View(projectCreatorModel);
+        }
         public IActionResult Backer()
         {
             List<BackerOption> backer = backerService.GetAllBackers();

@@ -15,10 +15,11 @@ namespace _3rdPartyRESTAPI.Controllers
     public class ProjectCreatorController : ControllerBase
     {
         private readonly ILogger<ProjectCreatorController> _logger;
-        private ProjectCreatorServices projectCreatorService = new ProjectCreatorServices();
-        public ProjectCreatorController(ILogger<ProjectCreatorController> logger)
+        private readonly ProjectCreatorServices projectCreatorService;
+        public ProjectCreatorController(ILogger<ProjectCreatorController> logger, ProjectCreatorServices _projectCreatorServices)
         {
             _logger = logger;
+            projectCreatorService = _projectCreatorServices;
         }
         [HttpGet]
         public List<ProjectCreatorOption> GetAllProjectCreators()

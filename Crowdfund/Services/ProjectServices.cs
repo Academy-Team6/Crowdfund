@@ -2,6 +2,7 @@
 using Crowdfund.Data;
 using Crowdfund.model;
 using Crowdfund.Options;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,7 +52,7 @@ namespace Crowdfund.Services
         }
         public List<ProjectOption> FindAll()
         {
-            List<Project> projectList = db.Set<Project>().ToList();
+            List<Project> projectList = db.Set<Project>().Include(o=>o.ProjectCreator).ToList();
             List<ProjectOption> projectOptionList = new List<ProjectOption>();
            foreach(Project p in projectList)
             {

@@ -37,6 +37,37 @@ namespace CrowdfundWebApp.Controllers
         {
             return View();
         }
+        public IActionResult ProjectCreator()
+        {
+            List<ProjectCreatorOption> projectCreators = projectCreatorService.GetAllProjectCreators();
+            ProjectCreatorModel projectCreatorModel = new ProjectCreatorModel()
+            {
+                ProjectCreators = projectCreators
+            };
+            return View(projectCreatorModel);
+        }
+
+        public IActionResult AddProjectCreator()
+        {
+            return View();
+        }
+        public IActionResult UpdateProjectCreator([FromRoute] int id)
+        {
+            ProjectCreatorOption projectCreatorOption = projectCreatorService.FindProjectCreator(id);
+            ProjectCreatorOptionModel projectCreatorOptionModel = new ProjectCreatorOptionModel() { ProjectCreator = projectCreatorOption };
+            return View(projectCreatorOptionModel);
+        }
+        public IActionResult DeleteProjectCreator([FromRoute] int id)
+        {
+            ProjectCreatorOption projectCreatorOption = projectCreatorService.FindProjectCreator(id);
+            ProjectCreatorOptionModel projectCreatorOptionModel = new ProjectCreatorOptionModel() { ProjectCreator = projectCreatorOption };
+            return View(projectCreatorOptionModel);
+        }
+
+
+
+
+
         public IActionResult Backer()
         {
             List<BackerOption> backer = backerService.GetAllBackers();
@@ -46,6 +77,7 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(backerModel);
         }
+       
         public IActionResult AddBacker()
         {
             return View();

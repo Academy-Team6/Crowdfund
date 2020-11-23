@@ -17,10 +17,11 @@ namespace CrowdfundWebApp.Controllers
     {
 
         private readonly ILogger<MediaController> _logger;
-        private MediaServices mediaService = new MediaServices();
-        public MediaController(ILogger<MediaController> logger)
+        private MediaServices mediaService;
+        public MediaController(ILogger<MediaController> logger, MediaServices _mediaService)
         {
             _logger = logger;
+            mediaService = _mediaService;
         }
         [HttpGet("{projectId}")]
         public List<MediaOption> GetMediaForProject(int projectId)

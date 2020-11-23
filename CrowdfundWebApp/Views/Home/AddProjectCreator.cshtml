@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form id="createProjectCreatorForm">
+    <table align="center">
+        <tr align="center">
+            <td>
+                FirstName
+            </td>
+            <td> <input type="text" id="FirstName" placeholder="FirstName" /></td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                LastName
+            </td>
+            <td>
+                <input type="text" id="LastName" placeholder="LastName" />
+            </td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                Description
+            </td>
+            <td>
+                <input type="text" id="Description" placeholder="Description" />
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="text" id="Email" placeholder="Email" />
+
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="addProjectCreator()" />
+            </td>
+        </tr>
+    </table>
+    <div id="result" name="result"></div>
+</form>

@@ -16,10 +16,11 @@ namespace CrowdfundWebApp.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly ILogger<ProjectController> _logger;
-        private IProjectService projectService = new ProjectServices();
-        public ProjectController(ILogger<ProjectController> logger)
+        private readonly IProjectService projectService;
+        public ProjectController(ILogger<ProjectController> logger, IProjectService _projectService)
         {
             _logger = logger;
+            projectService = _projectService;
         }
 
         [HttpGet]

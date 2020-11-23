@@ -1,4 +1,5 @@
-﻿using Crowdfund.Options;
+﻿using Crowdfund.API;
+using Crowdfund.Options;
 using Crowdfund.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,43 +9,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _3rdPartyRESTAPI.Controllers
+namespace CrowdfundWebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectCreatorController : ControllerBase
     {
         private readonly ILogger<ProjectCreatorController> _logger;
-        private readonly ProjectCreatorServices projectCreatorService;
-        public ProjectCreatorController(ILogger<ProjectCreatorController> logger, ProjectCreatorServices _projectCreatorServices)
+        private readonly IProjectCreatorService _projectCreatorService;
+        public ProjectCreatorController(ILogger<ProjectCreatorController> logger, IProjectCreatorService projectCreatorServices)
         {
             _logger = logger;
-            projectCreatorService = _projectCreatorServices;
+            _projectCreatorService = projectCreatorServices;
         }
         [HttpGet]
         public List<ProjectCreatorOption> GetAllProjectCreators()
         {
-            return projectCreatorService.GetAllProjectCreators();
+            return _projectCreatorService.GetAllProjectCreators();
         } 
         [HttpGet("{id}")]
         public ProjectCreatorOption FindProjectCreator(int id)
         {
-            return projectCreatorService.FindProjectCreator(id);
+            return _projectCreatorService.FindProjectCreator(id);
         }
         [HttpPost]
         public ProjectCreatorOption CreateProjectCreator(ProjectCreatorOption projectCreatorOption)
         {
-            return projectCreatorService.CreateProjectCreator(projectCreatorOption);
+            return _projectCreatorService.CreateProjectCreator(projectCreatorOption);
         }
         [HttpPut("{id}")]
         public ProjectCreatorOption UpdateProjectCreator(int id, ProjectCreatorOption projectCreatorOption)
         {
-            return projectCreatorService.UpdateProjectCreator(id, projectCreatorOption);
+            return _projectCreatorService.UpdateProjectCreator(id, projectCreatorOption);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public bool DeleteProjectCreator(int id)
         {
-            return projectCreatorService.DeleteProjectCreator(id);
+            return _projectCreatorService.DeleteProjectCreator(id);
         }
     }
 }

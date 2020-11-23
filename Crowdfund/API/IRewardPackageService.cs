@@ -10,5 +10,6 @@ namespace Crowdfund.API
         RewardPackageOption UpdateRewardPackage(int id, RewardPackageOption rewardPackageOption);
         bool DeleteRewardPackage(int id);
         List<RewardPackageOption> GetAllRewardPackages();
+        RewardPackageOption GetRewardPackage(int id);
     }
 }

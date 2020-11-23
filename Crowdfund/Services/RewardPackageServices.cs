@@ -2,14 +2,11 @@
 using Crowdfund.Data;
 using Crowdfund.model;
 using Crowdfund.Options;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Crowdfund.Services
-{
-    
+{    
     public class RewardPackageServices : IRewardPackageService
     {
         private readonly CrowdfundDbContext dbContext;
@@ -76,6 +73,11 @@ namespace Crowdfund.Services
             dbContext.SaveChanges();
 
             return rewardPackageOption;
+        }
+
+        public RewardPackageOption GetRewardPackage(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

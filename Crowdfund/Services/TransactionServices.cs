@@ -3,10 +3,8 @@ using Crowdfund.Data;
 using Crowdfund.model;
 using Crowdfund.Options;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Crowdfund.Services
 {
@@ -48,8 +46,10 @@ namespace Crowdfund.Services
             TransactionOption transactionOption = new TransactionOption
             {
                 BackerName = backer.Name + " ",
-                TransactionId = transaction.Id,
-                RewardPackages = rewardpackages
+                TransactionId = transaction.Id
+                
+                //ProjectId     = project.Id,
+                //RewardPackages = rewardpackages
             };
 
             return transactionOption;
@@ -68,5 +68,17 @@ namespace Crowdfund.Services
             dbContext.SaveChanges();
             return GetTransaction(transactionId);
         }
+
+        public TransactionOption FindTransactionById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<TransactionOption> GetAllTransactions()
+        {
+            throw new System.NotImplementedException();
+        }
+
+       
     }
 }

@@ -48,8 +48,10 @@ namespace Crowdfund.Services
             TransactionOption transactionOption = new TransactionOption
             {
                 BackerName = backer.Name + " ",
-                TransactionId = transaction.Id,
-                RewardPackages = rewardpackages
+                TransactionId = transaction.Id
+                
+                //ProjectId     = project.Id,
+                //RewardPackages = rewardpackages
             };
 
             return transactionOption;

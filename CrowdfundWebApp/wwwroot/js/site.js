@@ -178,32 +178,3 @@ function updateProject() {
     });
 }
 
-$(document).ready(function testProject() {
-    $.ajax(
-        {
-            type: "GET",
-            url: "localhost:49207/api/project",
-            data: "{}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            cache: false,
-            success: function (data) {
-                parsedData = JSON.parse(data);
-                console.log(parsedData);
-                $.each(parsedData.id, function (i, item) {
-                    $("#personDataTable tbody").append(
-                        "<tr>" + "<td>" + data.Id + "</td>"
-                        + "<td>" + data.Title + "</td>"
-                        + "<td>" + data.Category + "</td>"
-                        + "<td>" + data.Descreption + "</td>"
-                        + "<td>" + data.TargetBudget + "</td>"
-                        + "</tr>")
-                })
-            },
-            error: function (msg) {
-
-                alert(msg.responseText);
-            }
-        });
-});
-   

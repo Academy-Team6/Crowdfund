@@ -93,10 +93,7 @@ namespace CrowdfundWebApp.Controllers
             return View(projectOptionModel);
         }
 
-        public IActionResult TestProject()
-        {
-            return View();
-        }
+     
         //Backer Views
 
         public IActionResult Backer()

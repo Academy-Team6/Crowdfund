@@ -77,12 +77,12 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(backerModel);
         }
-        public IActionResult MBacker([FromRoute] int id)
+        public IActionResult MBacker()
         {
-            BackerOption backerOptions = backerService.FindBacker(id);
-            BackerOptionModel model = new BackerOptionModel() { Backer = backerOptions };
+            //BackerOption backerOptions = backerService.FindBacker(id);
+            //BackerOptionModel model = new BackerOptionModel() { Backer = backerOptions };
 
-            return View(model);
+            return View();
         }
         public IActionResult FindBackerDisplay([FromQuery] string text)
         {

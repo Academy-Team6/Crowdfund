@@ -13,7 +13,7 @@ namespace Crowdfund.Options
         public string Description { get; set; }
         public List<Photo> Photos { get; set; }
         public List<Video> Videos { get; set; }
-        public decimal TargetBudget { get; set; }
+        public string TargetBudget { get; set; }
         public decimal CurrentBudget { get; set; }
         public decimal BudgetRatio { get; set; }
         public int ProjectCreatorId { get; set; }

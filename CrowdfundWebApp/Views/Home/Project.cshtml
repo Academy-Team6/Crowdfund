@@ -1,5 +1,59 @@
-﻿@*
+﻿@model ProjectModel
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+
+<h1>Project Management</h1>
+<hr />
+To add a new project press <a href="~/home/addproject">here</a>
+
+<div class="container">
+    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>TargetBudget</th>
+            <th>CurrentBudget</th>
+            <th>BudgetRatio</th>
+            <th>ProjectCreatorId</th>
+            <th>RewardPackages</th>
+            <th>Photos</th>
+            <th>Videos</th>
+            <th>UPD</th>
+            <th>DEL</th>
+            <th>ADDM</th>
+            <th>ADDRP</th>
+        </tr>
+        @{ 
+            foreach(var project in Model.Projects)
+            {
+                <tr>
+                    <td>@project.Id</td>
+                    <td>@project.Title</td>
+                    <td>@project.Category</td>
+                    <td>@project.Description</td>
+                    <td>@project.TargetBudget</td>
+                    <td>@project.CurrentBudget</td>
+                    <td>@project.ProjectCreatorId</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    @*
+                    <td>@project.RewardPackagesId.Count()</td>
+                    <td>@project.Photos.Count()</td>
+                    <td>@project.Videos.Count()</td>
+                    *@
+                    <td> <a href="~/home/UpdateProject/@project.Id"><img src="~/images/update.png" width="25" /></a></td>
+                    <td> <a href="~/home/DeleteProject/@project.Id"><img src="~/images/delete.png" width="25" /></a></td>
+                    <td> <a href="~/home/AddProjectMedia/@project.Id"><img src="~/images/AddMedia.png" width="25" /></a></td>
+                    <td> <a href="~/home/AddRewardPackage/@project.Id"><img src="~/images/AddRewardPackage.jpg" width="25" /></a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

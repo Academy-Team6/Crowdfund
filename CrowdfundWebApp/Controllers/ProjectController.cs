@@ -50,7 +50,7 @@ namespace CrowdfundWebApp.Controllers
             return projectService.FindBySearch(payload);
         }
         [HttpPost]
-        public ProjectOption CreateProject(ProjectOption projectOption)
+        public ProjectOption CreateProject([FromForm]ProjectOption projectOption)
         {
             return projectService.CreateProject(projectOption);
         }
@@ -65,7 +65,7 @@ namespace CrowdfundWebApp.Controllers
             return projectService.DeleteProject(id);
         }
         [HttpPut("{id}")]
-        public ProjectOption UpdateProject(int id, ProjectOption projectOption)
+        public ProjectOption UpdateProject(int id,[FromForm] ProjectOption projectOption)
         {
             return projectService.UpdateProject(id, projectOption);
         }

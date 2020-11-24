@@ -37,6 +37,8 @@ namespace CrowdfundWebApp.Controllers
         {
             return View();
         }
+        //ProjectCreator Views
+
         public IActionResult ProjectCreator()
         {
             List<ProjectCreatorOption> projectCreators = projectCreatorService.GetAllProjectCreators();
@@ -63,10 +65,36 @@ namespace CrowdfundWebApp.Controllers
             ProjectCreatorOptionModel projectCreatorOptionModel = new ProjectCreatorOptionModel() { ProjectCreator = projectCreatorOption };
             return View(projectCreatorOptionModel);
         }
+        //Project Views
 
+        public IActionResult Project()
+        {
+            List<ProjectOption> projects = projectService.FindAll();
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projects
+            };
+            return View(projectModel);
+        }
+        public IActionResult AddProject()
+        {
+            return View();
+        }
+        public IActionResult UpdateProject([FromRoute] int id)
+        {
+            ProjectOption projectOption = projectService.FindProject(id);
+            ProjectOptionModel projectOptionModel = new ProjectOptionModel() { Project = projectOption };
+            return View(projectOptionModel);
+        }
+        public IActionResult DeleteProject([FromRoute] int id)
+        {
+            ProjectOption projectOption = projectService.FindProject(id);
+            ProjectOptionModel projectOptionModel = new ProjectOptionModel() { Project = projectOption };
+            return View(projectOptionModel);
+        }
 
-
-
+     
+        //Backer Views
 
         public IActionResult Backer()
         {

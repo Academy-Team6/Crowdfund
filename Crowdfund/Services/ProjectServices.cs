@@ -34,7 +34,7 @@ namespace Crowdfund.Services
                 Category = projectOption.Category,
                 ProjectCreator = projectCreator,
                 RewardPackages = new List<RewardPackage>(),
-                TargetBudget = projectOption.TargetBudget,
+                TargetBudget = decimal.Parse(projectOption.TargetBudget),
                 Title = projectOption.Title,
             };
             db.Set<Project>().Add(project);
@@ -44,7 +44,7 @@ namespace Crowdfund.Services
         }
         public bool DeleteProject(int id)
         {
-            Project project = db.Set<Project>().Find(id);
+            Project project = db.Set<Project>().Where(o => o.Id == id).Include(o => o.ProjectCreator).SingleOrDefault();
             if (project == null) return false;
             db.Set<Project>().Remove(project);
             db.SaveChanges();
@@ -63,7 +63,7 @@ namespace Crowdfund.Services
         }
         public List<ProjectOption> FindByCategory(ProjectCategory projectCategory)
         {
-            List<Project>projectList=db.Set<Project>().Where(p => p.Category == projectCategory.ToString()).ToList();
+            List<Project>projectList=db.Set<Project>().Where(p => p.Category == projectCategory.ToString()).Include(o => o.ProjectCreator).ToList();
             List<ProjectOption> projectOptionList = new List<ProjectOption>();
             foreach (Project p in projectList)
             {
@@ -73,7 +73,7 @@ namespace Crowdfund.Services
         }
         public List<ProjectOption> FindBySearch(string payload)
         {
-            List<Project> projectList = db.Set<Project>().Where(p => p.Description.Contains(payload)).ToList();
+            List<Project> projectList = db.Set<Project>().Where(p => p.Description.Contains(payload)).Include(o => o.ProjectCreator).ToList();
             List<ProjectOption> projectOptionList = new List<ProjectOption>();
             foreach (Project p in projectList)
             {
@@ -87,21 +87,24 @@ namespace Crowdfund.Services
         }
         public ProjectOption FindProject(int id)
         {
-            Project project = db.Set<Project>().Find(id);
+            Project project = db.Set<Project>().Where(o => o.Id == id).Include(o => o.ProjectCreator).SingleOrDefault();
             List<int> rewardPackagesId = new List<int>();
-            foreach(RewardPackage rewardPackage in project.RewardPackages)
+            if (project.RewardPackages != null)
             {
-                rewardPackagesId.Add(rewardPackage.Id);
+                foreach (RewardPackage rewardPackage in project.RewardPackages)
+                {
+                    rewardPackagesId.Add(rewardPackage.Id);
+                }
             }
             return CreateProjectOption(project);
         }
         public ProjectOption UpdateProject(int id, ProjectOption projectOption)
         {
-            Project project = db.Set<Project>().Find(id);
+            Project project = db.Set<Project>().Where(o=>o.Id==id).Include(o => o.ProjectCreator).SingleOrDefault();
             project.Category = projectOption.Category;
             project.Description = projectOption.Description;
             project.CurrentBudget = projectOption.CurrentBudget;
-            project.TargetBudget = projectOption.TargetBudget;
+            project.TargetBudget = decimal.Parse(projectOption.TargetBudget);
             project.Title = projectOption.Title;
             db.SaveChanges();
             return projectOption;
@@ -124,7 +127,7 @@ namespace Crowdfund.Services
                 Description = project.Description,
                 Id = project.Id,
                 ProjectCreatorId = project.ProjectCreator.Id,
-                TargetBudget = project.TargetBudget,
+                TargetBudget = project.TargetBudget.ToString(),
                 Title = project.Title
             };
         }

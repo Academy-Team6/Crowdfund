@@ -177,4 +177,32 @@ function updateProject() {
 
     });
 }
+function deleteProject(Id) {
+    id = $("#id").val()
 
+    console.log(id);
+    console.log(Id);
+
+    actionUrl = "/api/project/" + Id
+    actiontype = "DELETE"
+    actionDataType = "json"
+
+    $.ajax({
+        url: actionUrl,
+        dataType: actionDataType,
+        type: actiontype,
+
+        contentType: 'application/json',
+        processData: false,
+
+        success: function (data, textStatus, jQxhr) {
+
+            alert(JSON.stringify(data))
+            window.open("/home/project", "_self")
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+
+    });
+}

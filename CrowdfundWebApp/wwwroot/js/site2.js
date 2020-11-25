@@ -41,16 +41,6 @@ function findBacker() {
 }
 
 
-function findToUpdateBacker() {
-
-    id = $("#Id").val()
-    actionUrl = "/Home/UpdateBackerWithDetails/" + id
-
-    window.open(actionUrl, "_self");
-
-}
-
-
 function updateBacker() {
     id = $("#Id").val()
 

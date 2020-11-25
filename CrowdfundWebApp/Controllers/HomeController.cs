@@ -79,9 +79,6 @@ namespace CrowdfundWebApp.Controllers
         }
         public IActionResult MBacker()
         {
-            //BackerOption backerOptions = backerService.FindBacker(id);
-            //BackerOptionModel model = new BackerOptionModel() { Backer = backerOptions };
-
             return View();
         }
         public IActionResult FindBackerDisplay([FromQuery] string text)
@@ -95,9 +92,11 @@ namespace CrowdfundWebApp.Controllers
             return View("Backer", backerModel);
 
         }
-        public IActionResult UpdateBacker()
+        public IActionResult UpdateBacker([FromRoute] int id)
         {
-            return View();
+            BackerOption backerOption = backerService.FindBacker(id);
+            BackerOptionModel backerOptionModel = new BackerOptionModel() { Backer = backerOption };
+            return View(backerOptionModel);
         }
         public IActionResult DeleteBackerFromView([FromRoute] int id)
         {
@@ -109,17 +108,6 @@ namespace CrowdfundWebApp.Controllers
         {
             return View();
         }
-        //public IActionResult UpdateBackerWithDetails([FromRoute] int id)
-        //{
-        //    BackerOption backerOptions = backerService.FindBacker(id);
-        //    BackerOptionModel model = new BackerOptionModel { Backer = backerOptions };
-
-        //    return View(model);
-        //}
-
-
-
-
         public IActionResult Privacy()
         {
             return View();

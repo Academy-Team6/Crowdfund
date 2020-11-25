@@ -22,10 +22,6 @@ $('#login-btn').on('click', function () {
         Password: lastname
     };
     let json3 = JSON.stringify(loginOptions);
-    console.log("yo2");
-    console.log("yo3");
-    console.log(json3);
-
     $.ajax({
         url: '/api/login',
         contentType: 'application/json',
@@ -33,19 +29,12 @@ $('#login-btn').on('click', function () {
         data: json3,
         dataType: 'json',
         processData:false,
-        success: function (data, textStatus, jQxhr) {
-            let jData = JSON.stringify(data);
-            console.log(jData);
-            console.log(jData);
-
+        success: function (data) {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
-
-            console.log(localStorage.getItem('userId'));
-
-
             $('#logout-btn').show();
             $('#login-btn').hide();
+            $('#login-link').hide();
         },
         error: function () {
            
@@ -58,6 +47,7 @@ $('#logout-btn').on('click', function () {
     localStorage.removeItem('userId');
     $('#logout-btn').hide();
     $('#login-btn').show();
+    $('#login-link').show();
 });
 
 //P R O J E C T  C R E A T O R 

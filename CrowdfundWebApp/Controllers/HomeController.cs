@@ -21,8 +21,9 @@ namespace CrowdfundWebApp.Controllers
         private readonly IProjectService projectService;
         private readonly IProjectCreatorService projectCreatorService;
         private readonly ITransactionService transactionService;
+        private readonly ILoginService loginService;
 
-        public HomeController(ILogger<HomeController> logger, IBackerService _backerService, IRewardPackageService _rewardPackageService, IMediaService _mediaService , IProjectService _projectService , IProjectCreatorService _projectCreatorService, ITransactionService _transactionService)
+        public HomeController(ILogger<HomeController> logger, ILoginService _loginService, IBackerService _backerService, IRewardPackageService _rewardPackageService, IMediaService _mediaService , IProjectService _projectService , IProjectCreatorService _projectCreatorService, ITransactionService _transactionService)
         {
             _logger = logger;
             backerService = _backerService;
@@ -31,14 +32,21 @@ namespace CrowdfundWebApp.Controllers
             projectService = _projectService;
             projectCreatorService = _projectCreatorService;
             transactionService = _transactionService;
+            loginService = _loginService;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-        //ProjectCreator Views
 
+        //login
+        public IActionResult Login()
+        {
+                return View();
+        }
+
+        //ProjectCreator Views
         public IActionResult ProjectCreator()
         {
             List<ProjectCreatorOption> projectCreators = projectCreatorService.GetAllProjectCreators();

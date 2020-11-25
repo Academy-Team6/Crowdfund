@@ -29,7 +29,8 @@ namespace CrowdfundWebApp.Controllers
             if (backerOptWithFileModel == null) return null;
             BackerOption backerOpt = new BackerOption
             {
-                Name = backerOptWithFileModel.Name,
+                FirstName = backerOptWithFileModel.FirstName,
+                LastName=backerOptWithFileModel.LastName,
                 Email = backerOptWithFileModel.Email,
                 Id = backerOptWithFileModel.Id
             };

@@ -21,7 +21,8 @@ namespace Crowdfund.Services
         {
             Backer backer = new Backer
             {
-                Name = backerOption.Name,
+                FirstName = backerOption.FirstName,
+                LastName = backerOption.LastName,
                 Email = backerOption.Email
             };
 
@@ -29,7 +30,8 @@ namespace Crowdfund.Services
             dbContext.SaveChanges();
             return new BackerOption
             {
-                Name = backer.Name,
+                FirstName = backerOption.FirstName,
+                LastName = backerOption.LastName,
                 Email = backer.Email
             };
         }
@@ -49,14 +51,16 @@ namespace Crowdfund.Services
             Backer backer = dbContext.Backers.Find(id);
             return new BackerOption
             {
-                Name = backer.Name,
+                FirstName = backer.FirstName,
+                LastName = backer.LastName,
                 Email = backer.Email,
                 Id = backer.Id // might need fixing
             };
         }
         private static void BackerOptToBacker(BackerOption backerOpt, Backer backer)
         {
-            backer.Name = backerOpt.Name;
+            backer.FirstName = backerOpt.FirstName;
+            backer.LastName = backerOpt.LastName;
             backer.Email = backerOpt.Email;
         }
 
@@ -69,7 +73,8 @@ namespace Crowdfund.Services
 
             return new BackerOption
             {
-                Name = backer.Name,
+                FirstName = backer.FirstName,
+                LastName=backer.LastName,
                 Email = backer.Email
             };
         }
@@ -79,7 +84,8 @@ namespace Crowdfund.Services
             List<BackerOption> backerOpt = new List<BackerOption>();
             backers.ForEach(backer => backerOpt.Add(new BackerOption
             {
-                Name = backer.Name,
+                FirstName = backer.FirstName,
+                LastName=backer.LastName,
                 Email = backer.Email,
                 Id = backer.Id //something is wrong ?
             }));
@@ -89,15 +95,17 @@ namespace Crowdfund.Services
         public List<BackerOption> SearchBackers(string searchCriteria)
         {
             List<Backer> backers = dbContext.Backers
-                .Where(backer => backer.Name.Contains(searchCriteria)
+                .Where(backer => backer.FirstName.Contains(searchCriteria)
                || backer.Email.Contains(searchCriteria)
+               || backer.LastName.Contains(searchCriteria)
                 )
                 .ToList();
 
             List<BackerOption> backerOpt = new List<BackerOption>();
             backers.ForEach(backer => backerOpt.Add(new BackerOption
             {
-                Name = backer.Name,
+                FirstName = backer.FirstName,
+                LastName=backer.LastName,
                 Email = backer.Email,
                 Id = backer.Id //something is wrong ?
             }));

@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form id="createRewardPackageForm">
+    <table align="center">
+        <tr align="center">
+            <td>
+                Price
+            </td>
+            <td> <input type="text" id="Price" placeholder="Price" /></td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                Reward
+            </td>
+            <td>
+                <input type="text" id="Reward" placeholder="Reward" />
+            </td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                ProjectId
+            </td>
+            <td>
+                <input type="text" id="ProjectId" placeholder="ProjectId" />
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="addRewardPackage()" />
+            </td>
+        </tr>
+    </table>
+    <div id="result" name="result"></div>
+</form>

@@ -1,4 +1,4 @@
-﻿using Crowdfund.API;
+using Crowdfund.API;
 using Crowdfund.Data;
 using Crowdfund.model;
 using Crowdfund.Options;
@@ -21,7 +21,7 @@ namespace Crowdfund.Services
             dbContext.SaveChanges();
             TransactionOption transactionOption = new TransactionOption
             {
-                BackerName = backer.Name + " ",
+                BackerName = backer.LastName +" "+ backer.FirstName +" ",
                 TransactionId = transaction.Id
             };
             return transactionOption;
@@ -41,7 +41,7 @@ namespace Crowdfund.Services
 
             TransactionOption transactionOption = new TransactionOption
             {
-                BackerName = backer.Name + " ",
+                BackerName = backer.LastName+ " "+ backer.FirstName + " ",
                 TransactionId = transaction.Id
 
                 //ProjectId     = project.Id,
@@ -72,7 +72,7 @@ namespace Crowdfund.Services
             List<int> Rewardpackages = new List<int>();
             return new TransactionOption
             {
-                BackerName = transaction.Backer.Name,
+                BackerName = transaction.Backer.LastName,
                 TransactionId = transaction.Id
                 //RewardPackages = transaction.TransactionPackages.
             };
@@ -84,7 +84,7 @@ namespace Crowdfund.Services
             List<TransactionOption> trOpt = new List<TransactionOption>();
             tr.ForEach(tr => trOpt.Add(new TransactionOption
             {
-                BackerName = tr.Backer.Name,
+                BackerName = tr.Backer.LastName,
                 TransactionId = tr.Id
                 //RewardPackages = transaction.TransactionPackages.
             }));

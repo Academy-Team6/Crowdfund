@@ -1,0 +1,19 @@
+﻿@model CrowdfundWebApp.Models.RewardPackageOptionModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "DeleteRewardPackage";
+}
+
+<h1 id="@Model.RewardPackage.Id">Are you sure you want to Remove this Reward id=@Model.RewardPackage.Id ??</h1>
+<table>
+    <tr align="center">
+        <td>
+            <input type="button" value="Yes" onclick="deleteRewardPackage(@Model.RewardPackage.Id)" />
+        </td>
+        <td>
+            <input type="button" value="No" onclick="location.href = '/home/rewardpackage';" />
+        </td>
+    </tr>
+</table>

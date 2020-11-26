@@ -144,6 +144,33 @@ namespace CrowdfundWebApp.Controllers
         {
             return View();
         }
+
+        //RewardPackage Views
+        public IActionResult RewardPackage()
+        {
+            List<RewardPackageOption> rewardPackages = rewardPackageService.GetAllRewardPackages();
+            RewardPackageModel rewardPackagesModel = new RewardPackageModel()
+            {
+                RewardPackages = rewardPackages
+            };
+            return View(rewardPackagesModel);
+        }
+        public IActionResult AddRewardPackage()
+        {
+            return View();
+        }
+        public IActionResult UpdateRewardPackage([FromRoute] int id)
+        {
+            RewardPackageOption rewardPackageOption = rewardPackageService.FindRewardPackageById(id);
+            RewardPackageOptionModel rewardPackageOptionModel = new RewardPackageOptionModel() { RewardPackage = rewardPackageOption };
+            return View(rewardPackageOptionModel);
+        }
+        public IActionResult DeleteRewardPackage([FromRoute] int id)
+        {
+            RewardPackageOption rewardPackageOption = rewardPackageService.FindRewardPackageById(id);
+            RewardPackageOptionModel rewardPackageOptionModel = new RewardPackageOptionModel() { RewardPackage = rewardPackageOption };
+            return View(rewardPackageOptionModel);
+        }
         public IActionResult Privacy()
         {
             return View();

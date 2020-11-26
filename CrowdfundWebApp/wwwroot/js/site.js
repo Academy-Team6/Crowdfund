@@ -102,32 +102,39 @@ function deleteProjectCreator(Id) {
     });
 }
 
-function addRewardPackage() {
+$(".dropdown-menu li a").click(function () {
+    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+});
 
-    var actionUrl = "/api/rewardpackage";
+
+function addProject() {
+    var actionUrl = "/api/project";
     var formData = new FormData();
 
 
-    formData.append("Price", $('#Price').val());
-    formData.append("Reward", $('#Reward').val());
-    formData.append("ProjectId", $('#ProjectId').val());
+    formData.append("Title", $('#Title').val());
+    formData.append("Category", $('#Category').val());
+    formData.append("Description", $('#Description').val());
+    formData.append("TargetBudget", $('#TargetBudget').val());
+    formData.append("ProjectCreatorId", parseInt($('#ProjectCreatorId').val()));
 
     var object = {};
     formData.forEach(function (value, key) {
         object[key] = value;
     });
-    var json = JSON.stringify(object);
+    var json = JSON.stringify(formData);
+    console.log(json);
     $.ajax(
         {
             url: actionUrl,
-            dataType: "json",
-            data: json,
+            data: formData,
             processData: false,
-            contentType: 'application/json',
+            contentType: false,
             type: "POST",
             success: function (data) {
                 alert(json)
-                window.open("/home/rewardpackage", "_self")
+                window.open("/home/project", "_self")
 
             },
             error: function (jqXhr, textStatus, errorThrown) {
@@ -136,62 +143,33 @@ function addRewardPackage() {
         }
     );
 }
-function updateRewardPackage() {
+function updateProject() {
     id = $("#Id").val()
 
-    actionUrl = "/api/rewardpackage/" + id
+    actionUrl = "/api/project/" + id
     actiontype = "PUT"
-    actionDataType = "json"
 
-    sendData = {
-        "Price": $("#Price").val(),
-        "Reward": $("#Reward").val(),
-        "ProjectId": $("#ProjectId").val(),
-    }
+    var formData = new FormData();
+
+
+    formData.append("Title", $('#Title').val());
+    formData.append("Category", $('#Category').val());
+    formData.append("Description", $('#Description').val());
+    formData.append("TargetBudget", $('#TargetBudget').val());
 
 
     $.ajax({
         url: actionUrl,
-        dataType: actionDataType,
         type: actiontype,
-        data: JSON.stringify(sendData),
-        contentType: 'application/json',
+        data: formData,
+        contentType: false,
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
 
             alert(JSON.stringify(data))
 
-            window.open("/home/rewardpackage", "_self")
-        },
-        error: function (jqXhr, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-
-    });
-}
-function deleteRewardPackage(Id) {
-    id = $("#id").val()
-
-    console.log(id);
-    console.log(Id);
-
-    actionUrl = "/api/rewardpackage/" + id
-    actiontype = "DELETE"
-    actionDataType = "json"
-
-    $.ajax({
-        url: actionUrl,
-        dataType: actionDataType,
-        type: actiontype,
-
-        contentType: 'application/json',
-        processData: false,
-
-        success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
-            window.open("/home/rewardpackage", "_self")
+            window.open("/home/project", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {
             alert(errorThrown);

@@ -6,14 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Crowdfund.Services
-{    
+{
     public class RewardPackageServices : IRewardPackageService
     {
-        private readonly CrowdfundDbContext dbContext;
-        public RewardPackageServices(CrowdfundDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        private readonly CrowdfundDbContext dbContext = new CrowdfundDbContext();
         private static RewardPackage GetRewardPackageFromRewardPackageOption(RewardPackageOption rewardPackageOption)
         {
             return new RewardPackage
@@ -22,7 +18,7 @@ namespace Crowdfund.Services
                 Price = rewardPackageOption.Price,
             };
         }
-        RewardPackageOption IRewardPackageService.CreateRewardPackage(RewardPackageOption rewardPackageOption)
+        public RewardPackageOption CreateRewardPackage(RewardPackageOption rewardPackageOption)
         {
             RewardPackage rewardPackage = GetRewardPackageFromRewardPackageOption(rewardPackageOption);
 
@@ -37,6 +33,7 @@ namespace Crowdfund.Services
             RewardPackage rp = dbContext.RewardPackages.Find(id);
             if (rp == null) return false;
             dbContext.RewardPackages.Remove(rp);
+            dbContext.SaveChanges();
             return true;
         }
 
@@ -49,7 +46,7 @@ namespace Crowdfund.Services
                 Id = rewardPackage.Id
             };
         }
-        List<RewardPackageOption> IRewardPackageService.GetAllRewardPackages()
+        public List<RewardPackageOption> GetAllRewardPackages()
         {
             List<RewardPackage> rewardPackages = dbContext.RewardPackages.ToList();
             List<RewardPackageOption> rewardPackageOptions = new List<RewardPackageOption>();
@@ -77,7 +74,7 @@ namespace Crowdfund.Services
 
         public RewardPackageOption GetRewardPackage(int id)
         {
-            throw new System.NotImplementedException();
+            return FindRewardPackageById(id);
         }
     }
 }

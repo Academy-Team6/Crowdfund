@@ -10,11 +10,7 @@ namespace Crowdfund.Services
 {
     public class TransactionServices : ITransactionService
     {
-        private readonly CrowdfundDbContext dbContext;
-        public TransactionServices(CrowdfundDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        private readonly CrowdfundDbContext dbContext = new CrowdfundDbContext();
         public TransactionOption CreateTransaction(BackerOption backerOpt)
         {
             if (backerOpt == null) return null;
@@ -25,7 +21,7 @@ namespace Crowdfund.Services
             dbContext.SaveChanges();
             TransactionOption transactionOption = new TransactionOption
             {
-                BackerName = backer.FirstName + " "+backer.LastName,
+                BackerName = backer.Name + " ",
                 TransactionId = transaction.Id
             };
             return transactionOption;
@@ -45,9 +41,9 @@ namespace Crowdfund.Services
 
             TransactionOption transactionOption = new TransactionOption
             {
-                BackerName = backer.FirstName + " "+backer.LastName,
+                BackerName = backer.Name + " ",
                 TransactionId = transaction.Id
-                
+
                 //ProjectId     = project.Id,
                 //RewardPackages = rewardpackages
             };
@@ -71,14 +67,31 @@ namespace Crowdfund.Services
 
         public TransactionOption FindTransactionById(int id)
         {
-            throw new System.NotImplementedException();
+            Transaction transaction = dbContext.Transactions.Find(id);
+            if (transaction == null) return null;
+            List<int> Rewardpackages = new List<int>();
+            return new TransactionOption
+            {
+                BackerName = transaction.Backer.Name,
+                TransactionId = transaction.Id
+                //RewardPackages = transaction.TransactionPackages.
+            };
         }
 
         public List<TransactionOption> GetAllTransactions()
         {
-            throw new System.NotImplementedException();
+            List<Transaction> tr = dbContext.Transactions.ToList();
+            List<TransactionOption> trOpt = new List<TransactionOption>();
+            tr.ForEach(tr => trOpt.Add(new TransactionOption
+            {
+                BackerName = tr.Backer.Name,
+                TransactionId = tr.Id
+                //RewardPackages = transaction.TransactionPackages.
+            }));
+
+            return trOpt;
         }
 
-       
+
     }
 }

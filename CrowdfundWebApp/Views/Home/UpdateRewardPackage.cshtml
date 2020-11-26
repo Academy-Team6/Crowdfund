@@ -1,0 +1,49 @@
+﻿@model CrowdfundWebApp.Models.RewardPackageOptionModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "UpdateRewardPackage";
+}
+
+<h1>Update Reward Package with id=@Model.RewardPackage.Id</h1>
+
+<form>
+    <table align="center">
+        <tr align="center">
+            <td>
+                Id
+            </td>
+            <td> <input type="text" id="Id" value="@Model.RewardPackage.Id" readonly /></td>
+        </tr>
+        <tr align="center">
+            <td>
+                Reward
+            </td>
+            <td> <input type="text" id="Reward" value="@Model.RewardPackage.Reward" /></td>
+        </tr>
+        <tr align="center">
+            <td>
+                Price
+            </td>
+            <td>
+                <input type="text" id="Price" value="@Model.RewardPackage.Price" />
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                ProjectId
+            </td>
+            <td>
+                <input type="text" id="ProjectId" value="@Model.RewardPackage.ProjectId" />
+
+            </td>
+        </tr>
+
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="updateRewardPackage()" />
+            </td>
+        </tr>
+    </table>
+</form>

@@ -5,17 +5,18 @@ namespace CrowdfundWebApp.Models
 {
     public class BackerModel
     {
-     public List<BackerOption> Backers { get; set; }
+         public List<BackerOption> Backers { get; set; }
     }
     public class BackerOptionModel
     {
-     public BackerOption Backer { get; set; }
+          public BackerOption Backer { get; set; }
     }
 
-    public class BackerWithFileModel
-    {
-     public int Id { get; set; }
-     public string Name { get; set; }
-     public string Email { get; set; }
-    }
+        public class BackerWithFileModel
+        {
+            public int Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Email { get; set; }
+        }
 }

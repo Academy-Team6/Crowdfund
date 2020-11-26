@@ -2,6 +2,54 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+//Login-Logout
+if (getUserId()!=null) {
+    $('#logout-btn').show();
+}
+
+
+function getUserId() {
+    return localStorage.getItem('userId');
+}
+
+// Events
+
+$('#login-btn').on('click', function () {
+    let firstname = $('#username').val();
+    let lastname = $('#password').val();
+    let loginOptions = {
+        Username: firstname,
+        Password: lastname
+    };
+    let json3 = JSON.stringify(loginOptions);
+    $.ajax({
+        url: '/api/login',
+        contentType: 'application/json',
+        type: 'POST',
+        data: json3,
+        dataType: 'json',
+        processData:false,
+        success: function (data) {
+            localStorage.setItem('userId', data.id);
+            localStorage.setItem('typeOfUser', data.typeOfUser);
+            $('#logout-btn').show();
+            $('#login-link').hide();
+        },
+        error: function () {
+           
+            console.log('Error');
+        }
+    });
+});
+
+$('#logout-btn').on('click', function () {
+    localStorage.removeItem('userId');
+    $('#logout-btn').hide();
+    $('#login-link').show();
+});
+
+//P R O J E C T  C R E A T O R 
+
 function addProjectCreator() {
 
     var actionUrl = "/api/projectcreator";
@@ -101,7 +149,9 @@ function deleteProjectCreator(Id) {
 
     });
 }
+//P R O J E C T
 
+//dropdown project.Category menu
 $(".dropdown-menu li a").click(function () {
     $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
     $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
@@ -177,4 +227,32 @@ function updateProject() {
 
     });
 }
+function deleteProject(Id) {
+    id = $("#id").val()
 
+    console.log(id);
+    console.log(Id);
+
+    actionUrl = "/api/project/" + Id
+    actiontype = "DELETE"
+    actionDataType = "json"
+
+    $.ajax({
+        url: actionUrl,
+        dataType: actionDataType,
+        type: actiontype,
+
+        contentType: 'application/json',
+        processData: false,
+
+        success: function (data, textStatus, jQxhr) {
+
+            alert(JSON.stringify(data))
+            window.open("/home/project", "_self")
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+
+    });
+}

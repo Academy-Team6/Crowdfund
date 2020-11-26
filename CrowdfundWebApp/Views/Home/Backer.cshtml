@@ -5,7 +5,7 @@
 @{ }
 <h1> Backer Management</h1>
 <hr />
-To add,update or delete a backer press <a href="~/home/mbacker">here</a>
+To add , delete or find a backer press <a href="~/home/mbacker">here</a>
 <hr />
 
 
@@ -15,6 +15,7 @@ To add,update or delete a backer press <a href="~/home/mbacker">here</a>
         <th> Code</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Update</th>
     </tr>
 
     @{ foreach (var backer in Model.Backers)
@@ -24,6 +25,7 @@ To add,update or delete a backer press <a href="~/home/mbacker">here</a>
             <td> @backer.FirstName</td>
             <td> @backer.LastName</td>
             <td> @backer.Email   </td>
+            <td> <a href="~/home/UpdateBacker/@backer.Id"><img src="~/images/update.png" width="25" /></a></td>
         </tr> } }
 
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Crowdfund.API;
 using Crowdfund.Options;
+using CrowdfundWebApp.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

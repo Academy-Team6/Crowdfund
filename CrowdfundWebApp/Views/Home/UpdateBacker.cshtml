@@ -1,0 +1,38 @@
+﻿@model CrowdfundWebApp.Models.BackerOptionModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Update Backer with id=@Model.Backer.Id</h1>
+
+<form>
+    <table align="center">
+        <tr align="center">
+            <td>
+                Id
+            </td>
+            <td> <input type="text" id="Id" value="@Model.Backer.Id" readonly /></td>
+        </tr>
+        <tr align="center">
+            <td>
+                Name
+            </td>
+            <td> <input type="text" id="Name" value="@Model.Backer.Name" /></td>
+        </tr>
+        <tr align="center">
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="text" id="Email" value="@Model.Backer.Email" />
+
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" value="Submit data" onclick="updateBacker()" />
+            </td>
+        </tr>
+    </table>
+</form>

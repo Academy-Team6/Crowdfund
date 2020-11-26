@@ -25,7 +25,7 @@ namespace Crowdfund.Services
             dbContext.SaveChanges();
             TransactionOption transactionOption = new TransactionOption
             {
-                BackerName = backer.Name + " ",
+                BackerName = backer.FirstName + " "+backer.LastName,
                 TransactionId = transaction.Id
             };
             return transactionOption;
@@ -45,7 +45,7 @@ namespace Crowdfund.Services
 
             TransactionOption transactionOption = new TransactionOption
             {
-                BackerName = backer.Name + " ",
+                BackerName = backer.FirstName + " "+backer.LastName,
                 TransactionId = transaction.Id
                 
                 //ProjectId     = project.Id,

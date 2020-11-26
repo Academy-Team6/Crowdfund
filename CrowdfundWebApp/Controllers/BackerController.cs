@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Crowdfund.API;
 using Crowdfund.Options;
+using CrowdfundWebApp.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,25 +18,10 @@ namespace CrowdfundWebApp.Controllers
     public class BackerController : ControllerBase
     {
         private readonly IBackerService backerService;
-        private readonly IWebHostEnvironment hostingEnvironment;
-
-
-        public BackerController(IBackerService backerService, IWebHostEnvironment environment)
+        public BackerController(IBackerService backerService)
         {
             this.backerService = backerService;
-            hostingEnvironment = environment;
         }
-
-        private string GetUniqueFileName(string fileName)
-        {
-            fileName = Path.GetFileName(fileName);
-            return Path.GetFileNameWithoutExtension(fileName)
-                      + "_"
-                      + Guid.NewGuid().ToString().Substring(0, 4)
-                      + Path.GetExtension(fileName);
-        }
-
-
 
         [HttpPost]
         public BackerOption AddBacker([FromForm] BackerWithFileModel backerOptWithFileModel)

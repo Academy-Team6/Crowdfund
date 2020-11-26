@@ -75,7 +75,7 @@ namespace Crowdfund.Services
         }
         public List<BackerOption> GetAllBackers()
         {
-            List<Backer> backers = dbContext.Backers.ToList(); 
+            List<Backer> backers = dbContext.Backers.ToList();
             List<BackerOption> backerOpt = new List<BackerOption>();
             backers.ForEach(backer => backerOpt.Add(new BackerOption
             {

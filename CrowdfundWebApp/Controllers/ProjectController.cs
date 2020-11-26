@@ -41,7 +41,7 @@ namespace CrowdfundWebApp.Controllers
         [HttpGet("search/{category}")]
         public List<ProjectOption> GetProjectsByCategory(string category)
         {
-            ProjectCategory projectCategory =(ProjectCategory) Enum.Parse(typeof(ProjectCategory), category);
+            ProjectCategory projectCategory = (ProjectCategory)Enum.Parse(typeof(ProjectCategory), category);
             return projectService.FindByCategory(projectCategory);
         }
         [HttpGet("search/{payload}")]
@@ -50,7 +50,7 @@ namespace CrowdfundWebApp.Controllers
             return projectService.FindBySearch(payload);
         }
         [HttpPost]
-        public ProjectOption CreateProject(ProjectOption projectOption)
+        public ProjectOption CreateProject([FromForm] ProjectOption projectOption)
         {
             return projectService.CreateProject(projectOption);
         }
@@ -59,13 +59,13 @@ namespace CrowdfundWebApp.Controllers
         {
             return projectService.AddPackageToProject(projectId, rewardPackageId);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public bool DeleteProject(int id)
         {
             return projectService.DeleteProject(id);
         }
         [HttpPut("{id}")]
-        public ProjectOption UpdateProject(int id, ProjectOption projectOption)
+        public ProjectOption UpdateProject(int id,[FromForm] ProjectOption projectOption)
         {
             return projectService.UpdateProject(id, projectOption);
         }

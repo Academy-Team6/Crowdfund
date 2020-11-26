@@ -1,9 +1,6 @@
-﻿using Crowdfund.model;
-using Crowdfund.Options;
-using System;
+﻿using Crowdfund.Options;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace CrowdfundWebApp.Models
 {

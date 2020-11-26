@@ -24,6 +24,7 @@ namespace CrowdfundWebApp.Controllers
         {
             LoginAnswerOption loginAnswerOption = loginService.TryLogin(loginOption);
             if (loginAnswerOption.TypeOfUser != null) return loginAnswerOption;
+          //  ViewBag.CustomerType = loginAnswerOption.TypeOfUser;
             return null;
         }
     }

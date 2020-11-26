@@ -33,7 +33,6 @@ $('#login-btn').on('click', function () {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
             $('#logout-btn').show();
-            $('#login-btn').hide();
             $('#login-link').hide();
         },
         error: function () {
@@ -46,7 +45,6 @@ $('#login-btn').on('click', function () {
 $('#logout-btn').on('click', function () {
     localStorage.removeItem('userId');
     $('#logout-btn').hide();
-    $('#login-btn').show();
     $('#login-link').show();
 });
 

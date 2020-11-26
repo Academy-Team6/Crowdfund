@@ -15,19 +15,19 @@ namespace Crowdfund.Data
         public DbSet<TransactionPackage> TransactionPackages { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Media> Media { get; set; }
-        // public readonly static string connectionString = "Server =localhost; " +
-       //     "Database =fund1; " +
-        //    "User Id =sa; " +
-         //   "Password =admin!@#123;";
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       // {
-        //    optionsBuilder.UseSqlServer(connectionString);
-        //}
-
+        public readonly static string connectionString = "Server =localhost; " +
+           "Database =fund2; " +
+           "User Id =sa; " +
+           "Password =admin!@#123;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=tcp:crowdfund.database.windows.net,1433;Initial Catalog=CrowdfundDb;Persist Security Info=False;User ID=pmarouga;Password=Latsio12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseSqlServer(connectionString);
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=tcp:crowdfund.database.windows.net,1433;Initial Catalog=CrowdfundDb;Persist Security Info=False;User ID=pmarouga;Password=Latsio12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Backer>();

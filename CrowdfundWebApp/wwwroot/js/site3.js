@@ -9,25 +9,20 @@ function addRewardPackage() {
     var actionUrl = "/api/rewardpackage";
     var formData = new FormData();
 
-
     formData.append("Price", $('#Price').val());
     formData.append("Reward", $('#Reward').val());
-    formData.append("ProjectId", $('#ProjectId').val());
+    formData.append("ProjectId", parseInt($('#ProjectId').val()));
 
-    var object = {};
-    formData.forEach(function (value, key) {
-        object[key] = value;
-    });
-    var json = JSON.stringify(object);
+    var json = JSON.stringify(formData);
+    console.log(json);
     $.ajax(
         {
             url: actionUrl,
-            dataType: "json",
-            data: json,
+            data: formData,
             processData: false,
-            contentType: 'application/json',
+            contentType: false,
             type: "POST",
-            success: function (data) {
+            success: function () {
                 alert(json)
                 window.open("/home/rewardpackage", "_self")
 

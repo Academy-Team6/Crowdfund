@@ -16,6 +16,7 @@ namespace Crowdfund.Services
             {
                 Reward = rewardPackageOption.Reward,
                 Price = rewardPackageOption.Price,
+               
             };
         }
         public RewardPackageOption CreateRewardPackage(RewardPackageOption rewardPackageOption)

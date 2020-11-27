@@ -11,7 +11,8 @@ namespace CrowdfundWebApp.Controllers
     [ApiController]
     public class RewardPackageController : ControllerBase
     {
-        public IRewardPackageService rewardPackageService;
+
+        private readonly IRewardPackageService rewardPackageService;
         public RewardPackageController(IRewardPackageService rewardPackageService)
         {
             this.rewardPackageService = rewardPackageService;
@@ -30,7 +31,7 @@ namespace CrowdfundWebApp.Controllers
         }
 
         [HttpPost]
-        public RewardPackageOption CreateRewardPackage(RewardPackageOption rewardPackageOption)
+        public RewardPackageOption CreateRewardPackage([FromForm] RewardPackageOption rewardPackageOption)
         {
             return rewardPackageService.CreateRewardPackage(rewardPackageOption);
         }

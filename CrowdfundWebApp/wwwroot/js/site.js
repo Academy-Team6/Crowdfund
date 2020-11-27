@@ -7,7 +7,6 @@ if (getUserId()!=null) {
     $('#logout-btn').show();
 }
 
-
 function getUserId() {
     return localStorage.getItem('userId');
 }
@@ -32,6 +31,7 @@ $('#login-btn').on('click', function () {
         success: function (data) {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
+            $('#typeOfUser').val(data.typeOfUser);
             $('#logout-btn').show();
             $('#login-link').hide();
         },
@@ -74,7 +74,7 @@ function addProjectCreator() {
             processData: false,
             contentType: 'application/json',
             type: "POST",
-            success: function (data) {
+            success: function () {
                 alert(json)
                 window.open("/home/projectcreator", "_self")
                
@@ -153,6 +153,7 @@ function deleteProjectCreator(Id) {
 
 //dropdown project.Category menu
 $(".dropdown-menu li a").click(function () {
+    debugger;
     $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
     $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 });
@@ -169,10 +170,6 @@ function addProject() {
     formData.append("TargetBudget", $('#TargetBudget').val());
     formData.append("ProjectCreatorId", parseInt($('#ProjectCreatorId').val()));
 
-    var object = {};
-    formData.forEach(function (value, key) {
-        object[key] = value;
-    });
     var json = JSON.stringify(formData);
     console.log(json);
     $.ajax(
@@ -206,7 +203,6 @@ function updateProject() {
     formData.append("Category", $('#Category').val());
     formData.append("Description", $('#Description').val());
     formData.append("TargetBudget", $('#TargetBudget').val());
-
 
     $.ajax({
         url: actionUrl,

@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <!-- A D M I N  L A Y O U T-->
-        <nav id="admin-layout" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <!-- A D M I N  L A Y O U T-->
+    <header id="admin-layout">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CrowdfundWebApp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -21,6 +21,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Project">Projects</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ProjectCreator">Project Creator</a>
                         </li>
@@ -34,7 +35,7 @@
                             <a class="nav-link text-dark" id="login-link" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a id="logout-btn" class="nav-link text-dark" style="display: none">Logout</a>
+                            <a id="logout-btn" class="nav-link text-dark d-none">Logout</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -47,10 +48,12 @@
                 </div>
             </div>
         </nav>
-        <!--P R O J E C T  C R E A T O R  L A Y O U T-->
-        <nav id="projectCreator-layout" class="navbar d-none navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    </header>
+    <!--P R O J E C T  C R E A T O R  L A Y O U T-->
+    <header id="projectCreator-layout" class="d-none">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Project">CrowdfundWebApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CrowdfundWebApp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -58,15 +61,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Project">My Projects</a>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ProjectCreator">My Profile</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Project">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" id="login-link" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ProjectCreator">Project Creator</a>
                         </li>
                         <li class="nav-item">
-                            <a id="logout-btn" class="nav-link text-dark" style="display: none">Logout</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Backer">Backers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="RewardPackage">Reward Package</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="logout-btn" class="nav-link text-dark" onclick="logout()">Logout</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -79,8 +86,10 @@
                 </div>
             </div>
         </nav>
-        <!--B A C K E R  L A Y O U T-->
-        <nav id="backer-layout" class="navbar d-none navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    </header>
+    <!--B A C K E R  L A Y O U T-->
+    <header id="backer-layout" class="d-none">
+        <nav class="navbar navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Project">CrowdfundWebApp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -95,10 +104,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ProjectCreator">My Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" id="login-link" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="logout-btn" class="nav-link text-dark" style="display: none">Logout</a>
+                            <a id="logout-btn" href="#" class="nav-link text-dark">Logout</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

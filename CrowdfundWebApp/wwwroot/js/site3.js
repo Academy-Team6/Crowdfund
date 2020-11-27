@@ -9,9 +9,9 @@ function addRewardPackage() {
     var actionUrl = "/api/rewardpackage";
     var formData = new FormData();
 
-    formData.append("Price", $('#Price').val());
-    formData.append("Reward", $('#Reward').val());
-    formData.append("ProjectId", parseInt($('#ProjectId').val()));
+    formData.append("price", $('#Price').val());
+    formData.append("reward", $('#Reward').val());
+    formData.append("projectId", parseInt($('#ProjectId').val()));
 
     var json = JSON.stringify(formData);
     console.log(json);
@@ -42,8 +42,7 @@ function updateRewardPackage() {
 
     sendData = {
         "Price": $("#Price").val(),
-        "Reward": $("#Reward").val(),
-        "ProjectId": $("#ProjectId").val(),
+        "Reward": $("#Reward").val()
     }
 
 

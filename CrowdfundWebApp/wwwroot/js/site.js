@@ -3,8 +3,8 @@
 
 // Write your JavaScript code.
 //Login-Logout
-if (getUserId()!=null) {
-    $('#logout-btn').show();
+if (getUserId() != null) {
+    $('#logout-btn').removeClass('d-none');
 }
 if (getTypeOfUser() == 'ProjectCreator') {
     $('#admin-layout').addClass('d-none');
@@ -49,10 +49,10 @@ $('#login-btn').on('click', function () {
         success: function (data) {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
-            $('#logout-btn').show();
-            $('#login-link').hide();
-            if (data.typeOfUser == "Project Creator") window.open('/home/projectcreator');
-            if (data.typeOfUser == "Backer") window.open('/home/backer');
+            if (data.typeOfUser == "ProjectCreator") window.location.replace('/home/projectcreator');
+            if (data.typeOfUser == "Backer") window.location.replace('/home/backer');
+            $('#login-link').addClass('d-none');
+            
         },
         error: function () {
            
@@ -60,13 +60,13 @@ $('#login-btn').on('click', function () {
         }
     });
 });
-
-$('#logout-btn').on('click', function () {
+function logout() {
     localStorage.removeItem('userId');
-    $('#logout-btn').hide();
-    $('#login-link').show();
-});
-
+    localStorage.removeItem('typeOfUser');
+    $('#logout-btn').addClass('d-none');
+    $('#login-link').removeClass('d-none');
+    window.location.replace('/');
+}
 //P R O J E C T  C R E A T O R 
 
 function addProjectCreator() {

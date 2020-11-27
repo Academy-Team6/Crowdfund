@@ -3,12 +3,30 @@
 
 // Write your JavaScript code.
 //Login-Logout
-if (getUserId()!=null) {
-    $('#logout-btn').show();
+if (getUserId() != null) {
+    $('#logout-btn').removeClass('d-none');
 }
+if (getTypeOfUser() == 'ProjectCreator') {
+    $('#admin-layout').addClass('d-none');
+    $('#projectCreator-layout').removeClass('d-none');
+}
+else if (getTypeOfUser() == 'Backer') {
+    $('#backer-layout').removeClass('d-none');
+    $('#admin-layout').addClass('d-none');
+}
+else {
+    $('#projectCreator-layout').addClass('d-none');
+    $('#backer-layout').addClass('d-none');
+    $('#admin-layout').removeClass('d-none');
+
+}
+
 
 function getUserId() {
     return localStorage.getItem('userId');
+}
+function getTypeOfUser() {
+    return localStorage.getItem('typeOfUser');
 }
 
 // Events
@@ -31,9 +49,10 @@ $('#login-btn').on('click', function () {
         success: function (data) {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
-            $('#typeOfUser').val(data.typeOfUser);
-            $('#logout-btn').show();
-            $('#login-link').hide();
+            if (data.typeOfUser == "ProjectCreator") window.location.replace('/home/projectcreator');
+            if (data.typeOfUser == "Backer") window.location.replace('/home/backer');
+            $('#login-link').addClass('d-none');
+            
         },
         error: function () {
            
@@ -41,13 +60,13 @@ $('#login-btn').on('click', function () {
         }
     });
 });
-
-$('#logout-btn').on('click', function () {
+function logout() {
     localStorage.removeItem('userId');
-    $('#logout-btn').hide();
-    $('#login-link').show();
-});
-
+    localStorage.removeItem('typeOfUser');
+    $('#logout-btn').addClass('d-none');
+    $('#login-link').removeClass('d-none');
+    window.location.replace('/');
+}
 //P R O J E C T  C R E A T O R 
 
 function addProjectCreator() {
@@ -168,8 +187,8 @@ function addProject() {
     formData.append("Category", $('#Category').val());
     formData.append("Description", $('#Description').val());
     formData.append("TargetBudget", $('#TargetBudget').val());
-    formData.append("ProjectCreatorId", parseInt($('#ProjectCreatorId').val()));
-
+    //formData.append("ProjectCreatorId", parseInt($('#ProjectCreatorId').val()));
+    formData.append("ProjectCreatorId", parseInt(localStorage.getItem('userId')));
     var json = JSON.stringify(formData);
     console.log(json);
     $.ajax(
@@ -192,6 +211,7 @@ function addProject() {
 }
 function updateProject() {
     id = $("#Id").val()
+    console.log(id);
 
     actionUrl = "/api/project/" + id
     actiontype = "PUT"
@@ -204,6 +224,7 @@ function updateProject() {
     formData.append("Description", $('#Description').val());
     formData.append("TargetBudget", $('#TargetBudget').val());
 
+    console.log(formData);
     $.ajax({
         url: actionUrl,
         type: actiontype,

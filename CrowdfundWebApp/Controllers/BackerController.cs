@@ -24,16 +24,16 @@ namespace CrowdfundWebApp.Controllers
         }
 
         [HttpPost]
-        public BackerOption AddBacker([FromForm] BackerWithFileModel backerOptWithFileModel)
+        public BackerOption AddBacker([FromForm] BackerOption backerOption)
         {
 
-            if (backerOptWithFileModel == null) return null;
+            if (backerOption == null) return null;
             BackerOption backerOpt = new BackerOption
             {
-                FirstName = backerOptWithFileModel.FirstName,
-                LastName=backerOptWithFileModel.LastName,
-                Email = backerOptWithFileModel.Email,
-                Id = backerOptWithFileModel.Id
+                FirstName = backerOption.FirstName,
+                LastName=backerOption.LastName,
+                Email = backerOption.Email,
+                Id = backerOption.Id
             };
 
 

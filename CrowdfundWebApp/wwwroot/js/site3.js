@@ -9,9 +9,9 @@ function addRewardPackage() {
     var actionUrl = "/api/rewardpackage";
     var formData = new FormData();
 
-    formData.append("Price", $('#Price').val());
-    formData.append("Reward", $('#Reward').val());
-    formData.append("ProjectId", parseInt($('#ProjectId').val()));
+    formData.append("price", $('#Price').val());
+    formData.append("reward", $('#Reward').val());
+    formData.append("projectId", parseInt($('#ProjectId').val()));
 
     var json = JSON.stringify(formData);
     console.log(json);
@@ -38,21 +38,19 @@ function updateRewardPackage() {
 
     actionUrl = "/api/rewardpackage/" + id
     actiontype = "PUT"
-    actionDataType = "json"
 
-    sendData = {
-        "Price": $("#Price").val(),
-        "Reward": $("#Reward").val(),
-        "ProjectId": $("#ProjectId").val(),
-    }
+    var formData = new FormData();
 
+
+    formData.append("Price", $('#Price').val());
+    formData.append("Reward", $('#Reward').val());
+    formData.append("ProjectId", $('#ProjectId').val());
 
     $.ajax({
         url: actionUrl,
-        dataType: actionDataType,
         type: actiontype,
-        data: JSON.stringify(sendData),
-        contentType: 'application/json',
+        data: formData,
+        contentType: false,
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
@@ -68,12 +66,9 @@ function updateRewardPackage() {
     });
 }
 function deleteRewardPackage(Id) {
-    id = $("#id").val()
-
-    console.log(id);
     console.log(Id);
 
-    actionUrl = "/api/rewardpackage/" + id
+    actionUrl = "/api/rewardpackage/" + Id
     actiontype = "DELETE"
     actionDataType = "json"
 

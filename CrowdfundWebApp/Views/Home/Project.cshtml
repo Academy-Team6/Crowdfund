@@ -5,6 +5,8 @@
 @{
 }
 
+<meta charset="utf-8" />
+
 <h1>Project Management</h1>
 <hr />
 To add a new project press <a href="~/home/addproject">here</a>
@@ -38,15 +40,16 @@ To add a new project press <a href="~/home/addproject">here</a>
                     <td>@project.Description</td>
                     <td>@project.TargetBudget</td>
                     <td>@project.CurrentBudget</td>
+                    <td>@project.BudgetRatio</td>
                     <td>@project.ProjectCreatorId</td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     @*
-                    <td>@project.RewardPackagesId.Count()</td>
-                    <td>@project.Photos.Count()</td>
-                    <td>@project.Videos.Count()</td>
+        <td>@project.RewardPackagesId.Count()</td>
+        <td>@project.Photos.Count()</td>
+        <td>@project.Videos.Count()</td>
                     *@
                     <td> <a href="~/home/UpdateProject/@project.Id"><img src="~/images/update.png" width="25" /></a></td>
                     <td> <a href="~/home/DeleteProject/@project.Id"><img src="~/images/delete.png" width="25" /></a></td>

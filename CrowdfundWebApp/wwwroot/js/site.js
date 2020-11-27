@@ -187,8 +187,8 @@ function addProject() {
     formData.append("Category", $('#Category').val());
     formData.append("Description", $('#Description').val());
     formData.append("TargetBudget", $('#TargetBudget').val());
-    formData.append("ProjectCreatorId", parseInt($('#ProjectCreatorId').val()));
-
+    //formData.append("ProjectCreatorId", parseInt($('#ProjectCreatorId').val()));
+    formData.append("ProjectCreatorId", parseInt(localStorage.getItem('userId')));
     var json = JSON.stringify(formData);
     console.log(json);
     $.ajax(

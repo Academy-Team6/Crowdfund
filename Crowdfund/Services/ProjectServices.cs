@@ -33,7 +33,6 @@ namespace Crowdfund.Services
                 Description = projectOption.Description,
                 Category = projectOption.Category,
                 ProjectCreator = projectCreator,
-                RewardPackages = new List<RewardPackage>(),
                 TargetBudget = decimal.Parse(projectOption.TargetBudget),
                 Title = projectOption.Title,
             };

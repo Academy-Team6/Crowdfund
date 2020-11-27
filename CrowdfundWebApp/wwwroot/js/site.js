@@ -6,9 +6,27 @@
 if (getUserId()!=null) {
     $('#logout-btn').show();
 }
+if (getTypeOfUser() == 'ProjectCreator') {
+    $('#admin-layout').addClass('d-none');
+    $('#projectCreator-layout').removeClass('d-none');
+}
+else if (getTypeOfUser() == 'backer') {
+    $('#backer-layout').removeClass('d-none');
+    $('#admin-layout').addClass('d-none');
+}
+else {
+    $('#projectCreator-layout').addClass('d-none');
+    $('#backer-layout').addClass('d-none');
+    $('#admin-layout').removeClass('d-none');
+
+}
+
 
 function getUserId() {
     return localStorage.getItem('userId');
+}
+function getTypeOfUser() {
+    return localStorage.getItem('typeOfUser');
 }
 
 // Events
@@ -31,9 +49,10 @@ $('#login-btn').on('click', function () {
         success: function (data) {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
-            $('#typeOfUser').val(data.typeOfUser);
             $('#logout-btn').show();
             $('#login-link').hide();
+            if (data.typeOfUser == "Project Creator") window.open('/home/projectcreator');
+            if (data.typeOfUser == "Backer") window.open('/home/backer');
         },
         error: function () {
            
@@ -192,6 +211,7 @@ function addProject() {
 }
 function updateProject() {
     id = $("#Id").val()
+    console.log(id);
 
     actionUrl = "/api/project/" + id
     actiontype = "PUT"
@@ -204,6 +224,7 @@ function updateProject() {
     formData.append("Description", $('#Description').val());
     formData.append("TargetBudget", $('#TargetBudget').val());
 
+    console.log(formData);
     $.ajax({
         url: actionUrl,
         type: actiontype,

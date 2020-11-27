@@ -9,12 +9,10 @@ function addBacker() {
 
     var actionUrl = "/api/backer";
     var formData = new FormData();
-
-
-
-    formData.append("Name", $('#Name').val());
+    formData.append("firstName", $('#FirstName').val());
+    formData.append("lastName", $('#LastName').val());
     formData.append("email", $('#Email').val());
-
+    
     $.ajax(
         {
             url: actionUrl,
@@ -49,7 +47,8 @@ function updateBacker() {
     actionDataType = "json"
 
     sendData = {
-        "Name": $("#Name").val(),
+        "FirstName": $("#FirstName").val(),
+        "LastName": $("#LastName").val(),
         "email": $("#Email").val()
     }
 

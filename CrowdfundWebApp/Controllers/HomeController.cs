@@ -35,11 +35,6 @@ namespace CrowdfundWebApp.Controllers
             loginService = _loginService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         //login
         public IActionResult Login()
         {
@@ -69,7 +64,7 @@ namespace CrowdfundWebApp.Controllers
         }
         public IActionResult DeleteProjectCreator([FromRoute] int id)
         {
-            ProjectCreatorOption projectCreatorOption = projectCreatorService.FindProjectCreator(id);
+             ProjectCreatorOption projectCreatorOption = projectCreatorService.FindProjectCreator(id);
             ProjectCreatorOptionModel projectCreatorOptionModel = new ProjectCreatorOptionModel() { ProjectCreator = projectCreatorOption };
             return View(projectCreatorOptionModel);
         }

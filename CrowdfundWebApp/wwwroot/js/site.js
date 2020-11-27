@@ -10,7 +10,7 @@ if (getTypeOfUser() == 'ProjectCreator') {
     $('#admin-layout').addClass('d-none');
     $('#projectCreator-layout').removeClass('d-none');
 }
-else if (getTypeOfUser() == 'backer') {
+else if (getTypeOfUser() == 'Backer') {
     $('#backer-layout').removeClass('d-none');
     $('#admin-layout').addClass('d-none');
 }

@@ -16,6 +16,7 @@ namespace Crowdfund.Services
             var project = db.Set<Project>().Find(projectId);
             var rewardPackage = db.Set<RewardPackage>().Find(rewardPackageId);
             project.RewardPackages.Add(rewardPackage);
+            rewardPackage.Project = project;
             db.SaveChanges();
             return new RewardPackageOption()
             {

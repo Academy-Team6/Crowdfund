@@ -13,9 +13,11 @@ namespace CrowdfundWebApp.Controllers
     {
 
         private readonly IRewardPackageService rewardPackageService;
-        public RewardPackageController(IRewardPackageService rewardPackageService)
+        private readonly IProjectService projectService;
+        public RewardPackageController(IRewardPackageService rewardPackageService, IProjectService projectService)
         {
             this.rewardPackageService = rewardPackageService;
+            this.projectService = projectService;
         }
 
         [HttpGet("{id}")]
@@ -33,11 +35,14 @@ namespace CrowdfundWebApp.Controllers
         [HttpPost]
         public RewardPackageOption CreateRewardPackage([FromForm] RewardPackageOption rewardPackageOption)
         {
-            return rewardPackageService.CreateRewardPackage(rewardPackageOption);
+            RewardPackageOption rewardPackage = rewardPackageService.CreateRewardPackage(rewardPackageOption);
+            RewardPackageOption reward=projectService.AddPackageToProject(rewardPackage.ProjectId,rewardPackage.Id);
+
+            return reward ;
         }
 
         [HttpPut("{id}")]
-        public RewardPackageOption UpdateRewardPackage(int id, RewardPackageOption rewardPackageOption)
+        public RewardPackageOption UpdateRewardPackage(int id,[FromForm]RewardPackageOption rewardPackageOption)
         {
             return rewardPackageService.UpdateRewardPackage(id, rewardPackageOption);
         }
@@ -47,7 +52,10 @@ namespace CrowdfundWebApp.Controllers
         {
             return rewardPackageService.FindRewardPackageById(id);
         }
-
-
+        [HttpDelete("{id}")]
+        public bool DeleteRewardPackage(int id)
+        {
+            return rewardPackageService.DeleteRewardPackage(id);
+        }
     }
 }

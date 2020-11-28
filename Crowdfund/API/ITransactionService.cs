@@ -5,9 +5,9 @@ namespace Crowdfund.API
 {
     public interface ITransactionService
     {
-        TransactionOption CreateTransaction(BackerOption backer);
+        TransactionOption CreateTransaction(int backerId, int rewardPackageOptionId);
         TransactionOption FindTransactionById(int id);
-        TransactionOption AddRewardPackageToTransaction(int transactionId, int rewardpackageId);
+      // RewardPackageOption AddRewardPackageToTransaction(int rewardpackageId);
         List<TransactionOption> GetAllTransactions(); 
         TransactionOption GetTransaction(int transactionId);
     }

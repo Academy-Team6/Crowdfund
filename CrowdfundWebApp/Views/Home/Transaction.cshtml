@@ -1,0 +1,26 @@
+﻿@model TransactionModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Transaction History</h1>
+<div class="container">
+    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Id</th>
+            <th>ProjectId</th>
+            <th>Cost</th>
+        </tr>
+        @{
+            foreach (var transaction in Model.Transactions)
+            {
+                <tr>
+                    <td>@transaction.TransactionId</td>
+                    <td>@transaction.RewardPackages.ProjectId</td>
+                    <td>@transaction.RewardPackages.Price</td>
+                </tr>
+            }
+        }
+    </table>
+</div>

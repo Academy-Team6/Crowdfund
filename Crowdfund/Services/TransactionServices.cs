@@ -11,10 +11,10 @@ namespace Crowdfund.Services
     public class TransactionServices : ITransactionService
     {
         private readonly CrowdfundDbContext dbContext = new CrowdfundDbContext();
-        public TransactionOption CreateTransaction(BackerOption backerOpt)
+        public TransactionOption CreateTransaction(int backerId , int rewardPackageOptionId)
         {
-            if (backerOpt == null) return null;
-            Backer backer = dbContext.Backers.Find(backerOpt.Id);
+            if (backerId == 0 ) return null;
+            Backer backer = dbContext.Backers.Find(backerId);
             if (backer == null) return null;
             Transaction transaction = new Transaction { Backer = backer };
             dbContext.Transactions.Add(transaction);
@@ -22,14 +22,16 @@ namespace Crowdfund.Services
             TransactionOption transactionOption = new TransactionOption
             {
                 BackerName = backer.LastName +" "+ backer.FirstName +" ",
-                TransactionId = transaction.Id
+                TransactionId = transaction.Id,
+                BackerId = backer.Id,
+                RewardPackages = AddRewardPackageToTransaction(rewardPackageOptionId)
             };
             return transactionOption;
         }
 
-        public TransactionOption GetTransaction(int orderId)
+        public TransactionOption GetTransaction(int transactionId)
         {
-            Transaction transaction = dbContext.Transactions.Include(o => o.Backer).FirstOrDefault(x => x.Id == orderId);
+            Transaction transaction = dbContext.Transactions.Include(o => o.Backer).FirstOrDefault(x => x.Id == transactionId);
             Backer backer = dbContext.Backers.Find(transaction.Backer.Id);
 
             List<int> rewardpackages = new List<int>();
@@ -51,18 +53,17 @@ namespace Crowdfund.Services
             return transactionOption;
         }
 
-        public TransactionOption AddRewardPackageToTransaction(int transactionId, int rewardPackageId)
+        public RewardPackageOption AddRewardPackageToTransaction(int rewardPackageId)
         {
-            Transaction transaction = dbContext.Transactions.Find(transactionId);
             RewardPackage rewardPackage = dbContext.RewardPackages.Find(rewardPackageId);
-            TransactionPackage transactionPackage = new TransactionPackage
+            RewardPackageOption rewardPackageOption = new RewardPackageOption
             {
-                Transaction = transaction,
-                RewardPackage = rewardPackage
+                Id = rewardPackage.Id,
+                Price =rewardPackage.Price,
+                Reward = rewardPackage.Reward,
+                ProjectId = rewardPackage.Project.Id
             };
-            dbContext.TransactionPackages.Add(transactionPackage);
-            dbContext.SaveChanges();
-            return GetTransaction(transactionId);
+            return rewardPackageOption;
         }
 
         public TransactionOption FindTransactionById(int id)

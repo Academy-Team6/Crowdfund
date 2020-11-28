@@ -8,7 +8,7 @@ namespace Crowdfund.model
     {
         public int Id { get; set; }
         public Backer Backer { get; set; }
-        public List<TransactionPackage> TransactionPackages { get; set; }
+        public List<RewardPackage> RewardPackages { get; set; }
         public decimal Amount { get; set; }
         //public Project Project { get; set; }
         //public RewardPackage TransactionPackage { get; set; }

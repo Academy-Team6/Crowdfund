@@ -40,6 +40,16 @@ namespace CrowdfundWebApp.Controllers
         {
                 return View();
         }
+        //ProjectCreator Profile
+        public IActionResult ProjectCreatorProfile([FromQuery] int projectCreatorId)
+        {
+            ProjectCreatorOption projectCreatorOption = projectCreatorService.FindProjectCreator(projectCreatorId);
+            ProjectCreatorOptionModel projectCreatorOptionModel = new ProjectCreatorOptionModel()
+            {
+                ProjectCreator = projectCreatorOption
+            };
+            return View(projectCreatorOptionModel);
+        }
 
         //ProjectCreator Views
         public IActionResult ProjectCreator()
@@ -96,8 +106,19 @@ namespace CrowdfundWebApp.Controllers
             return View(projectOptionModel);
         }
 
-     
+
         //Backer Views
+
+        //Backer Profile
+        public IActionResult BackerProfile([FromQuery] int backerId)
+        {
+            BackerOption backerOption = backerService.FindBacker(backerId);
+            BackerOptionModel backerOptionModel = new BackerOptionModel()
+            {
+                Backer = backerOption
+            };
+            return View(backerOptionModel);
+        }
 
         public IActionResult Backer()
         {

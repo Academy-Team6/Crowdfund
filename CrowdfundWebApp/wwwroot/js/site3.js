@@ -5,13 +5,12 @@
 
 
 function addRewardPackage() {
-
-    var actionUrl = "/api/rewardpackage";
+    var actionUrl = "/api/rewardpackage/" + localStorage.getItem('projectId');
     var formData = new FormData();
 
     formData.append("price", $('#Price').val());
     formData.append("reward", $('#Reward').val());
-    formData.append("projectId", parseInt($('#ProjectId').val()));
+    formData.append("projectId", parseInt(localStorage.getItem('projectId')));
 
     var json = JSON.stringify(formData);
     console.log(json);
@@ -25,7 +24,6 @@ function addRewardPackage() {
             success: function () {
                 alert(json)
                 window.open("/home/rewardpackage", "_self")
-
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 alert("Error from server: " + errorThrown);
@@ -91,3 +89,16 @@ function deleteRewardPackage(Id) {
 
     });
 }
+
+//workaround for add reward package from project button.To work uncomment line 14.
+function addRewardPackageWithId(projectId) {
+    console.log("inaddrewardpackagec" + projectId)
+    storeProjectId(projectId);
+    window.open("/home/addrewardpackage/" + projectId, "_self")
+
+}
+//Useful to select reward packages acording to current project
+function storeProjectId(projectId) {
+    localStorage.setItem('projectId', projectId);
+}
+

@@ -41,6 +41,15 @@ namespace CrowdfundWebApp.Controllers
             return reward ;
         }
 
+        [HttpPost("{projectId}")]
+        public RewardPackageOption CreateRewardPackageWithId(int projectId,[FromForm] RewardPackageOption rewardPackageOption)
+        {
+
+            RewardPackageOption rewardPackage = rewardPackageService.CreateRewardPackage(rewardPackageOption);
+            RewardPackageOption reward = projectService.AddPackageToProject(projectId, rewardPackage.Id);
+
+            return reward;
+        }
         [HttpPut("{id}")]
         public RewardPackageOption UpdateRewardPackage(int id,[FromForm]RewardPackageOption rewardPackageOption)
         {

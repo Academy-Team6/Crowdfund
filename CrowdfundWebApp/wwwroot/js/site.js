@@ -74,6 +74,7 @@ function getDashboard() {
         window.open("/home/dashboard?projectCreatorId=" + localStorage.getItem('userId'), "_self");
     }
 }
+
 function addProjectCreator() {
 
     var actionUrl = "/api/projectcreator";

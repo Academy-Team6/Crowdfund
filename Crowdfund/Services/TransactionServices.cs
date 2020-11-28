@@ -26,9 +26,18 @@ namespace Crowdfund.Services
                 BackerId = backer.Id,
                 RewardPackages = AddRewardPackageToTransaction(rewardPackageOptionId)
             };
+            return UpdateCurrentBudget(transactionOption);
+        }
+        public TransactionOption UpdateCurrentBudget( TransactionOption transactionOption)
+        {
+            Project project = dbContext.Projects
+                .Where(o => o.Id == transactionOption.RewardPackages.ProjectId)
+                .Include(o => o.ProjectCreator)
+                .SingleOrDefault();
+            project.CurrentBudget += transactionOption.RewardPackages.Price;
+            dbContext.SaveChanges();
             return transactionOption;
         }
-
         public TransactionOption GetTransaction(int transactionId)
         {
             Transaction transaction = dbContext.Transactions.Include(o => o.Backer).FirstOrDefault(x => x.Id == transactionId);

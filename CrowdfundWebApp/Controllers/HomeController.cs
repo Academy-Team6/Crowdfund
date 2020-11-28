@@ -184,7 +184,12 @@ namespace CrowdfundWebApp.Controllers
         // Transaction Views
         public IActionResult Transaction()
         {
-            return View();
+            List<TransactionOption> transactions = transactionService.GetAllTransactions();
+            TransactionModel transactionModel = new TransactionModel()
+            {
+                Transactions = transactions
+            };
+            return View(transactionModel);
         }
         public IActionResult Privacy()
         {

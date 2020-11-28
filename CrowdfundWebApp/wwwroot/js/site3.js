@@ -3,7 +3,21 @@
 
 // Write your JavaScript code.
 
+function getProjectCreatorProfile() {
+    if (localStorage.getItem('typeOfUser') == 'ProjectCreator') {
+        console.log(localStorage.getItem('usedId'));
+        //window.open("/home/projectCreatorProfile/" + localStorage.getItem('usedId'), "_self"))
+        window.open("/home/projectCreatorProfile?projectCreatorId=" + localStorage.getItem('userId'), "_self")
+    }
+}
 
+function getBackerProfile() {
+    if (localStorage.getItem('typeOfUser') == 'Backer') {
+        console.log(localStorage.getItem('usedId'));
+        //window.open("/home/projectCreatorProfile/" + localStorage.getItem('usedId'), "_self"))
+        window.open("/home/backerProfile?backerId=" + localStorage.getItem('userId'), "_self")
+    }
+}
 function addRewardPackage() {
     var actionUrl = "/api/rewardpackage/" + localStorage.getItem('projectId');
     var formData = new FormData();
@@ -101,4 +115,5 @@ function addRewardPackageWithId(projectId) {
 function storeProjectId(projectId) {
     localStorage.setItem('projectId', projectId);
 }
+
 

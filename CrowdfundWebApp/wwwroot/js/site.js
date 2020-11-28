@@ -68,7 +68,12 @@ function logout() {
     window.location.replace('/');
 }
 //P R O J E C T  C R E A T O R 
-
+function getDashboard() {
+    if (localStorage.getItem('typeOfUser') == 'ProjectCreator') {
+        console.log(localStorage.getItem('userId'));
+        window.open("/home/dashboard?projectCreatorId=" + localStorage.getItem('userId'), "_self");
+    }
+}
 function addProjectCreator() {
 
     var actionUrl = "/api/projectcreator";

@@ -71,6 +71,18 @@ namespace Crowdfund.Services
             }
             return projectOptionList;
         }
+
+        public List<ProjectOption> FindByProjectCreatorId(int projectCreatorId)
+        {
+            List<Project> projects = db.Set<Project>().Where(p => p.ProjectCreator.Id == projectCreatorId).Include(p => p.ProjectCreator).ToList();
+            List<ProjectOption> projectOptions = new List<ProjectOption>();
+            foreach(var p in projects)
+            {
+                projectOptions.Add(CreateProjectOption(p));
+            }
+            return projectOptions;
+        }
+
         public List<ProjectOption> FindBySearch(string payload)
         {
             List<Project> projectList = db.Set<Project>().Where(p => p.Description.Contains(payload)).Include(o => o.ProjectCreator).ToList();
@@ -98,6 +110,7 @@ namespace Crowdfund.Services
             }
             return CreateProjectOption(project);
         }
+
         public ProjectOption UpdateProject(int id, ProjectOption projectOption)
         {
             Project project = db.Set<Project>().Where(o=>o.Id==id).Include(o => o.ProjectCreator).SingleOrDefault();

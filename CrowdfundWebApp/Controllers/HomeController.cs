@@ -40,6 +40,16 @@ namespace CrowdfundWebApp.Controllers
         {
                 return View();
         }
+        //ProjectCreator Dashboard
+        public IActionResult Dashboard([FromQuery]int projectCreatorId)
+        {
+            List<ProjectOption> projectOptions= projectService.FindByProjectCreatorId(projectCreatorId);
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projectOptions
+            };
+            return View(projectModel);
+        }
 
         //ProjectCreator Views
         public IActionResult ProjectCreator()

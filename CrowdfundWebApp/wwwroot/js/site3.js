@@ -18,6 +18,18 @@ function getBackerProfile() {
         window.open("/home/backerProfile?backerId=" + localStorage.getItem('userId'), "_self")
     }
 }
+
+function getTrendingProjects() {
+    debugger
+    if ((localStorage.getItem('typeOfUser') == 'ProjectCreator') || (localStorage.getItem('typeOfUser') == 'Backer')) {
+        console.log(localStorage.getItem('useId'));
+        window.open("/home/trendingProjects" + localStorage.getItem('userId'), "_self")
+    }
+}
+
+
+//RewardPackage add/delete/update functions
+
 function addRewardPackage() {
     var actionUrl = "/api/rewardpackage/" + localStorage.getItem('projectId');
     var formData = new FormData();

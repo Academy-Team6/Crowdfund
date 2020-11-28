@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Crowdfund.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    [Migration("20201128133942_fund6")]
-    partial class fund6
+    [Migration("20201128152923_string")]
+    partial class @string
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -138,8 +138,8 @@ namespace Crowdfund.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Reward")
-                        .HasColumnType("int");
+                    b.Property<string>("Reward")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TransactionId")
                         .HasColumnType("int");

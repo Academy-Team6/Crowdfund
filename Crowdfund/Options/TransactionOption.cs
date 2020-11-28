@@ -10,5 +10,6 @@ namespace Crowdfund.Options
         public int BackerId { get; set; }
         public int TransactionId { get; set; }
         public RewardPackageOption RewardPackages { get; set; }
+        
     }
 }

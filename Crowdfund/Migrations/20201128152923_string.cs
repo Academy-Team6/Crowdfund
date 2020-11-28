@@ -2,7 +2,7 @@
 
 namespace Crowdfund.Migrations
 {
-    public partial class fund6 : Migration
+    public partial class @string : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,7 +119,7 @@ namespace Crowdfund.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Price = table.Column<decimal>(nullable: false),
                     ProjectId = table.Column<int>(nullable: true),
-                    Reward = table.Column<int>(nullable: true),
+                    Reward = table.Column<string>(nullable: true),
                     TransactionId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

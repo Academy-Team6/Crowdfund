@@ -136,8 +136,8 @@ namespace Crowdfund.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Reward")
-                        .HasColumnType("int");
+                    b.Property<string>("Reward")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TransactionId")
                         .HasColumnType("int");

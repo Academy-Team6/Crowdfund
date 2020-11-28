@@ -62,7 +62,7 @@ namespace Crowdfund.Services
             return transactionOption;
         }
 
-        public RewardPackageOption AddRewardPackageToTransaction(int rewardPackageId)
+        private RewardPackageOption AddRewardPackageToTransaction(int rewardPackageId)
         {
             RewardPackage rewardPackage = dbContext.RewardPackages.Find(rewardPackageId);
             RewardPackageOption rewardPackageOption = new RewardPackageOption

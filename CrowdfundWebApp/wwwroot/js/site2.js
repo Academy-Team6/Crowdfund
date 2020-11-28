@@ -113,7 +113,7 @@ function createTransaction(rewardpackageId) {
     var actionUrl = "/api/transaction";
     var formData = new FormData();
     formData.append("backerId", localStorage.getItem("userId"));
-    formData.append("lastName", rewardpackageId);
+    formData.append("rewardPackageId", rewardpackageId);
     $.ajax(
         {
             url: actionUrl,

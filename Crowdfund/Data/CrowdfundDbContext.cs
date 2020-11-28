@@ -16,7 +16,7 @@ namespace Crowdfund.Data
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Media> Media { get; set; }
         public readonly static string connectionString = "Server =localhost; " +
-            "Database =fund6; " +
+            "Database =fund7; " +
             "User Id =sa; " +
             "Password =admin!@#123;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

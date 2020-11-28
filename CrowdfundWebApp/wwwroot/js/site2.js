@@ -104,3 +104,31 @@ function deleteBacker() {
 
     });
 }
+
+//Transaction
+
+function createTransaction(rewardPackageId) {
+    //console.log("increatetransactionc" + rewardpackageId)
+    //storeProjectId(projectId);
+    console.log(rewardPackageId);
+    var actionUrl = "/api/transaction";
+    var formData = new FormData();
+    formData.append("backerId", localStorage.getItem("userId"));
+    formData.append("rewardPackageId", rewardPackageId);
+    $.ajax(
+        {
+            url: actionUrl,
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function (data) {
+                window.open("/home/transaction", "_self")
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                alert("Error from server: " + errorThrown);
+            }
+        }
+    );
+    //window.open("/home/createtransaction?backerId="+localStorage.getItem("userId")+"?rewardPackageOptionId=" + rewardpackageId, "_self")
+}

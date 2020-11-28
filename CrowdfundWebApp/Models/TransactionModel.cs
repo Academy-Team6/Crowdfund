@@ -8,7 +8,10 @@ namespace CrowdfundWebApp.Models
 {
     public class TransactionModel
     {
-        public List<RewardPackageOption> rewardpackages { get; set; }
-        public int transactionId { get; set; }
+        public List<TransactionOption> Transactions { get; set; }
+    }
+    public class TransactionOptionModel
+    {
+        public TransactionOption Transaction { get; set; }
     }
 }

@@ -99,6 +99,21 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(projectModel);
         }
+        public IActionResult BackerProject()
+        {
+            List<ProjectOption> projects = projectService.FindAll();
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projects
+            };
+            return View(projectModel);
+        }
+        public IActionResult ViewProject([FromRoute] int id)
+        {
+            ProjectOption projectOption = projectService.FindProject(id);
+            ProjectOptionModel projectOptionModel = new ProjectOptionModel() { Project = projectOption };
+            return View(projectOptionModel);
+        }
         public IActionResult AddProject()
         {
             return View();
@@ -196,6 +211,25 @@ namespace CrowdfundWebApp.Controllers
             RewardPackageOption rewardPackageOption = rewardPackageService.FindRewardPackageById(id);
             RewardPackageOptionModel rewardPackageOptionModel = new RewardPackageOptionModel() { RewardPackage = rewardPackageOption };
             return View(rewardPackageOptionModel);
+        }
+        // Transaction Views
+        public IActionResult Transaction()
+        {
+            List<TransactionOption> transactions = transactionService.GetAllTransactions();
+            TransactionModel transactionModel = new TransactionModel()
+            {
+                Transactions = transactions
+            };
+            return View(transactionModel);
+        }
+        public IActionResult ProjectRewardPackage()
+        {
+            List<RewardPackageOption> rewardPackages = rewardPackageService.GetAllRewardPackages();
+            RewardPackageModel rewardpackageModel = new RewardPackageModel()
+            {
+                RewardPackages = rewardPackages
+            };
+            return View(rewardpackageModel);
         }
         public IActionResult Privacy()
         {

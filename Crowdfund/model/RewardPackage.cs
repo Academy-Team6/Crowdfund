@@ -9,13 +9,10 @@ namespace Crowdfund.model
         public int Id { get; set; }
         public decimal  Price { get; set; }
         public Project Project { get; set; }
-        public Reward? Reward{ get; set; }
+        public string Reward{ get; set; }
     
     }
 
-    public enum Reward
-    {
-        A, B, C, D
-    }
+    
 }
 

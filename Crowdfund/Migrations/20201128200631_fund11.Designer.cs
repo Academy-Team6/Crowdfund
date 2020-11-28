@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Crowdfund.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    [Migration("20201125143813_fixedNameInBacker")]
-    partial class fixedNameInBacker
+    [Migration("20201128200631_fund11")]
+    partial class fund11
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -138,8 +138,8 @@ namespace Crowdfund.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Reward")
-                        .HasColumnType("int");
+                    b.Property<string>("Reward")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -161,9 +161,14 @@ namespace Crowdfund.Migrations
                     b.Property<int?>("BackerId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RewardPackageId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BackerId");
+
+                    b.HasIndex("RewardPackageId");
 
                     b.ToTable("Transactions");
                 });
@@ -234,6 +239,10 @@ namespace Crowdfund.Migrations
                     b.HasOne("Crowdfund.model.Backer", "Backer")
                         .WithMany("Transactions")
                         .HasForeignKey("BackerId");
+
+                    b.HasOne("Crowdfund.model.RewardPackage", "RewardPackage")
+                        .WithMany()
+                        .HasForeignKey("RewardPackageId");
                 });
 
             modelBuilder.Entity("Crowdfund.model.TransactionPackage", b =>
@@ -243,7 +252,7 @@ namespace Crowdfund.Migrations
                         .HasForeignKey("RewardPackageId");
 
                     b.HasOne("Crowdfund.model.Transaction", "Transaction")
-                        .WithMany("TransactionPackages")
+                        .WithMany()
                         .HasForeignKey("TransactionId");
                 });
 

@@ -181,6 +181,25 @@ namespace CrowdfundWebApp.Controllers
             RewardPackageOptionModel rewardPackageOptionModel = new RewardPackageOptionModel() { RewardPackage = rewardPackageOption };
             return View(rewardPackageOptionModel);
         }
+        // Transaction Views
+        public IActionResult Transaction()
+        {
+            List<TransactionOption> transactions = transactionService.GetAllTransactions();
+            TransactionModel transactionModel = new TransactionModel()
+            {
+                Transactions = transactions
+            };
+            return View(transactionModel);
+        }
+        public IActionResult ProjectRewardPackage()
+        {
+            List<RewardPackageOption> rewardPackages = rewardPackageService.GetAllRewardPackages();
+            RewardPackageModel rewardpackageModel = new RewardPackageModel()
+            {
+                RewardPackages = rewardPackages
+            };
+            return View(rewardpackageModel);
+        }
         public IActionResult Privacy()
         {
             return View();

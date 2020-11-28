@@ -35,9 +35,9 @@ namespace CrowdfundWebApp.Controllers
             return transactionService.FindTransactionById(id);
         }
         [HttpPost]
-        public TransactionOption CreateTransaction([FromForm] int backerId , int rewardPackageId)
+        public TransactionOption CreateTransaction([FromForm] TransactionOption transactionOption)
         {
-            return transactionService.CreateTransaction(backerId, rewardPackageId);
+            return transactionService.CreateTransaction(transactionOption.BackerId, transactionOption.RewardPackageId);
         }
 
         //[HttpPost("{transactionId}/rewardpackage/{rewardpackageId}")]

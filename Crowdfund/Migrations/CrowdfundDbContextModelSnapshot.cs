@@ -139,14 +139,9 @@ namespace Crowdfund.Migrations
                     b.Property<string>("Reward")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
-
-                    b.HasIndex("TransactionId");
 
                     b.ToTable("RewardPackages");
                 });
@@ -164,9 +159,14 @@ namespace Crowdfund.Migrations
                     b.Property<int?>("BackerId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RewardPackageId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BackerId");
+
+                    b.HasIndex("RewardPackageId");
 
                     b.ToTable("Transactions");
                 });
@@ -230,10 +230,6 @@ namespace Crowdfund.Migrations
                     b.HasOne("Crowdfund.model.Project", "Project")
                         .WithMany("RewardPackages")
                         .HasForeignKey("ProjectId");
-
-                    b.HasOne("Crowdfund.model.Transaction", null)
-                        .WithMany("RewardPackages")
-                        .HasForeignKey("TransactionId");
                 });
 
             modelBuilder.Entity("Crowdfund.model.Transaction", b =>
@@ -241,6 +237,10 @@ namespace Crowdfund.Migrations
                     b.HasOne("Crowdfund.model.Backer", "Backer")
                         .WithMany("Transactions")
                         .HasForeignKey("BackerId");
+
+                    b.HasOne("Crowdfund.model.RewardPackage", "RewardPackage")
+                        .WithMany()
+                        .HasForeignKey("RewardPackageId");
                 });
 
             modelBuilder.Entity("Crowdfund.model.TransactionPackage", b =>

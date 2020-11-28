@@ -107,13 +107,14 @@ function deleteBacker() {
 
 //Transaction
 
-function createTransaction(rewardpackageId) {
+function createTransaction(rewardPackageId) {
     //console.log("increatetransactionc" + rewardpackageId)
     //storeProjectId(projectId);
+    console.log(rewardPackageId);
     var actionUrl = "/api/transaction";
     var formData = new FormData();
     formData.append("backerId", localStorage.getItem("userId"));
-    formData.append("rewardPackageId", rewardpackageId);
+    formData.append("rewardPackageId", rewardPackageId);
     $.ajax(
         {
             url: actionUrl,

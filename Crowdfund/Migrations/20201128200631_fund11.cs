@@ -2,7 +2,7 @@
 
 namespace Crowdfund.Migrations
 {
-    public partial class @string : Migration
+    public partial class fund11 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,26 +35,6 @@ namespace Crowdfund.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProjectCreators", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BackerId = table.Column<int>(nullable: true),
-                    Amount = table.Column<decimal>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transactions_Backers_BackerId",
-                        column: x => x.BackerId,
-                        principalTable: "Backers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,8 +99,7 @@ namespace Crowdfund.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Price = table.Column<decimal>(nullable: false),
                     ProjectId = table.Column<int>(nullable: true),
-                    Reward = table.Column<string>(nullable: true),
-                    TransactionId = table.Column<int>(nullable: true)
+                    Reward = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,10 +110,31 @@ namespace Crowdfund.Migrations
                         principalTable: "Projects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BackerId = table.Column<int>(nullable: true),
+                    Amount = table.Column<decimal>(nullable: false),
+                    RewardPackageId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RewardPackages_Transactions_TransactionId",
-                        column: x => x.TransactionId,
-                        principalTable: "Transactions",
+                        name: "FK_Transactions_Backers_BackerId",
+                        column: x => x.BackerId,
+                        principalTable: "Backers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Transactions_RewardPackages_RewardPackageId",
+                        column: x => x.RewardPackageId,
+                        principalTable: "RewardPackages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -186,11 +186,6 @@ namespace Crowdfund.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RewardPackages_TransactionId",
-                table: "RewardPackages",
-                column: "TransactionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TransactionPackages_RewardPackageId",
                 table: "TransactionPackages",
                 column: "RewardPackageId");
@@ -204,6 +199,11 @@ namespace Crowdfund.Migrations
                 name: "IX_Transactions_BackerId",
                 table: "Transactions",
                 column: "BackerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_RewardPackageId",
+                table: "Transactions",
+                column: "RewardPackageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -215,19 +215,19 @@ namespace Crowdfund.Migrations
                 name: "TransactionPackages");
 
             migrationBuilder.DropTable(
+                name: "Transactions");
+
+            migrationBuilder.DropTable(
+                name: "Backers");
+
+            migrationBuilder.DropTable(
                 name: "RewardPackages");
 
             migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "Transactions");
-
-            migrationBuilder.DropTable(
                 name: "ProjectCreators");
-
-            migrationBuilder.DropTable(
-                name: "Backers");
         }
     }
 }

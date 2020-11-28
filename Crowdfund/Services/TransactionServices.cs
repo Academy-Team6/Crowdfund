@@ -16,7 +16,9 @@ namespace Crowdfund.Services
             if (backerId == 0 ) return null;
             Backer backer = dbContext.Backers.Find(backerId);
             if (backer == null) return null;
-            Transaction transaction = new Transaction { Backer = backer };
+            RewardPackage rewardPackage = dbContext.RewardPackages.Find(rewardPackageOptionId);
+            if (rewardPackage == null) return null;
+            Transaction transaction = new Transaction { Backer = backer , RewardPackage =rewardPackage };
             dbContext.Transactions.Add(transaction);
             dbContext.SaveChanges();
             TransactionOption transactionOption = new TransactionOption
@@ -24,17 +26,17 @@ namespace Crowdfund.Services
                 BackerName = backer.LastName +" "+ backer.FirstName +" ",
                 TransactionId = transaction.Id,
                 BackerId = backer.Id,
-                RewardPackages = AddRewardPackageToTransaction(rewardPackageOptionId)
+                RewardPackage = AddRewardPackageToTransaction(rewardPackageOptionId)
             };
             return UpdateCurrentBudget(transactionOption);
         }
         public TransactionOption UpdateCurrentBudget( TransactionOption transactionOption)
         {
             Project project = dbContext.Projects
-                .Where(o => o.Id == transactionOption.RewardPackages.ProjectId)
+                .Where(o => o.Id == transactionOption.RewardPackage.ProjectId)
                 .Include(o => o.ProjectCreator)
                 .SingleOrDefault();
-            project.CurrentBudget += transactionOption.RewardPackages.Price;
+            project.CurrentBudget += transactionOption.RewardPackage.Price;
             dbContext.SaveChanges();
             return transactionOption;
         }
@@ -64,7 +66,7 @@ namespace Crowdfund.Services
 
         private RewardPackageOption AddRewardPackageToTransaction(int rewardPackageId)
         {
-            RewardPackage rewardPackage = dbContext.RewardPackages.Find(rewardPackageId);
+            RewardPackage rewardPackage = dbContext.RewardPackages.Where(o=>o.Id==rewardPackageId).Include(o=>o.Project).SingleOrDefault();
             RewardPackageOption rewardPackageOption = new RewardPackageOption
             {
                 Id = rewardPackage.Id,
@@ -87,15 +89,26 @@ namespace Crowdfund.Services
                 //RewardPackages = transaction.TransactionPackages.
             };
         }
-
+        private static RewardPackageOption GetRewardPackageOptionsFromRewardPackage(RewardPackage rewardPackage)
+        {
+            return new RewardPackageOption
+            {
+                Reward = rewardPackage.Reward,
+                Price = rewardPackage.Price,
+                Id = rewardPackage.Id,
+                ProjectId = rewardPackage.Project.Id
+            };
+        }
         public List<TransactionOption> GetAllTransactions()
         {
-            List<Transaction> tr = dbContext.Transactions.ToList();
+            List<Transaction> tr = dbContext.Transactions.Include(o=>o.RewardPackage).ThenInclude(o=>o.Project).Include(o=>o.Backer).ToList();
             List<TransactionOption> trOpt = new List<TransactionOption>();
             tr.ForEach(tr => trOpt.Add(new TransactionOption
             {
-                BackerName = tr.Backer.LastName,
-                TransactionId = tr.Id
+                TransactionId = tr.Id,
+                 RewardPackageId = tr.RewardPackage.Id,
+                 BackerId = tr.Backer.Id,
+                  RewardPackage = GetRewardPackageOptionsFromRewardPackage(tr.RewardPackage)
                 //RewardPackages = transaction.TransactionPackages.
             }));
 

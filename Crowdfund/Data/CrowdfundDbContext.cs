@@ -21,12 +21,8 @@ namespace Crowdfund.Data
             "Password =admin!@#123;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer("Server=tcp:crowdfund.database.windows.net,1433;Initial Catalog=CrowdfundDb;Persist Security Info=False;User ID=pmarouga;Password=Latsio12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server=tcp:crowdfund.database.windows.net,1433;Initial Catalog=CrowdfundDb;Persist Security Info=False;User ID=pmarouga;Password=Latsio12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Backer>();

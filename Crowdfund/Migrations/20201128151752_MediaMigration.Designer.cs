@@ -4,14 +4,16 @@ using Crowdfund.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Crowdfund.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    partial class CrowdfundDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201128151752_MediaMigration")]
+    partial class MediaMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,8 +137,8 @@ namespace Crowdfund.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Reward")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Reward")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -158,14 +160,9 @@ namespace Crowdfund.Migrations
                     b.Property<int?>("BackerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RewardPackageId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BackerId");
-
-                    b.HasIndex("RewardPackageId");
 
                     b.ToTable("Transactions");
                 });
@@ -218,10 +215,6 @@ namespace Crowdfund.Migrations
                     b.HasOne("Crowdfund.model.Backer", "Backer")
                         .WithMany("Transactions")
                         .HasForeignKey("BackerId");
-
-                    b.HasOne("Crowdfund.model.RewardPackage", "RewardPackage")
-                        .WithMany()
-                        .HasForeignKey("RewardPackageId");
                 });
 
             modelBuilder.Entity("Crowdfund.model.TransactionPackage", b =>
@@ -231,7 +224,7 @@ namespace Crowdfund.Migrations
                         .HasForeignKey("RewardPackageId");
 
                     b.HasOne("Crowdfund.model.Transaction", "Transaction")
-                        .WithMany()
+                        .WithMany("TransactionPackages")
                         .HasForeignKey("TransactionId");
                 });
 #pragma warning restore 612, 618

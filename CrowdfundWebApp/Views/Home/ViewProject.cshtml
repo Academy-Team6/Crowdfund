@@ -1,18 +1,43 @@
-﻿@model ProjectOptionModel
+﻿@model ProjectViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-<h1>hello</h1>
-<a class="btn btn-primary" href="/home/ProjectRewardPackage" role="button">Link</a>
-<tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th>Category</th>
-    <th>Description</th>
-    <th>TargetBudget</th>
-    <th>CurrentBudget</th>
-    <th>BudgetRatio</th>
-    <th>Project Details</th>
-</tr>
+
+<section class="jumbotron text-center"style="background-color: #3a2075">
+    <div class="container">
+        <h1 class="jumbotron-heading"style=" color:yellowgreen">@Model.Project.Title</h1>
+        <p class="lead text-muted"style="color: #6c757d">Category:@Model.Project.Category-About:@Model.Project.Description</p>
+        <p>
+            <a href="/home/ProjectRewardPackage" class="btn btn-primary my-2">Reward Packages</a>
+        </p>
+        <p>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @Model.Project.BudgetRatio; color: #3a2075" aria-valuenow=@Model.Project.BudgetRatio aria-valuemin="0" aria-valuemax="100">
+                @Model.Project.BudgetRatio % of TargetBudget:@Model.Project.TargetBudget $
+                </div>
+            </div>
+        </p>
+    </div>
+</section>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @{
+            foreach (var m in Model.Media)
+            { 
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src=@m.Payload alt=@m.Id>
+                </div>
+            }
+        }
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

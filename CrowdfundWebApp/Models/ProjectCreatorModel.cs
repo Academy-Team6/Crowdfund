@@ -14,5 +14,4 @@ namespace CrowdfundWebApp.Models
     {
         public ProjectCreatorOption ProjectCreator { get; set; }
     }
-
 }

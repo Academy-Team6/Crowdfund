@@ -37,7 +37,6 @@ namespace CrowdfundWebApp.Controllers
         {
             RewardPackageOption rewardPackage = rewardPackageService.CreateRewardPackage(rewardPackageOption);
             RewardPackageOption reward=projectService.AddPackageToProject(rewardPackage.ProjectId,rewardPackage.Id);
-
             return reward ;
         }
 

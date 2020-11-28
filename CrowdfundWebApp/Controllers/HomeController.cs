@@ -3,12 +3,8 @@ using Crowdfund.Options;
 using CrowdfundWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using static CrowdfundWebApp.Models.BackerModel;
 
 namespace CrowdfundWebApp.Controllers
 {
@@ -39,6 +35,21 @@ namespace CrowdfundWebApp.Controllers
         public IActionResult Login()
         {
                 return View();
+        }
+        //ProjectCreator Dashboard
+        public IActionResult Dashboard([FromQuery]int projectCreatorId)
+        {
+            List<ProjectOption> projectOptions= projectService.FindByProjectCreatorId(projectCreatorId);
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projectOptions
+            };
+            return View(projectModel);
+        }
+        //Add media View
+        public IActionResult AddMedia()
+        {
+            return View();
         }
 
         //ProjectCreator Views
@@ -88,11 +99,16 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(projectModel);
         }
-        public IActionResult ViewProject([FromRoute] int id)
+        public IActionResult ViewProject([FromQuery] int projectId)
         {
-            ProjectOption projectOption = projectService.FindProject(id);
-            ProjectOptionModel projectOptionModel = new ProjectOptionModel() { Project = projectOption };
-            return View(projectOptionModel);
+            ProjectOption projectOption = projectService.FindProject(projectId);
+            List<MediaOption> mediaOption = mediaService.FindAllMediaofProject(projectId);
+            ProjectViewModel projectViewModel = new ProjectViewModel() 
+            {
+                Project = projectOption,
+                Media=mediaOption
+            };
+            return View(projectViewModel);
         }
         public IActionResult AddProject()
         {

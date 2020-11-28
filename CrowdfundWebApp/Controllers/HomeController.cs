@@ -51,6 +51,16 @@ namespace CrowdfundWebApp.Controllers
             return View(projectCreatorOptionModel);
         }
 
+        public IActionResult TrendingProjects([FromQuery] int projectCreatorId)
+        {
+            List<ProjectOption> projectOptions = projectService.FindByTrending();
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projectOptions
+            };
+            return View(projectModel);
+        }
+
         //ProjectCreator Views
         public IActionResult ProjectCreator()
         {

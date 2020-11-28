@@ -99,7 +99,7 @@ namespace Crowdfund.Services
         }
         public ProjectOption FindProject(int id)
         {
-            Project project = db.Set<Project>().Where(o => o.Id == id).Include(o => o.ProjectCreator).SingleOrDefault();
+            Project project = db.Set<Project>().Where(o => o.Id == id).Include(o => o.RewardPackages).Include(o=>o.ProjectCreator).SingleOrDefault();
             List<int> rewardPackagesId = new List<int>();
             if (project.RewardPackages != null)
             {

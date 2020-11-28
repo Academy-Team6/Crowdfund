@@ -1,0 +1,29 @@
+﻿@model RewardPackageModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<table class="table">
+    <caption>List of users</caption>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Reward</th>
+            <th scope="col">Price</th>
+            <th scope="col">Add</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var rewardpackage in Model.RewardPackages)
+            {
+        <tr>
+            <th scope="row">@rewardpackage.Id</th>
+            <td>@rewardpackage.Reward</td>
+            <td>@rewardpackage.Price</td>
+            <td><img src="~/images/greencross.png" width="25" onclick="createTransaction(@rewardpackage.Id)" />  </td>
+        </tr>
+                }
+            }
+    </tbody>
+</table>

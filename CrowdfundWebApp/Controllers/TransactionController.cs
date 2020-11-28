@@ -13,7 +13,7 @@ namespace CrowdfundWebApp.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        public ITransactionService transactionService;
+        private readonly ITransactionService transactionService;
         public TransactionController(ITransactionService transactionService)
         {
             this.transactionService = transactionService;
@@ -35,15 +35,15 @@ namespace CrowdfundWebApp.Controllers
             return transactionService.FindTransactionById(id);
         }
         [HttpPost]
-        public TransactionOption CreateTransaction(BackerOption backerOpt)
+        public TransactionOption CreateTransaction([FromForm] TransactionOption transactionOption)
         {
-            return transactionService.CreateTransaction(backerOpt);
+            return transactionService.CreateTransaction(transactionOption.BackerId, transactionOption.RewardPackageId);
         }
 
-        [HttpPost("{transactionId}/rewardpackage/{rewardpackageId}")]
-        public TransactionOption AddRewardPackageToTransaction(int ordedId, int productId)
-        {
-            return transactionService.AddRewardPackageToTransaction(ordedId, productId);
-        }
+        //[HttpPost("{transactionId}/rewardpackage/{rewardpackageId}")]
+        //public TransactionOption AddRewardPackageToTransaction(int ordedId, int productId)
+        //{
+        //    return transactionService.AddRewardPackageToTransaction(ordedId, productId);
+        //}
     }
 }

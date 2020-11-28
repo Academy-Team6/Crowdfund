@@ -10,7 +10,7 @@ namespace Crowdfund.model
         public List<Media> Medias { get; set; }
         public decimal TargetBudget { get; set; }
         public decimal CurrentBudget { get; set; }
-        public decimal BudgetRatio { get; set; }
+        public decimal BudgetRatio => CurrentBudget / TargetBudget;
         public ProjectCreator ProjectCreator { get; set; }
         public List<RewardPackage> RewardPackages { get; set; }
         public Project()

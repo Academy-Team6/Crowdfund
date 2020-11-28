@@ -1,0 +1,28 @@
+﻿@model ProjectCreatorOptionModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Project Creator Profile</h1>
+
+
+
+<table id="ProjectCreatorTable" border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>Description</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Email</th>
+    </tr>
+    @{
+            <tr>
+                <td>@Model.ProjectCreator.Description</td>
+                <td>@Model.ProjectCreator.FirstName</td>
+                <td>@Model.ProjectCreator.LastName</td>
+                <td>@Model.ProjectCreator.Email</td>
+                <td> <a href="~/home/UpdateProjectCreator/@Model.ProjectCreator.Id"><img src="~/images/update.png" width="25" /></a></td>
+            </tr>
+    }
+</table>

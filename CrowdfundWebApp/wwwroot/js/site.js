@@ -182,7 +182,11 @@ $(".dropdown-menu li a").click(function () {
     $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 });
 
-
+function viewProject(projectId) {
+    console.log("inviewprojectc" + projectId)
+    storeProjectId(projectId);
+    window.open("/home/viewproject/" + projectId, "_self")
+}
 function addProject() {
     var actionUrl = "/api/project";
     var formData = new FormData();

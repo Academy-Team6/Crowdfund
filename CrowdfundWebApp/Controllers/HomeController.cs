@@ -89,6 +89,21 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(projectModel);
         }
+        public IActionResult BackerProject()
+        {
+            List<ProjectOption> projects = projectService.FindAll();
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projects
+            };
+            return View(projectModel);
+        }
+        public IActionResult ViewProject([FromRoute] int id)
+        {
+            ProjectOption projectOption = projectService.FindProject(id);
+            ProjectOptionModel projectOptionModel = new ProjectOptionModel() { Project = projectOption };
+            return View(projectOptionModel);
+        }
         public IActionResult AddProject()
         {
             return View();

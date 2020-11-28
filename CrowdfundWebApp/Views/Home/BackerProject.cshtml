@@ -1,0 +1,38 @@
+﻿@model ProjectModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Project List</h1>
+
+<div class="container">
+    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>TargetBudget</th>
+            <th>CurrentBudget</th>
+            <th>BudgetRatio</th>
+            <th>Project Details</th>
+        </tr>
+        @{
+            foreach (var project in Model.Projects)
+            {
+                <tr>
+                    <td>@project.Id</td>
+                    <td>@project.Title</td>
+                    <td>@project.Category</td>
+                    <td>@project.Description</td>
+                    <td>@project.TargetBudget</td>
+                    <td>@project.CurrentBudget</td>
+                    <td>@project.BudgetRatio</td>
+                    <td><img src="~/images/dots.png" width="25" onclick="viewProject(@project.Id)" /></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

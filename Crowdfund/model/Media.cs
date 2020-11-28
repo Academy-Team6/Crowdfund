@@ -7,18 +7,4 @@
         public string Payload { get; set; }
         public Project Project { get; set; }
     }
-    public class Photo : Media
-    {
-        public Photo()
-        {
-            Type = "photograph";
-        }
-    }
-    public class Video : Media
-    {
-        public Video()
-        {
-            Type = "video";
-        }
-    }
 }

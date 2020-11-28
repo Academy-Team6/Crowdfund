@@ -26,7 +26,6 @@ namespace Crowdfund.Services
             };
             return transactionOption;
         }
-
         public TransactionOption GetTransaction(int orderId)
         {
             Transaction transaction = dbContext.Transactions.Include(o => o.Backer).FirstOrDefault(x => x.Id == orderId);

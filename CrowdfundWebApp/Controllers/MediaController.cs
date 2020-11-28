@@ -1,13 +1,9 @@
-﻿using Crowdfund.model;
+﻿using Crowdfund.API;
 using Crowdfund.Options;
 using Crowdfund.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CrowdfundWebApp.Controllers
 {
@@ -17,8 +13,8 @@ namespace CrowdfundWebApp.Controllers
     {
 
         private readonly ILogger<MediaController> _logger;
-        private MediaServices mediaService;
-        public MediaController(ILogger<MediaController> logger, MediaServices _mediaService)
+        private readonly IMediaService mediaService;
+        public MediaController(ILogger<MediaController> logger, IMediaService _mediaService)
         {
             _logger = logger;
             mediaService = _mediaService;
@@ -28,8 +24,8 @@ namespace CrowdfundWebApp.Controllers
         {
             return mediaService.FindAllMediaofProject(projectId);
         }
-        [HttpPost("addMedia")]
-        public MediaOption CreateMediaAndAddItToProject(MediaOption mediaOption)
+        [HttpPost]
+        public MediaOption CreateMediaAndAddItToProject([FromForm]MediaOption mediaOption)
         {
             return mediaService.CreateMedia(mediaOption);
         }

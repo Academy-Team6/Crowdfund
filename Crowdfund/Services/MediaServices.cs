@@ -2,32 +2,36 @@
 using Crowdfund.Data;
 using Crowdfund.model;
 using Crowdfund.Options;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Crowdfund.Services
 {
     public class MediaServices : IMediaService
     {
-        private CrowdfundDbContext db = new CrowdfundDbContext();
+        private readonly CrowdfundDbContext db;
+        public MediaServices(CrowdfundDbContext _db)
+        {
+            db = _db;
+        }
+       
         public MediaOption CreateMedia(MediaOption mediaOption)
         {
+            Project project = db.Set<Project>().Where(o=>o.Id==mediaOption.ProjectId).Include(o=>o.Medias).SingleOrDefault();
             Media media = new Media()
             {
                 Payload = mediaOption.Payload,
                 Type = mediaOption.Type,
-                Project = db.Set<Project>().Find(mediaOption.ProjectId)
+                Project = project
             };
-            db.Set<Media>().Add(media);
-            Project project = db.Set<Project>().Find(mediaOption.ProjectId);
-            if (media.Type == "Photo")
-            {
-                project.Photos.Add((Photo)media);
-            }
-            if (media.Type == "Video")
-            {
-                project.Videos.Add((Video)media);
-            }
-            db.SaveChanges();
+            
+                var newMedia = db.Set<Media>().Add(media);
+                db.SaveChanges();
+                project.Medias.Add(newMedia.Entity);
+                db.SaveChanges();
+
             return new MediaOption()
             {
                 Payload = media.Payload,
@@ -49,33 +53,26 @@ namespace Crowdfund.Services
             {
                 Id=media.Id,
                 Payload = media.Payload,
-                Type = media.Type
+                Type = media.Type,
+                 ProjectId=media.Project.Id
             };
         }
 
         public List<MediaOption> FindAllMediaofProject(int projectId)
         {
-            Project project = db.Set<Project>().Find(projectId);
+            Project project = db.Set<Project>()
+                .Where(o=>o.Id==projectId)
+                .Include(o=>o.Medias)
+                .SingleOrDefault();
             List<MediaOption> projectMedia = new List<MediaOption>();
-            foreach(Photo photo in project.Photos)
+            foreach(Media media in project.Medias)
             {
                 MediaOption mediaOption = new MediaOption()
                 {
-                    Id = photo.Id,
-                    Payload = photo.Payload,
-                    ProjectId = photo.Project.Id,
-                    Type = photo.Type
-                };
-                projectMedia.Add(mediaOption);
-            }
-            foreach (Video video in project.Videos)
-            {
-                MediaOption mediaOption = new MediaOption()
-                {
-                    Id = video.Id,
-                    Payload = video.Payload,
-                    ProjectId = video.Project.Id,
-                    Type = video.Type
+                    Id = media.Id,
+                    Payload = media.Payload,
+                    ProjectId = media.Project.Id,
+                    Type = media.Type
                 };
                 projectMedia.Add(mediaOption);
             }

@@ -5,10 +5,11 @@
 @{
 }
 
-<h1>All Projects List</h1>
+<meta charset="utf-8" />
 
+<h1>Trending Projects</h1>
 <div class="container">
-    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
+    <table id="Project Trending" border="1" cellpadding="10" cellspacing="0">
         <tr>
             <th>Id</th>
             <th>Title</th>
@@ -17,7 +18,7 @@
             <th>TargetBudget</th>
             <th>CurrentBudget</th>
             <th>BudgetRatio</th>
-            <th>Project Details</th>
+            <th>ProjectCreatorId</th>
         </tr>
         @{
             foreach (var project in Model.Projects)
@@ -30,7 +31,7 @@
                     <td>@project.TargetBudget</td>
                     <td>@project.CurrentBudget</td>
                     <td>@project.BudgetRatio</td>
-                    <td><img src="~/images/dots.png" width="25" onclick="viewProject(@project.Id)" /></td>
+                    <td>@project.ProjectCreatorId</td>
                 </tr>
             }
         }

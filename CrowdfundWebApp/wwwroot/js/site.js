@@ -68,6 +68,12 @@ function logout() {
     window.location.replace('/');
 }
 //P R O J E C T  C R E A T O R 
+function getDashboard() {
+    if (localStorage.getItem('typeOfUser') == 'ProjectCreator') {
+        console.log(localStorage.getItem('userId'));
+        window.open("/home/dashboard?projectCreatorId=" + localStorage.getItem('userId'), "_self");
+    }
+}
 
 function addProjectCreator() {
 
@@ -179,8 +185,8 @@ $(".dropdown-menu li a").click(function () {
 
 function viewProject(projectId) {
     console.log("inviewprojectc" + projectId)
-    storeProjectId(projectId);
-    window.open("/home/viewproject/" + projectId, "_self")
+    //storeProjectId(projectId);
+    window.open("/home/viewproject?projectId=" + projectId, "_self")
 }
 function addProject() {
     var actionUrl = "/api/project";
@@ -276,4 +282,35 @@ function deleteProject(Id) {
         }
 
     });
+}
+function prepareForMediaAdd(projectId) {
+    localStorage.setItem('projectId', projectId);
+    console.log('preparedformediawithid' + projectId);
+    window.open("/home/addmedia", "_self");
+}
+
+function addMedia() {
+    var actionUrl = "/api/media";
+    var formData = new FormData();
+
+    formData.append("Type", $('#MediaType').val());
+    formData.append("Payload", $('#Link').val());
+    formData.append("ProjectId", localStorage.getItem('projectId'));
+    $.ajax(
+        {
+            url: actionUrl,
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function (data) {
+                alert('successful Media add');
+             //   window.open("/home/project", "_self")
+
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                alert("Error from server: " + errorThrown);
+            }
+        }
+    );
 }

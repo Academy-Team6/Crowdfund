@@ -51,6 +51,7 @@ namespace CrowdfundWebApp.Controllers
         public IActionResult TrendingProjects([FromQuery] int projectCreatorId)
         {
             List<ProjectOption> projectOptions = projectService.FindByTrending();
+            return View(projectOptions);
         }
         //ProjectCreator Dashboard
         public IActionResult Dashboard([FromQuery]int projectCreatorId)

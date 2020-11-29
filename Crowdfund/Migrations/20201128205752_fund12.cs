@@ -2,7 +2,7 @@
 
 namespace Crowdfund.Migrations
 {
-    public partial class fund11 : Migration
+    public partial class fund12 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,6 @@ namespace Crowdfund.Migrations
                     Description = table.Column<string>(nullable: true),
                     TargetBudget = table.Column<decimal>(nullable: false),
                     CurrentBudget = table.Column<decimal>(nullable: false),
-                    BudgetRatio = table.Column<decimal>(nullable: false),
                     ProjectCreatorId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -70,9 +69,7 @@ namespace Crowdfund.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<string>(nullable: true),
                     Payload = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
-                    ProjectId = table.Column<int>(nullable: true),
-                    Video_ProjectId = table.Column<int>(nullable: true)
+                    ProjectId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,12 +77,6 @@ namespace Crowdfund.Migrations
                     table.ForeignKey(
                         name: "FK_Media_Projects_ProjectId",
                         column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Media_Projects_Video_ProjectId",
-                        column: x => x.Video_ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -169,11 +160,6 @@ namespace Crowdfund.Migrations
                 name: "IX_Media_ProjectId",
                 table: "Media",
                 column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Media_Video_ProjectId",
-                table: "Media",
-                column: "Video_ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_ProjectCreatorId",

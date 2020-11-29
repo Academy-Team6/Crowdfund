@@ -11,5 +11,6 @@ namespace Crowdfund.Options
         public decimal Price { get; set; }
         public string Reward { get; set; }
         public int ProjectId { get; set; }
+        public string ProjectName { get; set; }
     }
 }

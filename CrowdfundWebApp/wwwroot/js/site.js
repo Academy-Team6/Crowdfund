@@ -49,8 +49,8 @@ $('#login-btn').on('click', function () {
         success: function (data) {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
-            if (data.typeOfUser == "ProjectCreator") window.location.replace('/home/projectcreator');
-            if (data.typeOfUser == "Backer") window.location.replace('/home/backer');
+            if (data.typeOfUser == "ProjectCreator") window.location.replace('/home/projectCreatorProfile?projectCreatorId=' + localStorage.getItem('userId'));
+            if (data.typeOfUser == "Backer") window.location.replace('/home/backerprofile?backerId=' + localStorage.getItem('userId'));
             $('#login-link').addClass('d-none');
             
         },
@@ -101,7 +101,7 @@ function addProjectCreator() {
             type: "POST",
             success: function () {
                 alert(json)
-                window.open("/home/projectcreator", "_self")
+                window.open("/home/login", "_self")
                
             },
             error: function (jqXhr, textStatus, errorThrown) {

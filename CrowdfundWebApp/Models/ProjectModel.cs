@@ -18,3 +18,14 @@ namespace CrowdfundWebApp.Models
 
     }
 }
+public enum ProjectCategory
+{
+    Tech,
+    Art,
+    Sports,
+    Health,
+    Industry,
+    Buisness,
+    Gadget,
+    Clothing
+}

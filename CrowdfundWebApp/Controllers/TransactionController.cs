@@ -19,10 +19,15 @@ namespace CrowdfundWebApp.Controllers
             this.transactionService = transactionService;
         }
 
+        //[HttpGet]
+        //public List<TransactionOption> GetAllTransactions()
+        //{
+        //    return transactionService.GetAllTransactions();
+        //}
         [HttpGet]
-        public List<TransactionOption> GetAllTransactions()
+        public List<TransactionOption> GetMyTransactions(int backerId)
         {
-            return transactionService.GetAllTransactions();
+            return transactionService.GetMyTransactions(backerId);
         }
         [HttpGet("{id}")]
         public TransactionOption GetTransaction(int id)

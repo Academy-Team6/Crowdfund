@@ -1,8 +1,10 @@
 ﻿using Crowdfund.API;
+using Crowdfund.model;
 using Crowdfund.Options;
 using CrowdfundWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -19,7 +21,7 @@ namespace CrowdfundWebApp.Controllers
         private readonly ITransactionService transactionService;
         private readonly ILoginService loginService;
 
-        public HomeController(ILogger<HomeController> logger, ILoginService _loginService, IBackerService _backerService, IRewardPackageService _rewardPackageService, IMediaService _mediaService , IProjectService _projectService , IProjectCreatorService _projectCreatorService, ITransactionService _transactionService)
+        public HomeController(ILogger<HomeController> logger, ILoginService _loginService, IBackerService _backerService, IRewardPackageService _rewardPackageService, IMediaService _mediaService, IProjectService _projectService, IProjectCreatorService _projectCreatorService, ITransactionService _transactionService)
         {
             _logger = logger;
             backerService = _backerService;
@@ -34,7 +36,7 @@ namespace CrowdfundWebApp.Controllers
         //login
         public IActionResult Login()
         {
-                return View();
+            return View();
         }
 
         //ProjectCreator Profile
@@ -47,16 +49,10 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(projectCreatorOptionModel);
         }
-
-        public IActionResult TrendingProjects()
-        {
-            List<ProjectOption> projectOptions = projectService.FindByTrending();
-            return View(projectOptions);
-        }
         //ProjectCreator Dashboard
-        public IActionResult Dashboard([FromQuery]int projectCreatorId)
+        public IActionResult Dashboard([FromQuery] int projectCreatorId)
         {
-            List<ProjectOption> projectOptions= projectService.FindByProjectCreatorId(projectCreatorId);
+            List<ProjectOption> projectOptions = projectService.FindByProjectCreatorId(projectCreatorId);
 
             ProjectModel projectModel = new ProjectModel()
             {
@@ -92,7 +88,7 @@ namespace CrowdfundWebApp.Controllers
         }
         public IActionResult DeleteProjectCreator([FromRoute] int id)
         {
-             ProjectCreatorOption projectCreatorOption = projectCreatorService.FindProjectCreator(id);
+            ProjectCreatorOption projectCreatorOption = projectCreatorService.FindProjectCreator(id);
             ProjectCreatorOptionModel projectCreatorOptionModel = new ProjectCreatorOptionModel() { ProjectCreator = projectCreatorOption };
             return View(projectCreatorOptionModel);
         }
@@ -120,10 +116,10 @@ namespace CrowdfundWebApp.Controllers
         {
             ProjectOption projectOption = projectService.FindProject(projectId);
             List<MediaOption> mediaOption = mediaService.FindAllMediaofProject(projectId);
-            ProjectViewModel projectViewModel = new ProjectViewModel() 
+            ProjectViewModel projectViewModel = new ProjectViewModel()
             {
                 Project = projectOption,
-                Media=mediaOption
+                Media = mediaOption
             };
             return View(projectViewModel);
         }
@@ -143,8 +139,29 @@ namespace CrowdfundWebApp.Controllers
             ProjectOptionModel projectOptionModel = new ProjectOptionModel() { Project = projectOption };
             return View(projectOptionModel);
         }
-
-
+        public IActionResult TrendingProjects()
+        {
+            List<ProjectOption> projectOptions = projectService.FindByTrending();
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projectOptions
+            };
+            return View(projectModel);
+        }
+        public IActionResult BrowseByCategory()
+        {
+            return View();
+        }
+        public IActionResult Browse([FromQuery] string category )
+        {
+            Enum.TryParse(category, out Crowdfund.model.ProjectCategory projectCategory);
+            List<ProjectOption> projectOptions = projectService.FindByCategory(projectCategory);
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projectOptions
+            };
+        return View(projectModel);
+        }
         //Backer Views
 
         //Backer Profile
@@ -168,6 +185,10 @@ namespace CrowdfundWebApp.Controllers
             return View(backerModel);
         }
         public IActionResult MBacker()
+        {
+            return View();
+        }
+        public IActionResult AddBacker()
         {
             return View();
         }
@@ -226,12 +247,23 @@ namespace CrowdfundWebApp.Controllers
             return View(rewardPackageOptionModel);
         }
         // Transaction Views
-        public IActionResult Transaction()
+        public IActionResult BackedProjects([FromQuery] int backerId)
         {
-            List<TransactionOption> transactions = transactionService.GetAllTransactions();
+            List<TransactionOption> transactionOptions = transactionService.BackedProjects(backerId);
+
             TransactionModel transactionModel = new TransactionModel()
             {
-                Transactions = transactions
+                Transactions = transactionOptions
+            };
+            return View(transactionModel);
+        }
+        public IActionResult GetMyTransactions([FromQuery] int backerId)
+        {
+            List<TransactionOption> transactionOptions = transactionService.GetMyTransactions(backerId);
+
+            TransactionModel transactionModel = new TransactionModel()
+            {
+                Transactions = transactionOptions
             };
             return View(transactionModel);
         }

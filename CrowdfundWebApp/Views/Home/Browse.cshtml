@@ -1,0 +1,28 @@
+﻿@model ProjectModel
+
+<meta charset="utf-8" />
+
+<h1>@Model.Projects[0].Category</h1>
+<div class="container">
+    <table id="Project Trending" border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>TargetBudget</th>
+            <th>CurrentBudget</th>
+        </tr>
+        @{
+            foreach (var project in Model.Projects)
+            {
+                <tr>
+                    <td>@project.Id</td>
+                    <td>@project.Title</td>
+                    <td>@project.Description</td>
+                    <td>@project.TargetBudget</td>
+                    <td>@project.CurrentBudget</td>
+                </tr>
+            }
+        }
+    </table>
+</div>

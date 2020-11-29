@@ -41,7 +41,7 @@ namespace CrowdfundWebApp.Controllers
         [HttpGet("search/{category}")]
         public List<ProjectOption> GetProjectsByCategory(string category)
         {
-            ProjectCategory projectCategory = (ProjectCategory)Enum.Parse(typeof(ProjectCategory), category);
+            Crowdfund.model.ProjectCategory projectCategory = (Crowdfund.model.ProjectCategory)Enum.Parse(typeof(Crowdfund.model.ProjectCategory), category);
             return projectService.FindByCategory(projectCategory);
         }
         [HttpGet("search/{payload}")]

@@ -2,7 +2,7 @@
 
 namespace Crowdfund.Migrations
 {
-    public partial class HL : Migration
+    public partial class fund13 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

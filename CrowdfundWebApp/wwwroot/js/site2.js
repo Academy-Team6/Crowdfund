@@ -21,7 +21,7 @@ function addBacker() {
             contentType: false,
             type: "POST",
             success: function (data) {
-                window.open("/home/backer", "_self")
+                window.open("/home/login", "_self")
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 alert("Error from server: " + errorThrown);
@@ -123,7 +123,7 @@ function createTransaction(rewardPackageId) {
             contentType: false,
             type: "POST",
             success: function (data) {
-                window.open("/home/transaction", "_self")
+                window.open("/home/getmytransactions?backerId=" + localStorage.getItem('userId'), "_self")
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 alert("Error from server: " + errorThrown);
@@ -131,4 +131,16 @@ function createTransaction(rewardPackageId) {
         }
     );
     //window.open("/home/createtransaction?backerId="+localStorage.getItem("userId")+"?rewardPackageOptionId=" + rewardpackageId, "_self")
+}
+function getMyTransactions() {
+    if (localStorage.getItem('typeOfUser') == 'Backer') {
+        console.log(localStorage.getItem('userId'));
+        window.open("/home/getmytransactions?backerId=" + localStorage.getItem('userId'), "_self");
+    }
+}
+function backedProjects() {
+    if (localStorage.getItem('typeOfUser') == 'Backer') {
+        console.log(localStorage.getItem('userId'));
+        window.open("/home/backedprojects?backerId=" + localStorage.getItem('userId'), "_self");
+    }
 }

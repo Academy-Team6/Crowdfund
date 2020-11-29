@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Crowdfund.Migrations
 {
-    public partial class fund13 : Migration
+    public partial class StatusUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -104,6 +105,27 @@ namespace Crowdfund.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StatusUpdate",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Overload = table.Column<string>(nullable: true),
+                    ProjectId = table.Column<int>(nullable: true),
+                    Timestamp = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatusUpdate", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StatusUpdate_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Transactions",
                 columns: table => new
                 {
@@ -172,6 +194,11 @@ namespace Crowdfund.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StatusUpdate_ProjectId",
+                table: "StatusUpdate",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TransactionPackages_RewardPackageId",
                 table: "TransactionPackages",
                 column: "RewardPackageId");
@@ -196,6 +223,9 @@ namespace Crowdfund.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Media");
+
+            migrationBuilder.DropTable(
+                name: "StatusUpdate");
 
             migrationBuilder.DropTable(
                 name: "TransactionPackages");

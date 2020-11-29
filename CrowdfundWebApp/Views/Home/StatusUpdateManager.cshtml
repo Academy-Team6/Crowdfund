@@ -1,0 +1,46 @@
+﻿<div class="container-fluid">
+
+    <h1> Delete Status Update</h1>
+
+    <form>
+        <table align="center">
+            <tr align="center">
+                <td>
+                    Status Update Id
+                </td>
+                <td> <input type="text" id="Id" placeholder="Id" /></td>
+            </tr>
+            <tr align="center">
+                <td>
+                    <input type="button" value="Submit" onclick="deleteStatusUpdate()" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <h1>Add Status Update</h1>
+
+    <form id="createBackerForm">
+        <table align="center">
+            <tr align="center">
+                <td>
+                    Content
+                </td>
+                <td> <input type="text" id="Content" placeholder="Content" /></td>
+            </tr>
+            <tr align="center">
+                <td>
+                    ProjectId
+                </td>
+                <td> <input type="text" id="ProjectId" placeholder="ProjectId" /></td>
+            </tr>
+
+            <tr align="center">
+                <td>
+                    <input type="button" value="Submit" onclick="addStatusUpdate()" />
+                </td>
+            </tr>
+        </table>
+        <div id="result" name="result"></div>
+    </form>
+</div>

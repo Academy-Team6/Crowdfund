@@ -314,3 +314,62 @@ function addMedia() {
         }
     );
 }
+function addStatusUpdate(){
+    var actionUrl = "/api/statusupdate";
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
+    var formData = new FormData();
+    formData.append("Payload", $('#Content').val());
+    formData.append("ProjectId", localStorage.getItem('projectId'));
+    formData.append("Timestamp", dateTime);
+    console.log($('#Content').val());
+    
+    $.ajax(
+        {
+            url: actionUrl,
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function (data) {
+                window.open('/home/statusupdate?projectId=' + localStorage.getItem('projectId'), '_self')
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                alert("Error from server: " + errorThrown);
+            }
+        }
+    );
+}
+function deleteStatusUpdate() {
+    id = $("#Id").val()
+
+    actionUrl = "/api/statusupdate/" + id
+    actiontype = "DELETE"
+    actionDataType = "json"
+
+    $.ajax({
+        url: actionUrl,
+        dataType: actionDataType,
+        type: actiontype,
+
+        contentType: 'application/json',
+        processData: false,
+
+        success: function (data, textStatus, jQxhr) {
+
+            window.open('/home/statusupdate?projectId=' + localStorage.getItem('projectId'), '-self')
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+
+    });
+}
+function prepareTweet(id) {
+    console.log("tweet" + id);
+    localStorage.setItem('projectId', id);
+    console.log('locale' + localStorage.getItem('projectId'))
+    window.open('/home/statusupdatemanager', '_self');
+}

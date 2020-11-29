@@ -18,6 +18,7 @@ namespace Crowdfund.Exceptions
             services.AddScoped<IRewardPackageService, RewardPackageServices>();
             services.AddScoped<ITransactionService, TransactionServices>();
             services.AddScoped<ILoginService, LoginServices>();
+            services.AddScoped<IStatusUpdateService, StatusUpdateServices>();
 
 
         }

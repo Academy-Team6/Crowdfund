@@ -7,18 +7,20 @@
 
 <h1>All Projects List</h1>
 
-<div class="container">
-    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
+<table class="table table-bordered table-hover table-sm table-info" id="ProjectTable">
+    <thead class="thead-light">
         <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>TargetBudget</th>
-            <th>CurrentBudget</th>
-            <th>BudgetRatio</th>
-            <th>Project Details</th>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">TargetBudget</th>
+            <th scope="col">CurrentBudget</th>
+            <th scope="col">BudgetRatio</th>
+            <th scope="col">Project Details</th>
         </tr>
+    </thead>
+    <tbody>
         @{
             foreach (var project in Model.Projects)
             {
@@ -34,5 +36,5 @@
                 </tr>
             }
         }
-    </table>
-</div>
+    </tbody>
+</table>

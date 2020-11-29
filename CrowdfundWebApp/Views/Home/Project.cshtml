@@ -4,56 +4,28 @@
 *@
 @{
 }
-
-<h1>Project Management</h1>
-<hr />
-To add a new project press <a href="~/home/addproject">here</a>
-
+<h1>All Projects</h1>
 <div class="container">
-    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>TargetBudget</th>
-            <th>CurrentBudget</th>
-            <th>BudgetRatio</th>
-            <th>ProjectCreatorId</th>
-            <th>RewardPackages</th>
-            <th>Photos</th>
-            <th>Videos</th>
-            <th>UPD</th>
-            <th>DEL</th>
-            <th>ADDM</th>
-            <th>ADDRP</th>
-        </tr>
-        @{ 
-            foreach(var project in Model.Projects)
-            {
-                <tr>
-                    <td>@project.Id</td>
-                    <td><a href="#" onclick="viewProject(@project.Id)">>@project.Title</a></td>
-                    <td>@project.Category</td>
-                    <td>@project.Description</td>
-                    <td>@project.TargetBudget</td>
-                    <td>@project.CurrentBudget</td>
-                    <td>@project.BudgetRatio</td>
-                    <td>@project.ProjectCreatorId</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    @*
-        <td>@project.RewardPackagesId.Count()</td>
-        <td>@project.Photos.Count()</td>
-        <td>@project.Videos.Count()</td>
-                    *@
-                    <td> <a href="~/home/UpdateProject/@project.Id"><img src="~/images/update.png" width="25" /></a></td>
-                    <td> <a href="~/home/DeleteProject/@project.Id"><img src="~/images/delete.png" width="25" /></a></td>
-                    <td> <img src="~/images/AddMedia.png" width="25" onclick="prepareForMediaAdd(@project.Id)" /></td>
-                    <td> <img src="~/images/AddRewardPackage.jpg" width="25" onclick="addRewardPackageWithId(@project.Id)" /></td>
-                </tr>
-            }
+    <div class="row font-weight-bold">
+        <div class="col">Title</div>
+        <div class="col-4">Description</div>
+    </div>
+    @{
+        foreach (var p in Model.Projects)
+        {
+
+            <div class="row">
+                <div class="col"><a href="/home/viewproject?projectId=@p.Id">@p.Title</a></div>
+                <div class="col-4">@p.Description</div>
+            </div>
+            <div class="row">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @p.BudgetRatio; color: #3a2075" aria-valuenow=@p.BudgetRatio aria-valuemin="0" aria-valuemax="100">
+                    @p.BudgetRatio % of TargetBudget:@p.TargetBudget $
+                </div>
+            </div>
         }
-    </table>
+    }
 </div>
+
+
+

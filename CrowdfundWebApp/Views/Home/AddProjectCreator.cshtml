@@ -3,44 +3,56 @@
 *@
 @{
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_vogias.css" />
+    <title>Add Project Cretor</title>
+</head>
 <form id="createProjectCreatorForm">
     <table align="center">
         <tr align="center">
             <td>
-                FirstName
-            </td>
-            <td> <input type="text" id="FirstName" placeholder="FirstName" /></td>
-        </tr>
-
-        <tr align="center">
-            <td>
-                LastName
-            </td>
-            <td>
-                <input type="text" id="LastName" placeholder="LastName" />
+                <div class="form">
+                    <input type="text" name="FirstName" autocomplete="off" required>
+                    <label for="FirstName" class="label-form">
+                    <span class="content-form">FirstName</span>
+                </div>
             </td>
         </tr>
 
         <tr align="center">
             <td>
-                Description
-            </td>
-            <td>
-                <input type="text" id="Description" placeholder="Description" />
+                <div class="form">
+                    <input type="text" name="LastName" autocomplete="off" required>
+                    <label for="LastName" class="label-form">
+                    <span class="content-form">LastName</span>
+                </div>
             </td>
         </tr>
-        <tr align="center">
-            <td>
-                Email
-            </td>
-            <td>
-                <input type="text" id="Email" placeholder="Email" />
 
+        <tr align="center">
+            <td>
+                <div class="form">
+                    <input type="text" name="Description" autocomplete="off" required>
+                    <label for="Description" class="label-form">
+                    <span class="content-form">Description</span>
+                </div>
             </td>
         </tr>
         <tr align="center">
             <td>
-                <input type="button" value="Submit data" onclick="addProjectCreator()" />
+                <div class="form">
+                    <input type="text" name="Email" autocomplete="off" required>
+                    <label for="Email" class="label-form">
+                    <span class="content-form">Email</span>
+                </div>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input class="myButton" type="button" name="submit_button" value="Submit data" onclick="addProjectCreator()" />
             </td>
         </tr>
     </table>

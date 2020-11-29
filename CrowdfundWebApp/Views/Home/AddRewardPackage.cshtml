@@ -3,38 +3,55 @@
 *@
 @{
 }
-
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_vogias.css" />
+    <title>Add Reward Package</title>
+</head>
 <form id="createRewardPackageForm">
+
+
     <table align="center">
         <tr align="center">
             <td>
-                Price
-            </td>
-            <td> <input type="text" id="Price" placeholder="Price" /></td>
-        </tr>
-
-        <tr align="center">
-            <td>
-                Reward
-            </td>
-            <td>
-                <input type="text" id="Reward" placeholder="Reward" />
+                <div class="form">
+                    <input type="text" name="Price" autocomplete="off" required>
+                    <label for="Price" class="label-form">
+                        <span class="content-form">Price</span>
+                </div>
             </td>
         </tr>
 
         <tr align="center">
             <td>
-                ProjectId
-            </td>
-            <td>
-                <input type="text" id="ProjectId" placeholder="ProjectId" />
+                <div class="form">
+                    <input type="text" name="Reward" autocomplete="off" required>
+                    <label for="Reward" class="label-form">
+                        <span class="content-form">Reward</span>
+                </div>
             </td>
         </tr>
+
         <tr align="center">
             <td>
-                <input type="button" value="Submit data" onclick="addRewardPackage()" />
+                <div class="form">
+                    <input type="text" name="ProjectId" autocomplete="off" required>
+                    <label for="ProjectId" class="label-form">
+                        <span class="content-form">ProjectId</span>
+                </div>
+            </td>
+        </tr>
+
+        <tr align="center">
+            <td>
+
+                <input class="myButton" type="button" name="submit_button" value="Submit data" onclick="addRewardPackage()">
+
             </td>
         </tr>
     </table>
+
     <div id="result" name="result"></div>
 </form>

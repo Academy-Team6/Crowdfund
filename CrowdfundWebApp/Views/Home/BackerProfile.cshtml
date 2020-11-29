@@ -4,12 +4,27 @@
 *@
 @{
 }
+<div class="jumbotron">
+    <h1>Backer Profile!</h1>
+    <div class="list-group-horizontal">
+        <span class="list-group" id="sizing-addon1">FirstName</span>
+        <p class="list-group-item list-group-item-action list-group-item-info">@Model.Backer.FirstName</p>
+    </div>
+    <div class="list-group-horizontal">
+        <span class="list-group" id="sizing-addon1">LastName</span>
+        <p class="list-group-item list-group-item-action list-group-item-info">@Model.Backer.LastName</p>
+    </div>
+    <div class="list-group-horizontal">
+        <span class="list-group" id="sizing-addon1">Email</span>
+        <p class="list-group-item list-group-item-action list-group-item-info">@Model.Backer.Email</p>
+    </div>
+    <p><a class="btn btn-secondary btn-lg" href="~/home/UpdateBacker/@Model.Backer.Id" role="button">Update Info</a></p>
+</div>
 
-<h1>Backer Profile</h1>
 
 
 
-<table class="table table-sm table-striped table-bordered" id="ProjectCreatorTable" >
+@*<table class="table table-sm table-striped table-bordered" id="ProjectCreatorTable" >
     <caption>Personal details</caption>
     <tr>
         <th>FirstName</th>
@@ -24,4 +39,4 @@
                 <td> <a href="~/home/UpdateBacker/@Model.Backer.Id"><img src="~/images/update.png" width="25" /></a></td>
             </tr>
     }
-</table>
+</table>*@

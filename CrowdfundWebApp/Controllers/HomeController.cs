@@ -171,6 +171,10 @@ namespace CrowdfundWebApp.Controllers
         {
             return View();
         }
+        public IActionResult AddBacker()
+        {
+            return View();
+        }
         public IActionResult FindBackerDisplay([FromQuery] string text)
         {
             List<BackerOption> backers = backerService.SearchBackers(text);
@@ -226,12 +230,23 @@ namespace CrowdfundWebApp.Controllers
             return View(rewardPackageOptionModel);
         }
         // Transaction Views
-        public IActionResult Transaction()
+        public IActionResult BackedProjects([FromQuery] int backerId)
         {
-            List<TransactionOption> transactions = transactionService.GetAllTransactions();
+            List<TransactionOption> transactionOptions = transactionService.BackedProjects(backerId);
+
             TransactionModel transactionModel = new TransactionModel()
             {
-                Transactions = transactions
+                Transactions = transactionOptions
+            };
+            return View(transactionModel);
+        }
+        public IActionResult GetMyTransactions([FromQuery] int backerId)
+        {
+            List<TransactionOption> transactionOptions = transactionService.GetMyTransactions(backerId);
+
+            TransactionModel transactionModel = new TransactionModel()
+            {
+                Transactions = transactionOptions
             };
             return View(transactionModel);
         }

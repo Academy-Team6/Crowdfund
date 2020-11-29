@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Crowdfund.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    [Migration("20201128200631_fund11")]
-    partial class fund11
+    [Migration("20201128205900_HL")]
+    partial class HL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,21 +49,20 @@ namespace Crowdfund.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Payload")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Media");
+                    b.HasIndex("ProjectId");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Media");
+                    b.ToTable("Media");
                 });
 
             modelBuilder.Entity("Crowdfund.model.Project", b =>
@@ -72,9 +71,6 @@ namespace Crowdfund.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("BudgetRatio")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -195,29 +191,11 @@ namespace Crowdfund.Migrations
                     b.ToTable("TransactionPackages");
                 });
 
-            modelBuilder.Entity("Crowdfund.model.Photo", b =>
+            modelBuilder.Entity("Crowdfund.model.Media", b =>
                 {
-                    b.HasBaseType("Crowdfund.model.Media");
-
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasDiscriminator().HasValue("Photo");
-                });
-
-            modelBuilder.Entity("Crowdfund.model.Video", b =>
-                {
-                    b.HasBaseType("Crowdfund.model.Media");
-
-                    b.Property<int?>("ProjectId")
-                        .HasColumnName("Video_ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasDiscriminator().HasValue("Video");
+                    b.HasOne("Crowdfund.model.Project", "Project")
+                        .WithMany("Medias")
+                        .HasForeignKey("ProjectId");
                 });
 
             modelBuilder.Entity("Crowdfund.model.Project", b =>
@@ -254,20 +232,6 @@ namespace Crowdfund.Migrations
                     b.HasOne("Crowdfund.model.Transaction", "Transaction")
                         .WithMany()
                         .HasForeignKey("TransactionId");
-                });
-
-            modelBuilder.Entity("Crowdfund.model.Photo", b =>
-                {
-                    b.HasOne("Crowdfund.model.Project", "Project")
-                        .WithMany("Photos")
-                        .HasForeignKey("ProjectId");
-                });
-
-            modelBuilder.Entity("Crowdfund.model.Video", b =>
-                {
-                    b.HasOne("Crowdfund.model.Project", "Project")
-                        .WithMany("Videos")
-                        .HasForeignKey("ProjectId");
                 });
 #pragma warning restore 612, 618
         }

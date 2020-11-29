@@ -70,9 +70,6 @@ namespace Crowdfund.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("BudgetRatio")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 

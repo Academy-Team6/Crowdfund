@@ -13,6 +13,10 @@ To add a new project press <a href="~/home/addproject">here</a>
             <th scope="col">Description</th>
             <th scope="col">Budget Ratio</th>
             <th scope="col">Update</th>
+            <th scope="col">Add Media</th>
+            <th scope="col">Add Reward</th>
+            <th scope="col">Delete</th>
+
 
         </tr>
     </thead>
@@ -21,10 +25,13 @@ To add a new project press <a href="~/home/addproject">here</a>
             foreach (var p in Model.Projects)
             {
                 <tr>
-                    <td>@p.Title</td>
+                    <td><a href="/home/viewproject?projectId=@p.Id">@p.Title</a></td>
                     <td>@p.Description</td>
                     <td>@p.BudgetRatio</td>
                     <td> <a href="~/home/UpdateProject/@p.Id"><img src="~/images/update.png" width="25" /></a></td>
+                    <td> <img src="~/images/AddMedia.png" width="25" onclick="prepareForMediaAdd(@p.Id)" /></td>
+                    <td> <img src="~/images/AddRewardPackage.jpg" width="25" onclick="addRewardPackageWithId(@p.Id)" /></td>
+                    <td> <a href="~/home/DeleteProject/@p.Id"><img src="~/images/delete.png" width="25" /></a></td>
                 </tr>
             }
         }

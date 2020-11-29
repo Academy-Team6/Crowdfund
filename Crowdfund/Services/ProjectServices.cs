@@ -95,7 +95,14 @@ namespace Crowdfund.Services
         }
         public List<ProjectOption> FindByTrending()
         {
-            return db.Set<ProjectOption>().OrderBy(p => p.CurrentBudget).ThenBy(p=>p.BudgetRatio).ToList();
+            List<Project> projectList=db.Set<Project>().Include(o=>o.ProjectCreator).OrderBy(p => p.CurrentBudget).ToList();
+            List<ProjectOption> projectOptionList = new List<ProjectOption>();
+            foreach (Project p in projectList)
+            {
+                projectOptionList.Add(CreateProjectOption(p));
+            }
+            return projectOptionList;
+
         }
         public ProjectOption FindProject(int id)
         {

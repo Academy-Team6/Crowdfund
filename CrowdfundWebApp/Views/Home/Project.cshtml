@@ -8,24 +8,28 @@
 <div class="container">
     <div class="row font-weight-bold">
         <div class="col">Title</div>
-        <div class="col-4">Description</div>
+        <div class="col-2">Description</div>
+        <div class="col-4">Progress</div>
     </div>
     @{
         foreach (var p in Model.Projects)
         {
 
-            <div class="row">
-                <div class="col"><a href="/home/viewproject?projectId=@p.Id">@p.Title</a></div>
-                <div class="col-4">@p.Description</div>
-            </div>
-            <div class="row">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @p.BudgetRatio; color: #3a2075" aria-valuenow=@p.BudgetRatio aria-valuemin="0" aria-valuemax="100">
-                    @p.BudgetRatio % of TargetBudget:@p.TargetBudget $
+        <div class="row">
+            <div class="col"><a href="/home/viewproject?projectId=@p.Id">@p.Title</a></div>
+            <div class="col-2">@p.Description</div>
+            <div class="col-4">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                         aria-valuenow="@p.BudgetRatio" aria-valuemin="0" aria-valuemax="100" style="width:@p.BudgetRatio%">
+                        @p.BudgetRatio%
+                    </div>
                 </div>
             </div>
-        }
-    }
-</div>
+            </div>
+            }
+            }
+        </div>
 
 
 

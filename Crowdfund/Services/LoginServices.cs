@@ -31,6 +31,11 @@ namespace Crowdfund.Services
                 .Set<ProjectCreator>()
                 .Where(o => o.FirstName == loginOption.Username && o.LastName == loginOption.Password)
                 .SingleOrDefault();
+            if (projectCreator.FirstName == "admin") return new LoginAnswerOption()
+            {
+                Id = projectCreator.Id,
+                TypeOfUser = "admin"
+            };
             if (projectCreator != null) return new LoginAnswerOption()
             {
                 Id = projectCreator.Id,

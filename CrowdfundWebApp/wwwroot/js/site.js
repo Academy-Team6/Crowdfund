@@ -9,16 +9,26 @@ if (getUserId() != null) {
 if (getTypeOfUser() == 'ProjectCreator') {
     $('#admin-layout').addClass('d-none');
     $('#projectCreator-layout').removeClass('d-none');
+    $('#guest-layout').addClass('d-none');
+    $('#backer-layout').addClass('d-none');
 }
 else if (getTypeOfUser() == 'Backer') {
     $('#backer-layout').removeClass('d-none');
     $('#admin-layout').addClass('d-none');
+    $('#guest-layout').addClass('d-none');
+    $('#projectCreator-layout').addClass('d-none');
+}
+else if (getTypeOfUser() == 'admin') {
+    $('#projectCreator-layout').addClass('d-none');
+    $('#backer-layout').addClass('d-none');
+    $('#guest-layout').addClass('d-none');
+    $('#admin-layout').removeClass('d-none');
 }
 else {
     $('#projectCreator-layout').addClass('d-none');
     $('#backer-layout').addClass('d-none');
-    $('#admin-layout').removeClass('d-none');
-
+    $('#admin-layout').addClass('d-none');
+    $('#guest-layout').removeClass('d-none');
 }
 
 
@@ -45,12 +55,13 @@ $('#login-btn').on('click', function () {
         type: 'POST',
         data: json3,
         dataType: 'json',
-        processData:false,
+        processData: false,
         success: function (data) {
             localStorage.setItem('userId', data.id);
             localStorage.setItem('typeOfUser', data.typeOfUser);
             if (data.typeOfUser == "ProjectCreator") window.location.replace('/home/projectCreatorProfile?projectCreatorId=' + localStorage.getItem('userId'));
             if (data.typeOfUser == "Backer") window.location.replace('/home/backerprofile?backerId=' + localStorage.getItem('userId'));
+            if (data.typeOfUser == "admin") window.location.replace('/home');
             $('#login-link').addClass('d-none');
             
         },

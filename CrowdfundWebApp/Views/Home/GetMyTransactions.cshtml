@@ -10,6 +10,7 @@
         <tr>
             <th>Id</th>
             <th>ProjectName</th>
+            <th>Reward</th>
             <th>Cost</th>
         </tr>
         @{
@@ -18,6 +19,7 @@
                 <tr>
                     <td>@transaction.TransactionId</td>
                     <td>@transaction.ProjectName</td>
+                    <td>@transaction.RewardPackageName</td>
                     <td>@transaction.Amount</td>
                 </tr>
             }

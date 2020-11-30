@@ -40,6 +40,10 @@ namespace CrowdfundWebApp.Controllers
         {
             return View();
         }
+        public IActionResult Cover()
+        {
+            return View();
+        }
         //Status Updates
         public IActionResult StatusUpdateManager([FromRoute] int id)
         {
@@ -285,9 +289,9 @@ namespace CrowdfundWebApp.Controllers
             };
             return View(transactionModel);
         }
-        public IActionResult ProjectRewardPackage()
+        public IActionResult ProjectRewardPackage([FromQuery]int projectId)
         {
-            List<RewardPackageOption> rewardPackages = rewardPackageService.GetAllRewardPackages();
+            List<RewardPackageOption> rewardPackages = rewardPackageService.FindRewardPackageByProjectId(projectId);
             RewardPackageModel rewardpackageModel = new RewardPackageModel()
             {
                 RewardPackages = rewardPackages

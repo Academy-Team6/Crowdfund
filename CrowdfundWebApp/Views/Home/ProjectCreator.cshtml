@@ -9,26 +9,30 @@
 <hr />
 To add a new project creator press <a href="~/home/addprojectcreator">here</a>
 
-<table id="ProjectCreatorTable" border="1" cellpadding="10" cellspacing="0">
-    <tr>
-        <th>Id</th>
-        <th>Description</th>
-        <th>FirstName</th>
-        <th>LastName</th>
-        <th>Email</th>       
-    </tr>
-    @{ 
-        foreach(var projectCreator in Model.ProjectCreators)
-        {
+<table id="ProjectCreatorTable" border="1" cellpadding="10" cellspacing="0" class="table table-hover table-borderless table-sm table-info">
+   <thead class="thead-light">
         <tr>
-            <td>@projectCreator.Id</td>
-            <td>@projectCreator.Description</td>
-            <td>@projectCreator.FirstName</td>
-            <td>@projectCreator.LastName</td>
-            <td>@projectCreator.Email</td>
-            <td> <a href="~/home/UpdateProjectCreator/@projectCreator.Id"><img src="~/images/update.png" width="25" /></a></td>
-            <td> <a href="~/home/DeleteProjectCreator/@projectCreator.Id"><img src="~/images/delete.png" width="25" /></a></td>
+            <th>Id</th>
+            <th>Description</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>       
         </tr>
-        }
-    }
+   </thead>
+   <tbody>
+       @{
+           foreach (var projectCreator in Model.ProjectCreators)
+           {
+               <tr>
+                   <td>@projectCreator.Id</td>
+                   <td>@projectCreator.Description</td>
+                   <td>@projectCreator.FirstName</td>
+                   <td>@projectCreator.LastName</td>
+                   <td>@projectCreator.Email</td>
+                   <td> <a href="~/home/UpdateProjectCreator/@projectCreator.Id"><img src="~/images/update.png" width="25" /></a></td>
+                   <td> <a href="~/home/DeleteProjectCreator/@projectCreator.Id"><img src="~/images/delete.png" width="25" /></a></td>
+               </tr>
+           }
+       }
+   </tbody>
 </table>

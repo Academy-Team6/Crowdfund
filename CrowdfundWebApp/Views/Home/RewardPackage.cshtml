@@ -8,24 +8,28 @@
 <hr />
 To create a new reward package press <a href="~/home/addrewardpackage">here</a>
 
-<table id="RewardPackageTable" border="1" cellpadding="10" cellspacing="0">
-  <tr>
-         <th>Id</th>
-         <th>Price</th>
-         <th>Project</th>
-         <th>Reward</th>
-  </tr>
-  @{
-     foreach (var rewardPackage in Model.RewardPackages)
-     {
-      <tr>
-          <td>@rewardPackage.Id</td>
-          <td>@rewardPackage.Price</td>
-          <td>@rewardPackage.ProjectId</td>
-          <td>@rewardPackage.Reward</td>
-          <td> <a href="~/home/UpdateRewardPackage/@rewardPackage.Id"><img src="~/images/update.png" width="25" /></a></td>
-          <td> <a href="~/home/DeleteRewardPackage/@rewardPackage.Id"><img src="~/images/delete.png" width="25" /></a></td>
+<table id="RewardPackageTable" border="1" cellpadding="10" cellspacing="0" class="table table-hover table-borderless table-sm table-info">
+  <thead class="thead-light">
+        <tr>
+             <th>Id</th>
+             <th>Price</th>
+             <th>Project</th>
+             <th>Reward</th>
       </tr>
-     }
-  }
+  </thead>
+  <tbody>
+      @{
+          foreach (var rewardPackage in Model.RewardPackages)
+          {
+              <tr>
+                  <td>@rewardPackage.Id</td>
+                  <td>@rewardPackage.Price</td>
+                  <td>@rewardPackage.ProjectId</td>
+                  <td>@rewardPackage.Reward</td>
+                  <td> <a href="~/home/UpdateRewardPackage/@rewardPackage.Id"><img src="~/images/update.png" width="25" /></a></td>
+                  <td> <a href="~/home/DeleteRewardPackage/@rewardPackage.Id"><img src="~/images/delete.png" width="25" /></a></td>
+              </tr>
+          }
+      }
+  </tbody>
 </table>

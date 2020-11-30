@@ -7,33 +7,57 @@
 <h1>Update Backer with id=@Model.Backer.Id</h1>
 
 <form>
-    <table align="center">
+    <table align="center" class="table table-hover table-borderless table-sm table-info">
         <tr align="center">
-            <td>
-                Id
-            </td>
-            <td> <input type="text" id="Id" value="@Model.Backer.Id" readonly /></td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Id</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="Id" value="@Model.Backer.Id" readonly aria-describedby="inputGroup-sizing-sm">
+            </div>
+            @* <td>
+            Id
+        </td>
+        <td> <input type="text" id="Id" value="@Model.Backer.Id" readonly /></td>*@
         </tr>
         <tr align="center">
-            <td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">First Name</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="FirstName" value="@Model.Backer.FirstName" aria-describedby="inputGroup-sizing-sm">
+            </div>
+@*            <td>
                 First Name
             </td>
-            <td> <input type="text" id="FirstName" value="@Model.Backer.FirstName" /></td>
+            <td> <input type="text" id="FirstName" value="@Model.Backer.FirstName" /></td>*@
         </tr>
         <tr align="center">
-            <td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Last Name</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="LastName" value="@Model.Backer.LastName" aria-describedby="inputGroup-sizing-sm">
+            </div>
+@*            <td>
                 Last Name
             </td>
-            <td> <input type="text" id="LastName" value="@Model.Backer.LastName" /></td>
+            <td> <input type="text" id="LastName" value="@Model.Backer.LastName" /></td>*@
         </tr>
         <tr align="center">
-            <td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="Email" value="@Model.Backer.Email" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            @*<td>
                 Email
             </td>
             <td>
                 <input type="text" id="Email" value="@Model.Backer.Email" />
 
-            </td>
+            </td>*@
         </tr>
         <tr align="center">
             <td>

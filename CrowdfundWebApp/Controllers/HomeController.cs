@@ -20,8 +20,9 @@ namespace CrowdfundWebApp.Controllers
         private readonly IProjectCreatorService projectCreatorService;
         private readonly ITransactionService transactionService;
         private readonly ILoginService loginService;
+        private readonly IStatusUpdateService statusUpdateService;
 
-        public HomeController(ILogger<HomeController> logger, ILoginService _loginService, IBackerService _backerService, IRewardPackageService _rewardPackageService, IMediaService _mediaService, IProjectService _projectService, IProjectCreatorService _projectCreatorService, ITransactionService _transactionService)
+        public HomeController(ILogger<HomeController> logger, IStatusUpdateService _statusUpdateService, ILoginService _loginService, IBackerService _backerService, IRewardPackageService _rewardPackageService, IMediaService _mediaService, IProjectService _projectService, IProjectCreatorService _projectCreatorService, ITransactionService _transactionService)
         {
             _logger = logger;
             backerService = _backerService;
@@ -31,12 +32,27 @@ namespace CrowdfundWebApp.Controllers
             projectCreatorService = _projectCreatorService;
             transactionService = _transactionService;
             loginService = _loginService;
+            statusUpdateService = _statusUpdateService;
         }
 
         //login
         public IActionResult Login()
         {
             return View();
+        }
+        //Status Updates
+        public IActionResult StatusUpdateManager([FromRoute] int id)
+        {
+            return View(id);
+        }
+        public IActionResult StatusUpdate([FromQuery]int projectId)
+        {
+            List<StatusUpdateOption> statusUpdateOptions = statusUpdateService.GetStatusUpdates(projectId);
+            StatusUpdateModel transactionModel = new StatusUpdateModel()
+            {
+                StatusUpdateOptions = statusUpdateOptions
+            };
+            return View(transactionModel);
         }
 
         //ProjectCreator Profile
@@ -116,10 +132,12 @@ namespace CrowdfundWebApp.Controllers
         {
             ProjectOption projectOption = projectService.FindProject(projectId);
             List<MediaOption> mediaOption = mediaService.FindAllMediaofProject(projectId);
+            List<StatusUpdateOption> statusUpdateOption = statusUpdateService.GetStatusUpdates(projectId);
             ProjectViewModel projectViewModel = new ProjectViewModel()
             {
                 Project = projectOption,
-                Media = mediaOption
+                Media = mediaOption,
+                StatusUpdateOptions = statusUpdateOption
             };
             return View(projectViewModel);
         }

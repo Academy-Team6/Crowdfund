@@ -7,7 +7,7 @@ function getProjectCreatorProfile() {
     if (localStorage.getItem('typeOfUser') == 'ProjectCreator') {
         console.log(localStorage.getItem('usedId'));
         //window.open("/home/projectCreatorProfile/" + localStorage.getItem('usedId'), "_self"))
-        window.open("/home/projectCreatorProfile?projectCreatorId=" + localStorage.getItem('userId'), "_self")
+        window.open("/home/projectCreatorProfile?projectCreatorId=" + localStorage.getItem('userId'), "_self");
     }
 }
 
@@ -15,19 +15,23 @@ function getBackerProfile() {
     if (localStorage.getItem('typeOfUser') == 'Backer') {
         console.log(localStorage.getItem('usedId'));
         //window.open("/home/projectCreatorProfile/" + localStorage.getItem('usedId'), "_self"))
-        window.open("/home/backerProfile?backerId=" + localStorage.getItem('userId'), "_self")
+        window.open("/home/backerProfile?backerId=" + localStorage.getItem('userId'), "_self");
     }
 }
 
 function getTrendingProjects() {
     if ((localStorage.getItem('typeOfUser') == 'ProjectCreator') || (localStorage.getItem('typeOfUser') == 'Backer')) {
         console.log(localStorage.getItem('useId'));
-        window.open("/home/trendingProjects" + localStorage.getItem('userId'), "_self")
+        window.open("/home/trendingProjects" + localStorage.getItem('userId'), "_self");
     }
 }
 
-function FindProjectsBySearch() {
-    window.open("/home/ProjectsBySearch", "_self")
+function findProjectsBySearch() {
+
+    console.log($('#search-bar'));
+    window.location.href="/home/projectsbysearch?payload=" + $('#search-bar').val();
+    //open("/home/projectsbysearch?payload=" + $('#search-bar').val(), "_self");
+ 
     
 }
 

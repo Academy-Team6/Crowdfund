@@ -28,7 +28,7 @@
                 {
                     <tr>
                         <td>@project.Id</td>
-                        <td>@project.Title</td>
+                        <td><a href="#" onclick="viewProject(@project.Id)">>@project.Title</a></td>
                         <td>@project.Category</td>
                         <td>@project.Description</td>
                         <td>@project.TargetBudget</td>
@@ -37,6 +37,7 @@
                         <td>@project.ProjectCreatorId</td>
                     </tr>
                 }
+
             }
         </tbody>
     </table>

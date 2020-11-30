@@ -4,25 +4,23 @@
 *@
 @{
 }
-
-<h1>Project Creator Profile</h1>
-
-
-
-<table id="ProjectCreatorTable" border="1" cellpadding="10" cellspacing="0">
-    <tr>
-        <th>Description</th>
-        <th>FirstName</th>
-        <th>LastName</th>
-        <th>Email</th>
-    </tr>
-    @{
-            <tr>
-                <td>@Model.ProjectCreator.Description</td>
-                <td>@Model.ProjectCreator.FirstName</td>
-                <td>@Model.ProjectCreator.LastName</td>
-                <td>@Model.ProjectCreator.Email</td>
-                <td> <a href="~/home/UpdateProjectCreator/@Model.ProjectCreator.Id"><img src="~/images/update.png" width="25" /></a></td>
-            </tr>
-    }
-</table>
+<div class="jumbotron">
+    <h1>Project Creator Profile!</h1>
+        <div class=" list-group-horizontal-lg">
+            <span class="list-group" id="sizing-addon1">Description</span>
+            <p class="list-group-item list-group-item-action list-group-item-info">@Model.ProjectCreator.Description</p>
+        </div>
+        <div class="list-group-horizontal">
+            <span class="list-group" id="sizing-addon1">FirstName</span>
+            <p class="list-group-item list-group-item-action list-group-item-info">@Model.ProjectCreator.FirstName</p>
+        </div>
+        <div class="list-group-horizontal">
+            <span class="list-group" id="sizing-addon1">LastName</span>
+            <p class="list-group-item list-group-item-action list-group-item-info">@Model.ProjectCreator.LastName</p>
+        </div>
+        <div class="list-group-horizontal">
+            <span class="list-group" id="sizing-addon1">Email</span>
+            <p class="list-group-item list-group-item-action list-group-item-info">@Model.ProjectCreator.Email</p>
+        </div>
+    <a class="btn btn-secondary btn-lg" href="~/home/UpdateProjectCreator/@Model.ProjectCreator.Id" role="button">Update Info</a>
+</div>

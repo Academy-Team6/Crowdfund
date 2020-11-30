@@ -8,6 +8,7 @@ namespace Crowdfund.model
         public string Category { get; set; }
         public string Description { get; set; }
         public List<Media> Medias { get; set; }
+        public List<StatusUpdate> StatusUpdates { get; set; }
         public decimal TargetBudget { get; set; }
         public decimal CurrentBudget { get; set; }
         public decimal BudgetRatio => CurrentBudget / TargetBudget;
@@ -17,6 +18,7 @@ namespace Crowdfund.model
         {
             Medias = new List<Media>();
             RewardPackages = new List<RewardPackage>();
+            StatusUpdates = new List<StatusUpdate>();
         }
     }
     public enum ProjectCategory { 

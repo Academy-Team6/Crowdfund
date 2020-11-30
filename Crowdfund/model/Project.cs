@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 namespace Crowdfund.model
 {
     public class Project
@@ -11,7 +12,7 @@ namespace Crowdfund.model
         public List<StatusUpdate> StatusUpdates { get; set; }
         public decimal TargetBudget { get; set; }
         public decimal CurrentBudget { get; set; }
-        public decimal BudgetRatio => CurrentBudget / TargetBudget;
+        public decimal BudgetRatio => Math.Round(CurrentBudget / TargetBudget,3)*100;
         public ProjectCreator ProjectCreator { get; set; }
         public List<RewardPackage> RewardPackages { get; set; }
         public Project()

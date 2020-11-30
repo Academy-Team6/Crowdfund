@@ -144,6 +144,7 @@ namespace Crowdfund.Services
                 BackerId = tr.Backer.Id,
                 Amount = tr.Amount,
                 ProjectName = tr.RewardPackage.Project.Title,
+                RewardPackageName = tr.RewardPackage.Reward,
                 RewardPackage = GetRewardPackageOptionsFromRewardPackage(tr.RewardPackage)
                 //RewardPackages = transaction.TransactionPackages.
             }));
@@ -167,6 +168,7 @@ namespace Crowdfund.Services
                 Amount = tr.Amount,
                 ProjectName = tr.RewardPackage.Project.Title,
                 ProjectId = tr.RewardPackage.Project.Id,
+                RewardPackageName = tr.RewardPackage.Reward,
                 RewardPackage = GetRewardPackageOptionsFromRewardPackage(tr.RewardPackage)
                 //RewardPackages = transaction.TransactionPackages.
             }));

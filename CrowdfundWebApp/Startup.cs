@@ -51,7 +51,7 @@ namespace CrowdfundWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Login}/{id?}");
+                    pattern: "{controller=Home}/{action=Cover}/{id?}");
             });
         }
     }

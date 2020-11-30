@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CrowdfundWebApp</title>
+    <title>@ViewData["Title"] - CrowdfundGo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <!-- A D M I N  L A Y O U T-->
-    <header id="admin-layout">
+    <header id="admin-layout" class="d-none">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="BrowseByCategory">CrowdfundWebApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Cover">CrowdfundGo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -45,10 +45,7 @@
                             <a class="nav-link text-dark" id="login-link" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a id="logout-btn" class="nav-link text-dark d-none">Logout</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a id="logout-btn" class="nav-link text-dark" onclick="logout()">Logout</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -63,7 +60,7 @@
     <header id="projectCreator-layout" class="d-none">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CrowdfundWebApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Cover">CrowdfundGo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -89,9 +86,6 @@
                         <li class="nav-item">
                             <a id="logout-btn" class="nav-link text-dark" onclick="logout()">Logout</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -105,7 +99,7 @@
     <header id="backer-layout" class="d-none">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CrowdfundWebApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Cover">CrowdfundGo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -123,9 +117,6 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="BackerProject">Projects</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" onclick="getBackerProfile()">My Profile</a>
                         </li>
                         <li class="nav-item">
@@ -137,8 +128,38 @@
                         <li class="nav-item">
                             <a id="logout-btn" class="nav-link text-dark" onclick="logout()">Logout</a>
                         </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" onclick="FindProjectsBySearch()">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--GUEST  L A Y O U T-->
+    <header id="guest-layout">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Cover">CrowdfundGo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Browse
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/home/project">All</a>
+                                <a class="dropdown-item" href="/home/browsebycategory">Categories</a>
+                                <a class="dropdown-item" href="/home/trendingprojects">Trending Projects</a>
+                            </div>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a id="register-btn" class="nav-link text-dark" asp-controller="Home" asp-action="Login">Register/Login</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -149,7 +170,6 @@
             </div>
         </nav>
     </header>
-
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -158,7 +178,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - CrowdfundWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - CrowdfundGo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

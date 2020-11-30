@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Crowdfund.Migrations
 {
-    public partial class StatusUpdate : Migration
+    public partial class fund14 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

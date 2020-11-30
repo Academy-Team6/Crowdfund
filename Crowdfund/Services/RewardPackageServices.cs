@@ -66,6 +66,17 @@ namespace Crowdfund.Services
             if (rewardPackage == null) return null;
             return GetRewardPackageOptionsFromRewardPackage(rewardPackage);
         }
+        public List<RewardPackageOption> FindRewardPackageByProjectId(int projectId)
+        {
+            List<RewardPackage> rewardPackage = dbContext.RewardPackages.Include(o => o.Project).Where(o => o.Project.Id == projectId).ToList();
+            List<RewardPackageOption> rpOpt = new List<RewardPackageOption>();
+            foreach(var rp in rewardPackage)
+            {
+                rpOpt.Add(GetRewardPackageOptionsFromRewardPackage((rp)));
+            }
+            if (rewardPackage == null) return null;
+            return rpOpt;
+        }
 
         public RewardPackageOption UpdateRewardPackage(int id, RewardPackageOption rewardPackageOption)
         {

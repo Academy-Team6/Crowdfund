@@ -13,12 +13,13 @@
         <h1 class="jumbotron-heading"style=" color:yellowgreen">@Model.Project.Title</h1>
         <p class="lead text-muted"style="color: #6c757d">Category:@Model.Project.Category-About:@Model.Project.Description</p>
         <p>
-            <a href="/home/ProjectRewardPackage" class="btn btn-primary my-2">Reward Packages</a>
+            <a href="/home/ProjectRewardPackage?projectId=@Model.Project.Id" class="btn btn-primary my-2">Reward Packages</a>
         </p>
         <p>
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @Model.Project.BudgetRatio; color: #3a2075" aria-valuenow=@Model.Project.BudgetRatio aria-valuemin="0" aria-valuemax="100">
-                @Model.Project.BudgetRatio % of TargetBudget:@Model.Project.TargetBudget $
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                     aria-valuenow="@Model.Project.BudgetRatio" aria-valuemin="0" aria-valuemax="100" style="        width: @Model.Project.BudgetRatio%">
+                    @Model.Project.BudgetRatio%
                 </div>
             </div>
         </p>

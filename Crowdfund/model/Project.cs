@@ -1,11 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 namespace Crowdfund.model
 {
     public class Project
     {
         public int Id { get; set; }
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$")]
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Please enter title of project"), MaxLength(300)]
+        [StringLength(20)]
         public string Title { get; set; }
         public string Category { get; set; }
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$")]
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Please enter title of project"), MaxLength(300)]
+        [StringLength(100)]
         public string Description { get; set; }
         public List<Media> Medias { get; set; }
         public decimal TargetBudget { get; set; }

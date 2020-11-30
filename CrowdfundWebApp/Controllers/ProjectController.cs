@@ -47,7 +47,7 @@ namespace CrowdfundWebApp.Controllers
         [HttpGet("search/{payload}")]
         public List<ProjectOption> GetProjectsBySearch(string payload)
         {
-            return projectService.FindBySearch(payload);
+            return projectService.FindBySearch(payload); 
         }
         [HttpPost]
         public ProjectOption CreateProject([FromForm] ProjectOption projectOption)

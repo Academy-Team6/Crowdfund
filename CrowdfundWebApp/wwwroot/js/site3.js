@@ -20,13 +20,16 @@ function getBackerProfile() {
 }
 
 function getTrendingProjects() {
-    debugger
     if ((localStorage.getItem('typeOfUser') == 'ProjectCreator') || (localStorage.getItem('typeOfUser') == 'Backer')) {
         console.log(localStorage.getItem('useId'));
         window.open("/home/trendingProjects" + localStorage.getItem('userId'), "_self")
     }
 }
 
+function FindProjectsBySearch() {
+    window.open("/home/ProjectsBySearch", "_self")
+    
+}
 
 //RewardPackage add/delete/update functions
 

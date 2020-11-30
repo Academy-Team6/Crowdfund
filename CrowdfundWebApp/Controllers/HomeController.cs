@@ -184,6 +184,18 @@ namespace CrowdfundWebApp.Controllers
             };
         return View(projectModel);
         }
+
+        public IActionResult ProjectsBySearch([FromQuery] string payload)
+        {
+            List<ProjectOption> projectOptions = projectService.FindBySearch(payload);
+            ProjectModel projectModel = new ProjectModel()
+            {
+                Projects = projectOptions
+            };
+            return View(projectModel);
+        }
+
+
         //Backer Views
 
         //Backer Profile

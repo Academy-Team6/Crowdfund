@@ -3,32 +3,51 @@
 *@
 @{
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_vogias.css" />
+    <title>Add Backer</title>
+</head>
     <div class="col-md-12 col-sm-12">
         <form id="createBackerForm">
-            <table align="center">
+            <table align="center" class="table table-hover table-borderless table-sm">
                 <tr align="center">
                     <td>
-                        First name
+                        <div class="form">
+                            <input type="text" name="FirstName" id="FirstName" autocomplete="off" required>
+                            <label for="FirstName" class="label-form">
+                            <span class="content-form">First Name</span>
+                        </div>
                     </td>
-                    <td> <input type="text" id="FirstName" placeholder=" First Name" /></td>
+                    @*<td> <input type="text" id="FirstName" placeholder=" First Name" /></td>*@
                 </tr>
                 <tr align="center">
                     <td>
-                        Last name
+                        <div class="form">
+                            <input type="text" name="LastName" id="LastName" autocomplete="off" required>
+                            <label for="LastName" class="label-form">
+                                <span class="content-form">Last Name</span>
+                        </div>
                     </td>
-                    <td> <input type="text" id="LastName" placeholder="Last Name" /></td>
+                    @*<td> <input type="text" id="LastName" placeholder="Last Name" /></td>*@
                 </tr>
                 <tr align="center">
                     <td>
-                        Email
+                        <div class="form">
+                            <input type="text" name="Email" id="Email" autocomplete="off" required>
+                            <label for="Email" class="label-form">
+                                <span class="content-form">Email</span>
+                        </div>
                     </td>
-                    <td>
+@*                    <td>
                         <input type="text" id="Email" placeholder="Email" />
-                    </td>
+                    </td>*@
                 </tr>
                 <tr align="center">
                     <td>
-                        <input type="button" value="Submit" onclick="addBacker()" />
+                        <input class="myButton" type="button" value="Submit" onclick="addBacker()" />
                     </td>
                 </tr>
             </table>

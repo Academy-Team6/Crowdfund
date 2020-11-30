@@ -6,21 +6,25 @@
 }
 <h1>Backed Projects</h1>
 <div class="container">
-    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
-        <tr>
-            <th>Id</th>
-            <th>ProjectName</th>
-            <th>ProjectPage</th>
-        </tr>
-        @{
-            foreach (var transaction in Model.Transactions)
-            {
-                <tr>
-                    <td>@transaction.ProjectId</td>
-                    <td>@transaction.ProjectName</td>
-                    <td><img src="~/images/dots.png" width="25" onclick="viewProject(@transaction.ProjectId)" /></td>
-                </tr>
+    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0" class="table table-hover table-borderless table-sm table-info">
+        <thead class="thead-light">
+            <tr>
+                <th>Id</th>
+                <th>ProjectName</th>
+                <th>ProjectPage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var transaction in Model.Transactions)
+                {
+                    <tr>
+                        <td>@transaction.ProjectId</td>
+                        <td>@transaction.ProjectName</td>
+                        <td><img src="~/images/dots.png" width="25" onclick="viewProject(@transaction.ProjectId)" /></td>
+                    </tr>
+                }
             }
-        }
+        </tbody>
     </table>
 </div>

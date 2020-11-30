@@ -4,25 +4,32 @@
 
 <h1>@Model.Projects[0].Category</h1>
 <div class="container">
-    <table id="Project Trending" border="1" cellpadding="10" cellspacing="0">
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>TargetBudget</th>
-            <th>CurrentBudget</th>
-        </tr>
-        @{
-            foreach (var project in Model.Projects)
-            {
+
+        <table id="Project Trending" border="1" cellpadding="10" cellspacing="0" class="table table-hover table-borderless table-sm table-info">
+            <thead class="thead-light">
                 <tr>
-                    <td>@project.Id</td>
-                    <td><a href="#" onclick="viewProject(@project.Id)">>@project.Title</a></td>
-                    <td>@project.Description</td>
-                    <td>@project.TargetBudget</td>
-                    <td>@project.CurrentBudget</td>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>TargetBudget</th>
+                    <th>CurrentBudget</th>
                 </tr>
-            }
-        }
-    </table>
+             </thead>
+            <tbody>
+
+                @{
+                    foreach (var project in Model.Projects)
+                    {
+                    <tr>
+                        <td>@project.Id</td>
+                        <td><a href="#" onclick="viewProject(@project.Id)">>@project.Title</a></td>
+                        <td>@project.Description</td>
+                        <td>@project.TargetBudget</td>
+                        <td>@project.CurrentBudget</td>
+                    </tr>
+
+                        }
+                    }
+           </tbody>
+</table>
 </div>

@@ -1,13 +1,8 @@
 ﻿@model ProjectModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 
 <meta charset="utf-8" />
 
-<h1>Trending Projects</h1>
+
 <div class="container">
     <table id="Project Trending" border="1" cellpadding="10" cellspacing="0" class="table table-hover table-borderless table-sm table-info">
         <thead class="thead-light">
@@ -18,27 +13,22 @@
                 <th>Description</th>
                 <th>TargetBudget</th>
                 <th>CurrentBudget</th>
-                <th>BudgetRatio</th>
-                <th>ProjectCreatorId</th>
             </tr>
-        </thead>
+        </thead> 
         <tbody>
             @{
                 foreach (var project in Model.Projects)
                 {
                     <tr>
                         <td>@project.Id</td>
-                        <td><a href="#" onclick="viewProject(@project.Id)">>@project.Title</a></td>
+                        <td>@project.Title</td>
                         <td>@project.Category</td>
                         <td>@project.Description</td>
                         <td>@project.TargetBudget</td>
                         <td>@project.CurrentBudget</td>
-                        <td>@project.BudgetRatio</td>
-                        <td>@project.ProjectCreatorId</td>
                     </tr>
                 }
-
-            }
+            } 
         </tbody>
     </table>
 </div>

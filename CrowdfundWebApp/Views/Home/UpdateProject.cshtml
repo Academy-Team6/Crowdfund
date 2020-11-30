@@ -5,22 +5,10 @@
 @{
 }
 
-<h1>Project Update id=@Model.Project.Id</h1>
+<h1>Update Project</h1>
 
 <form>
     <table align="center" class="table table-hover table-borderless table-sm table-info">
-        <tr align="center">
-            <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Id</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Small" id="Id" value="@Model.Project.Id" readonly aria-describedby="inputGroup-sizing-sm">
-            </div>
- @*           <td>
-                Id
-            </td>
-            <td> <input type="text" id="Id" value="@Model.Project.Id" readonly /></td>*@
-        </tr>
         <tr align="center">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -28,10 +16,6 @@
                 </div>
                 <input type="text" class="form-control" aria-label="Small" id="Title" value="@Model.Project.Title"  aria-describedby="inputGroup-sizing-sm">
             </div>
-            @*  <td>
-            Title
-        </td>
-        <td> <input type="text" id="Title" value="@Model.Project.Title" /></td>*@
         </tr>
         <tr align="center">
             <div class="input-group input-group-sm mb-3">
@@ -45,31 +29,16 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="#" data-value="Tech" style="color:black">Tech</a></li>
-                        <li><a href="#" data-value="Food" style="color:black">Food</a></li>
+                        <li><a href="#" data-value="Art" style="color:black">Art</a></li>
+                        <li><a href="#" data-value="Sports" style="color:black">Sports</a></li>
+                        <li><a href="#" data-value="Health" style="color:black">Health</a></li>
+                        <li><a href="#" data-value="Industry" style="color:black">Industry</a></li>
+                        <li><a href="#" data-value="Business" style="color:black">Business</a></li>
+                        <li><a href="#" data-value="Gadget" style="color:black">Gadget</a></li>
                         <li><a href="#" data-value="Clothing" style="color:black">Clothing</a></li>
-                        <li><a href="#" data-value="Travel" style="color:black">Travel</a></li>
                     </ul>
                 </div>
-                @*<input type="text" class="form-control" aria-label="Small" id="Category" value="@Model.Project.Category" aria-describedby="inputGroup-sizing-sm">*@
             </div>
-
-            @*<td>
-                Category
-            </td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="Category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Category
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#" data-value="Tech" style="color:black">Tech</a></li>
-                        <li><a href="#" data-value="Food" style="color:black">Food</a></li>
-                        <li><a href="#" data-value="Clothing" style="color:black">Clothing</a></li>
-                        <li><a href="#" data-value="Travel" style="color:black">Travel</a></li>
-                    </ul>
-                </div>
-            </td>*@
         </tr>
         <tr align="center">
             <div class="input-group input-group-sm mb-3">
@@ -78,13 +47,6 @@
                 </div>
                 <input type="text" class="form-control" aria-label="Small" id="Description" value="@Model.Project.Description" aria-describedby="inputGroup-sizing-sm">
             </div>
-            @*<td>
-                Description
-            </td>
-            <td>
-                <input type="text" id="Description" value="@Model.Project.Description" />
-
-            </td>*@
         </tr>
         <tr align="center">
             <div class="input-group input-group-sm mb-3">
@@ -93,13 +55,6 @@
                 </div>
                 <input type="text" class="form-control" aria-label="Small" id="TargetBudget" value="@Model.Project.TargetBudget" aria-describedby="inputGroup-sizing-sm">
             </div>
-@*            <td>
-                Target Budget
-            </td>
-            <td>
-                <input type="text" id="TargetBudget" value="@Model.Project.TargetBudget" />
-
-            </td>*@
         </tr>
         <tr align="center">
             <td>

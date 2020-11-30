@@ -27,10 +27,24 @@ function getTrendingProjects() {
 }
 
 function findProjectsBySearch() {
-
-    console.log($('#search-bar'));
-    window.location.href="/home/projectsbysearch?payload=" + $('#search-bar').val();
+    if (localStorage.getItem('typeOfUser') == 'ProjectCreator') {
+        console.log($('#search2').val());
+        window.location.href = "/home/projectsbysearch?payload=" + $('#search2').val();
     //open("/home/projectsbysearch?payload=" + $('#search-bar').val(), "_self");
+    }
+    if (localStorage.getItem('typeOfUser') == 'Backer') {
+        console.log($('#search3').val());
+        window.location.href = "/home/projectsbysearch?payload=" + $('#search3').val();
+    //open("/home/projectsbysearch?payload=" + $('#search-bar').val(), "_self");
+    }
+    if (localStorage.getItem('typeOfUser' == 'Admin')) {
+
+    }
+    if (localStorage.getItem('typeOfUser') == null) {
+        console.log($('#search4').val());
+        window.location.href = "/home/projectsbysearch?payload=" + $('#search4').val();
+        //open("/home/projectsbysearch?payload=" + $('#search-bar').val(), "_self");
+    }
  
     
 }

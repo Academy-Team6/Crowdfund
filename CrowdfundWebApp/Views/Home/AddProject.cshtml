@@ -4,20 +4,34 @@
 *@
 @{
 }
-
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_vogias.css" />
+    <title>Add a project</title>
+</head>
 <h1>Add a project</h1>
 <form id="createProjectForm">
-    <table align="center">
+    <table align="center" class="table table-hover table-borderless table-sm">
         <tr align="center">
             <td>
-                Title
+                <div class="form">
+                    <input type="text" name="Title" id="Title" autocomplete="off" required>
+                    <label for="Title" class="label-form">
+                    <span class="content-form">Title</span>
+                </div>
             </td>
-            <td> <input type="text" id="Title" placeholder="Title" /></td>
+            @*<td> <input type="text" id="Title" placeholder="Title" /></td>*@
         </tr>
         <tr align="center">
-            <td>
-                Category
-            </td>
+@*            <td>
+                <div class="form">
+                    <input type="text" name="Category" id="Category" autocomplete="off" required>
+                    <label for="Category" class="label-form">
+                    <span class="content-form">Category</span>
+                </div>
+            </td>*@
             <td>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="Category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -39,29 +53,39 @@
         </tr>
         <tr align="center">
             <td>
-                Description
+                <div class="form">
+                    <input type="text" name="Description" id="Description" autocomplete="off" required>
+                    <label for="Description" class="label-form">
+                    <span class="content-form">Description</span>
+                </div>
             </td>
-            <td> <input type="text" id="Description" placeholder="Description" /></td>
+            @*<td> <input type="text" id="Description" placeholder="Description" /></td>*@
         </tr>
         <tr align="center">
             <td>
-                TargetBudget
+                <div class="form">
+                    <input type="text" name="TargetBudget" id="TargetBudget" autocomplete="off" required>
+                    <label for="TargetBudget" class="label-form">
+                        <span class="content-form">TargetBudget</span>
+                </div>
             </td>
-            <td>
-                <input type="number" id="TargetBudget" placeholder="TargetBudget" />
-            </td>
+@*            <td>    <input type="number" id="TargetBudget" placeholder="TargetBudget" />        </td>*@
         </tr>
         <tr align="center">
             <td>
-                ProjectCreatorId
+                <div class="form">
+                    <input type="text" name="ProjectCreatorId" id="ProjectCreatorId" autocomplete="off" required>
+                    <label for="ProjectCreatorId" class="label-form">
+                    <span class="content-form">ProjectCreatorId</span>
+                </div>
             </td>
-            <td>
+            @*<td>
                 <input type="number" id="ProjectCreatorId" placeholder="ProjectCreatorId" />
-            </td>
+            </td>*@
         </tr>
         <tr align="center">
             <td>
-                <input type="button" value="Submit data" onclick="addProject()" />
+                <input class="myButton" type="button" value="Submit data" onclick="addProject()" />
             </td>
         </tr>
     </table>

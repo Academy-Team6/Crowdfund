@@ -7,49 +7,79 @@
 <h1>Update Project Creator with id=@Model.ProjectCreator.Id</h1>
 
 <form>
- <table align="center">
+ <table align="center" class="table table-hover table-borderless table-sm table-info">
                 <tr align="center">
-                    <td>
+                     <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Id</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Small" id="Id" value="@Model.ProjectCreator.Id" readonly aria-describedby="inputGroup-sizing-sm">
+                     </div>
+@*                    <td>
                         Id
                     </td>
-                    <td> <input type="text" id="Id" value="@Model.ProjectCreator.Id" readonly /></td>
+                    <td> <input type="text" id="Id" value="@Model.ProjectCreator.Id" readonly /></td>*@
                 </tr>
                 <tr align="center">
-                    <td>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">FirstName</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small" id="FirstName" value="@Model.ProjectCreator.FirstName" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+@*                    <td>
                         FirstName
                     </td>
-                    <td> <input type="text" id="FirstName" value="@Model.ProjectCreator.FirstName" /></td>
+                    <td> <input type="text" id="FirstName" value="@Model.ProjectCreator.FirstName" /></td>*@
                 </tr>
                 <tr align="center">
-                    <td>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">LastName</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small" id="LastName" value="@Model.ProjectCreator.LastName" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+@*                    <td>
                         LastName
                     </td>
                     <td>
                         <input type="text" id="LastName" value="@Model.ProjectCreator.LastName" />
-                    </td>
+                    </td>*@
                 </tr>
                 <tr align="center">
-                    <td>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small" id="Email" value="@Model.ProjectCreator.Email" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+@*                    <td>
                         Email
                     </td>
                     <td>
                         <input type="text" id="Email" value="@Model.ProjectCreator.Email" />
 
+                    </td>*@
+                </tr>
+                <tr align="center">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Description</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small" id="Description" value="@Model.ProjectCreator.Description" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                    @*<td>
+                        Description
+                    </td>
+                    <td>
+                        <input type="text" id="Description" value="@Model.ProjectCreator.Description" />
+
+                    </td>*@
+                </tr>
+                <tr align="center">
+                    <td>
+                        <input type="button" value="Submit data" onclick="updateProjectCreator()" />
                     </td>
                 </tr>
-            <tr align="center">
-                <td>
-                    Description
-                </td>
-                <td>
-                    <input type="text" id="Description" value="@Model.ProjectCreator.Description" />
-
-                </td>
-            </tr>
-        <tr align="center">
-            <td>
-                <input type="button" value="Submit data" onclick="updateProjectCreator()" />
-            </td>
-        </tr>
-        </table>
+ </table>
 </form>

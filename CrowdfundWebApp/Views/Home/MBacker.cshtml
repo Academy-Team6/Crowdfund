@@ -2,23 +2,34 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{ }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_vogias.css" />
+    <title>Mbacker</title>
+</head>
 <div class="container-fluid">
     
         <div class="col-md-6 col-sm-12">
             <h1> Delete Backer</h1>
 
             <form>
-                <table align="center">
+                <table align="center" class="table table-hover table-borderless table-sm table-info">
 
                     <tr align="center">
                         <td>
-                            Backer Id
+                            <div class="form">
+                                <input type="text" name="Id" id="Id" autocomplete="off" required>
+                                <label for="Id" class="label-form">
+                                <span class="content-form">Backer Id</span>
+                            </div>
                         </td>
-                        <td> <input type="text" id="Id" /></td>
+                       @* <td> <input type="text" id="Id" /></td>*@
                     </tr>
                     <tr align="center">
                         <td>
-                            <input type="button" value="Submit data" onclick="deleteBacker()" />
+                            <input class="myButton" type="button" value="Submit data" onclick="deleteBacker()" />
                         </td>
                     </tr>
                 </table>
@@ -28,18 +39,22 @@
             <h1> Find Backer</h1>
 
             <form>
-                <table align="center">
+                <table align="center" class="table table-hover table-borderless table-sm table-info">
 
                     <tr align="center">
                         <td>
-                            Backer name
+                            <div class="form">
+                                <input type="text" name="searchText" id="searchText" autocomplete="off" required>
+                                <label for="searchText" class="label-form">
+                                <span class="content-form">Backer name</span>
+                            </div>
                         </td>
-                        <td> <input type="text" id="searchText" /></td>
+                        @*<td> <input type="text" id="searchText" /></td>*@
                     </tr>
 
                     <tr align="center">
                         <td>
-                            <input type="button" value="Submit data" onclick="findBacker()" />
+                            <input class="myButton" type="button" value="Submit data" onclick="findBacker()" />
                         </td>
                     </tr>
                 </table>

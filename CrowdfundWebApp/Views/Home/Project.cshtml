@@ -10,50 +10,54 @@
 To add a new project press <a href="~/home/addproject">here</a>
 
 <div class="container">
-    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>TargetBudget</th>
-            <th>CurrentBudget</th>
-            <th>BudgetRatio</th>
-            <th>ProjectCreatorId</th>
-            <th>RewardPackages</th>
-            <th>Photos</th>
-            <th>Videos</th>
-            <th>UPD</th>
-            <th>DEL</th>
-            <th>ADDM</th>
-            <th>ADDRP</th>
-        </tr>
-        @{ 
-            foreach(var project in Model.Projects)
-            {
-                <tr>
-                    <td>@project.Id</td>
-                    <td>@project.Title</td>
-                    <td>@project.Category</td>
-                    <td>@project.Description</td>
-                    <td>@project.TargetBudget</td>
-                    <td>@project.CurrentBudget</td>
-                    <td>@project.BudgetRatio</td>
-                    <td>@project.ProjectCreatorId</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    @*
-                            <td>@project.RewardPackagesId.Count()</td>
-                            <td>@project.Photos.Count()</td>
-                            <td>@project.Videos.Count()</td>
-                    *@
-                    <td> <a href="~/home/UpdateProject/@project.Id"><img src="~/images/update.png" width="25" /></a></td>
-                    <td> <a href="~/home/DeleteProject/@project.Id"><img src="~/images/delete.png" width="25" /></a></td>
-                    <td> <img src="~/images/AddMedia.png" width="25" onclick="prepareForMediaAdd(@project.Id)"/></td>
-                    <td> <img src="~/images/AddRewardPackage.jpg" width="25" onclick="addRewardPackageWithId(@project.Id)"/></td>
-                </tr>
+    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0" class="table table-hover table-borderless table-sm table-infos">
+        <thead class="thead-light">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>TargetBudget</th>
+                <th>CurrentBudget</th>
+                <th>BudgetRatio</th>
+                <th>ProjectCreatorId</th>
+                <th>RewardPackages</th>
+                <th>Photos</th>
+                <th>Videos</th>
+                <th>UPD</th>
+                <th>DEL</th>
+                <th>ADDM</th>
+                <th>ADDRP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var project in Model.Projects)
+                {
+                    <tr>
+                        <td>@project.Id</td>
+                        <td>@project.Title</td>
+                        <td>@project.Category</td>
+                        <td>@project.Description</td>
+                        <td>@project.TargetBudget</td>
+                        <td>@project.CurrentBudget</td>
+                        <td>@project.BudgetRatio</td>
+                        <td>@project.ProjectCreatorId</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        @*
+                    <td>@project.RewardPackagesId.Count()</td>
+                    <td>@project.Photos.Count()</td>
+                    <td>@project.Videos.Count()</td>
+                        *@
+                        <td> <a href="~/home/UpdateProject/@project.Id"><img src="~/images/update.png" width="25" /></a></td>
+                        <td> <a href="~/home/DeleteProject/@project.Id"><img src="~/images/delete.png" width="25" /></a></td>
+                        <td> <img src="~/images/AddMedia.png" width="25" onclick="prepareForMediaAdd(@project.Id)" /></td>
+                        <td> <img src="~/images/AddRewardPackage.jpg" width="25" onclick="addRewardPackageWithId(@project.Id)" /></td>
+                    </tr>
+                }
             }
-        }
+        </tbody>
     </table>
 </div>

@@ -9,35 +9,60 @@
 <h1>Update Reward Package with id=@Model.RewardPackage.Id</h1>
 
 <form>
-    <table align="center">
+    <table align="center" class="table table-hover table-borderless table-sm table-info">
         <tr align="center">
-            <td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Id</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="Id" value="@Model.RewardPackage.Id" readonly aria-describedby="inputGroup-sizing-sm">
+            </div>
+@*            <td>
                 Id
             </td>
-            <td> <input type="text" id="Id" value="@Model.RewardPackage.Id" readonly /></td>
+            <td> <input type="text" id="Id" value="@Model.RewardPackage.Id" readonly /></td>*@
         </tr>
         <tr align="center">
-            <td>
-                Reward
-            </td>
-            <td> <input type="text" id="Reward" value="@Model.RewardPackage.Reward" /></td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Reward</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="Reward" value="@Model.RewardPackage.Reward" aria-describedby="inputGroup-sizing-sm">
+            </div>
+@*                <td>
+                    Reward
+                </td>
+                <td> <input type="text" id="Reward" value="@Model.RewardPackage.Reward" /></td>*@
         </tr>
         <tr align="center">
-            <td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="Price" value="@Model.RewardPackage.Price" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+@*            <td>
                 Price
             </td>
             <td>
                 <input type="text" id="Price" value="@Model.RewardPackage.Price" />
-            </td>
+            </td>*@
         </tr>
         <tr align="center">
-            <td>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">ProjectId</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" id="ProjectId" value="@Model.RewardPackage.ProjectId" aria-describedby="inputGroup-sizing-sm">
+            </div>
+@*            <td>
                 ProjectId
             </td>
             <td>
                 <input type="text" id="ProjectId" value="@Model.RewardPackage.ProjectId" />
 
-            </td>
+            </td>*@
         </tr>
 
         <tr align="center">

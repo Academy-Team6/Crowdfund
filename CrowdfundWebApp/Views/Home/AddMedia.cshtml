@@ -3,27 +3,42 @@
 *@
 @{
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_vogias.css" />
+    <title>Add Media Type</title>
+</head>
 <form id="createMediaForm">
     <table align="center">
-        <tr align="center">
+        <tr align="center" class="table table-hover table-borderless table-sm">
             <td>
-                Media Type
-            </td>
-            <td>
+                <div class="form">
+                    <input type="text" name="MediaType" id="MediaType" autocomplete="off" required>
+                    <label for="MediaType" class="label-form">
+                        <span class="content-form">Media Type</span>
+                </div>
+            </td>s
+@*            <td>
                 <input type="text" id="MediaType" placeholder="MediaType" />
-            </td>
+            </td>*@
         </tr>
         <tr align="center">
             <td>
-                Link
+                <div class="form">
+                    <input type="text" name="Link" id="Link" autocomplete="off" required>
+                    <label for="Link" class="label-form">
+                    <span class="content-form">Link</span>
+                </div>
             </td>
-            <td>
+@*            <td>
                 <input type="text" id="Link" placeholder="Link" />
-            </td>
+            </td>*@
         </tr>
         <tr align="center">
             <td>
-                <input type="button" value="Submit data" onclick="addMedia()" />
+                <input class="myButton" type="button" value="Submit data" onclick="addMedia()" />
             </td>
         </tr>
     </table>

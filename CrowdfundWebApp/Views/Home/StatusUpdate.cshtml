@@ -1,0 +1,24 @@
+﻿@model StatusUpdateModel
+ ,
+<div class="container">
+    <table id="ProjectTable" border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Id</th>
+            <th>Overload</th>
+            <th>ProjectId</th>
+            <th>Timestamp</th>
+        </tr>
+        @{
+            foreach (var status in Model.StatusUpdateOptions)
+            {
+                <tr>
+                    <td>@status.Id</td>
+                    <td>@status.Payload</td>
+                    <td>@status.ProjectId</td>
+                    <td>@status.Timestamp</td>
+                   
+                </tr>
+            }
+        }
+    </table>
+</div>

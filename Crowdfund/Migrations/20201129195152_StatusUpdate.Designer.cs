@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Crowdfund.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    [Migration("20201129103326_fund13")]
-    partial class fund13
+    [Migration("20201129195152_StatusUpdate")]
+    partial class StatusUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,6 +144,29 @@ namespace Crowdfund.Migrations
                     b.ToTable("RewardPackages");
                 });
 
+            modelBuilder.Entity("Crowdfund.model.StatusUpdate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Overload")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("StatusUpdate");
+                });
+
             modelBuilder.Entity("Crowdfund.model.Transaction", b =>
                 {
                     b.Property<int>("Id")
@@ -209,6 +232,13 @@ namespace Crowdfund.Migrations
                 {
                     b.HasOne("Crowdfund.model.Project", "Project")
                         .WithMany("RewardPackages")
+                        .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("Crowdfund.model.StatusUpdate", b =>
+                {
+                    b.HasOne("Crowdfund.model.Project", "Project")
+                        .WithMany("StatusUpdates")
                         .HasForeignKey("ProjectId");
                 });
 

@@ -35,7 +35,7 @@ namespace Crowdfund.Services
                 Category = projectOption.Category,
                 ProjectCreator = projectCreator,
                 TargetBudget = decimal.Parse(projectOption.TargetBudget),
-                Title = projectOption.Title,
+                Title = projectOption.Title
             };
             db.Set<Project>().Add(project);
             projectCreator.Projects.Add(project);

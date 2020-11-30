@@ -15,6 +15,7 @@ namespace CrowdfundWebApp.Models
     {
         public ProjectOption Project { get; set; }
         public List<MediaOption> Media { get; set; }
+        public List<StatusUpdateOption> StatusUpdateOptions { get; set; }
 
     }
 }

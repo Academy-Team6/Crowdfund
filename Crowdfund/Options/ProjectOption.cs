@@ -11,7 +11,8 @@ namespace Crowdfund.Options
         public string Title { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
-        public List<Media> Medias { get; set; }
+        public List<int> MediasId { get; set; }
+        public List<string> StatusUpdates { get; set; }
         public string TargetBudget { get; set; }
         public decimal CurrentBudget { get; set; }
         public decimal BudgetRatio { get; set; }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Crowdfund.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    [Migration("20201130220913_deploy")]
-    partial class deploy
+    [Migration("20201201144202_AzureInit")]
+    partial class AzureInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

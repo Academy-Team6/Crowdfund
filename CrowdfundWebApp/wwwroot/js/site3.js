@@ -69,7 +69,7 @@ function addRewardPackage() {
             contentType: false,
             type: "POST",
             success: function () {
-                window.open("/home/rewardpackage", "_self")
+                window.open("/home/projectrewardpackage?projectId=" + localStorage.getItem('projectId'), "_self")
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 alert("Error from server: " + errorThrown);

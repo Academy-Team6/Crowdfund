@@ -62,9 +62,6 @@ function updateBacker() {
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
-
             window.open("/home/backer", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -95,8 +92,6 @@ function deleteBacker() {
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
         },
         error: function (jqXhr, textStatus, errorThrown) {
             alert(errorThrown);

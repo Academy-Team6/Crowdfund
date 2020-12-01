@@ -32,7 +32,7 @@ To add a new project press <a href="~/home/addproject">here</a>
                         </div>
                     </div>
                 </div>
-                <div class="col"> <a href="~/home/UpdateProject/@p.Id"><img src="~/images/update.png" width="25" /></a></div>
+                <div class="col"> <img src="~/images/update.png" width="25" onclick="prepareForProjectUpdate(@p.Id)"/></div>
                 <div class="col"> <img src="~/images/AddMedia.png" width="25" onclick="prepareForMediaAdd(@p.Id)" /></div>
                 <div class="col"> <img src="~/images/AddRewardPackage.jpg" width="25" onclick="addRewardPackageWithId(@p.Id)" /></div>
                 <div class="col"> <a href="~/home/DeleteProject/@p.Id"><img src="~/images/delete.png" width="25" /></a></div>

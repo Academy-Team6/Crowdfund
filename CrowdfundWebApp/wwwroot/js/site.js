@@ -91,32 +91,6 @@ function addProjectCreator() {
     var actionUrl = "/api/projectcreator";
     var formData = new FormData();
 
-
-
-    formData.append("firstName", $('#FirstName').val());
-    formData.append("lastName", $('#LastName').val());
-    formData.append("description", $('#Description').val());
-    formData.append("email", $('#Email').val());
-
-    var object = {};
-    formData.forEach(function (value, key) {
-        object[key] = value;
-    });
-    var json = JSON.stringify(object);
-    $.ajax(
-        {
-            url: actionUrl,
-            dataType:"json",
-            data: json,
-            processData: false,
-            contentType: 'application/json',
-            type: "POST",
-            success: function () {
-                window.open("/home/login", "_self")
-            },
-            error: function (jqXhr, textStatus, errorThrown) {
-                alert("Error from server: " + errorThrown);
-
     function validateEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);

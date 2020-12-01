@@ -9,25 +9,42 @@ function addBacker() {
 
     var actionUrl = "/api/backer";
     var formData = new FormData();
-    formData.append("firstName", $('#FirstName').val());
-    formData.append("lastName", $('#LastName').val());
-    formData.append("email", $('#Email').val());
-    
-    $.ajax(
-        {
-            url: actionUrl,
-            data: formData,
-            processData: false,
-            contentType: false,
-            type: "POST",
-            success: function (data) {
-                window.open("/home/login", "_self")
-            },
-            error: function (jqXhr, textStatus, errorThrown) {
-                alert("Error from server: " + errorThrown);
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    const email = $("#Email").val();
+    const $test = $("#test");
+    $test.text("");
+
+    if (validateEmail(email)) {
+        $test.text(email + " is valid :)");
+        $test.css("color", "green");
+
+        formData.append("firstName", $('#FirstName').val());
+        formData.append("lastName", $('#LastName').val());
+        formData.append("email", $('#Email').val());
+
+        $.ajax(
+            {
+                url: actionUrl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: "POST",
+                success: function (data) {
+                    window.open("/home/login", "_self")
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert("Error from server: " + errorThrown);
+                }
             }
-        }
-    );
+        );
+    }
+    else {
+        $test.text(email + " is not valid :(");
+        $test.css("color", "red");
+    }
 }
 
 

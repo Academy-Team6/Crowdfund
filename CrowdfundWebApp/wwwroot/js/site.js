@@ -91,6 +91,32 @@ function addProjectCreator() {
     var actionUrl = "/api/projectcreator";
     var formData = new FormData();
 
+
+
+    formData.append("firstName", $('#FirstName').val());
+    formData.append("lastName", $('#LastName').val());
+    formData.append("description", $('#Description').val());
+    formData.append("email", $('#Email').val());
+
+    var object = {};
+    formData.forEach(function (value, key) {
+        object[key] = value;
+    });
+    var json = JSON.stringify(object);
+    $.ajax(
+        {
+            url: actionUrl,
+            dataType:"json",
+            data: json,
+            processData: false,
+            contentType: 'application/json',
+            type: "POST",
+            success: function () {
+                window.open("/home/login", "_self")
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                alert("Error from server: " + errorThrown);
+
     function validateEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
@@ -128,6 +154,7 @@ function addProjectCreator() {
                 error: function (jqXhr, textStatus, errorThrown) {
                     alert("Error from server: " + errorThrown);
                 }
+
             }
         );
     }
@@ -158,11 +185,7 @@ function updateProjectCreator() {
         data: JSON.stringify(sendData),
         contentType: 'application/json',
         processData: false,
-
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
-
             window.open("/home/projectcreator", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -190,8 +213,6 @@ function deleteProjectCreator(Id) {
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
             window.open("/home/projectcreator", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -218,7 +239,6 @@ function addProject() {
     var actionUrl = "/api/project";
     var formData = new FormData();
 
-
     formData.append("Title", $('#Title').val());
     formData.append("Category", $('#Category').val());
     formData.append("Description", $('#Description').val());
@@ -226,7 +246,6 @@ function addProject() {
     //formData.append("ProjectCreatorId", parseInt($('#ProjectCreatorId').val()));
     formData.append("ProjectCreatorId", parseInt(localStorage.getItem('userId')));
     var json = JSON.stringify(formData);
-    console.log(json);
     $.ajax(
         {
             url: actionUrl,
@@ -245,7 +264,7 @@ function addProject() {
     );
 }
 function updateProject() {
-    id = $("#Id").val()
+    id = localStorage.getItem('projectId');
     console.log(id);
 
     actionUrl = "/api/project/" + id
@@ -275,12 +294,14 @@ function updateProject() {
         }
 
     });
+
+}
+function prepareForProjectUpdate(id) {
+    localStorage.setItem('projectId', id);
+    window.open('/home/updateproject/' + id, '_self');
 }
 function deleteProject(Id) {
     id = $("#id").val()
-
-    console.log(id);
-    console.log(Id);
 
     actionUrl = "/api/project/" + Id
     actiontype = "DELETE"
@@ -324,9 +345,7 @@ function addMedia() {
             contentType: false,
             type: "POST",
             success: function (data) {
-                alert('successful Media add');
-             //   window.open("/home/project", "_self")
-
+                alert('Media addition successful. Dont forget to name one StartingPhoto');
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 alert("Error from server: " + errorThrown);
@@ -344,8 +363,6 @@ function addStatusUpdate(){
     formData.append("Payload", $('#Content').val());
     formData.append("ProjectId", localStorage.getItem('projectId'));
     formData.append("Timestamp", dateTime);
-    console.log($('#Content').val());
-    
     $.ajax(
         {
             url: actionUrl,
@@ -373,12 +390,10 @@ function deleteStatusUpdate() {
         url: actionUrl,
         dataType: actionDataType,
         type: actiontype,
-
         contentType: 'application/json',
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
             window.open('/home/statusupdate?projectId=' + localStorage.getItem('projectId'), '-self')
         },
         error: function (jqXhr, textStatus, errorThrown) {

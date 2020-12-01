@@ -69,7 +69,6 @@ function addRewardPackage() {
             contentType: false,
             type: "POST",
             success: function () {
-                alert(json)
                 window.open("/home/projectrewardpackage?projectId=" + localStorage.getItem('projectId'), "_self")
             },
             error: function (jqXhr, textStatus, errorThrown) {
@@ -99,9 +98,6 @@ function updateRewardPackage() {
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
-
             window.open("/home/rewardpackage", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -126,8 +122,6 @@ function deleteRewardPackage(Id) {
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
             window.open("/home/rewardpackage", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {

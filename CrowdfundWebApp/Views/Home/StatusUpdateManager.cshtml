@@ -1,46 +1,56 @@
-﻿<div class="container-fluid">
+﻿<head>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_vogias.css" />
+    <title>Mbacker</title>
+</head>
+<div class="container-fluid">
+    <div class="col-md-6 col-sm-12">
+        <h1> Delete Status Update</h1>
 
-    <h1> Delete Status Update</h1>
+        <form>
+            <table align="center" class="table table-hover table-borderless table-sm ">
+                <tr align="center">
+                    <div class="form">
+                        <input type="text" name="Id" id="Id" autocomplete="off" required>
+                        <label for="Id" class="label-form">
+                            <span class="content-form">Status Update Id</span>
+                    </div>
+                </tr>
+                <tr align="center">
+                    <td>
+                        <input class="myButton" type="button" value="Submit" onclick="deleteStatusUpdate()" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <h1>Add Status Update</h1>
 
-    <form>
-        <table align="center">
-            <tr align="center">
-                <td>
-                    Status Update Id
-                </td>
-                <td> <input type="text" id="Id" placeholder="Id" /></td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <input type="button" value="Submit" onclick="deleteStatusUpdate()" />
-                </td>
-            </tr>
-        </table>
-    </form>
-
-    <h1>Add Status Update</h1>
-
-    <form id="createBackerForm">
-        <table align="center">
-            <tr align="center">
-                <td>
-                    Content
-                </td>
-                <td> <input type="text" id="Content" placeholder="Content" /></td>
-            </tr>
-            <tr align="center">
-                <td>
-                    ProjectId
-                </td>
-                <td> <input type="text" id="ProjectId" placeholder="ProjectId" /></td>
-            </tr>
-
-            <tr align="center">
-                <td>
-                    <input type="button" value="Submit" onclick="addStatusUpdate()" />
-                </td>
-            </tr>
-        </table>
-        <div id="result" name="result"></div>
-    </form>
-</div>
+        <form id="createBackerForm">
+            <table align="center" class="table table-hover table-borderless table-sm ">
+                <tr align="center">
+                    <div class="form">
+                        <input type="text" name="searchText" id="ProjectId" autocomplete="off" required>
+                        <label for="searchText" class="label-form">
+                            <span class="content-form">ProjectId</span>
+                    </div>
+                </tr>
+                <tr align="center">
+                    <div class="form">
+                        <input type="text" name="searchText" id="Content" autocomplete="off" required>
+                        <label for="searchText" class="label-form">
+                            <span class="content-form">Content</span>
+                    </div>
+                </tr>
+                <tr align="center">
+                    <td>
+                        <input class="myButton"type="button" value="Submit" onclick="addStatusUpdate()" />
+                    </td>
+                </tr>
+            </table>
+            <div id="result" name="result"></div>
+        </form>
+    </div>

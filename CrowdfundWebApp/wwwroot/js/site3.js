@@ -56,7 +56,7 @@ function addRewardPackage() {
             type: "POST",
             success: function () {
                 alert(json)
-                window.open("/home/rewardpackage", "_self")
+                window.open("/home/projectrewardpackage?projectId=" + localStorage.getItem('projectId'), "_self")
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 alert("Error from server: " + errorThrown);

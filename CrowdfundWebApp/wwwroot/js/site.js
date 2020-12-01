@@ -91,35 +91,50 @@ function addProjectCreator() {
     var actionUrl = "/api/projectcreator";
     var formData = new FormData();
 
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    const email = $("#Email").val();
+    const $test = $("#test");
+    $test.text("");
 
-    formData.append("firstName", $('#FirstName').val());
-    formData.append("lastName", $('#LastName').val());
-    formData.append("description", $('#Description').val());
-    formData.append("email", $('#Email').val());
+    if (validateEmail(email)) {
+        $test.text(email + " is valid :)");
+        $test.css("color", "green");
 
-    var object = {};
-    formData.forEach(function (value, key) {
-        object[key] = value;
-    });
-    var json = JSON.stringify(object);
-    $.ajax(
-        {
-            url: actionUrl,
-            dataType:"json",
-            data: json,
-            processData: false,
-            contentType: 'application/json',
-            type: "POST",
-            success: function () {
-                alert(json)
-                window.open("/home/login", "_self")
-               
-            },
-            error: function (jqXhr, textStatus, errorThrown) {
-                alert("Error from server: " + errorThrown);
+        formData.append("firstName", $('#FirstName').val());
+        formData.append("lastName", $('#LastName').val());
+        formData.append("description", $('#Description').val());
+        formData.append("email", $('#Email').val());
+
+        var object = {};
+        formData.forEach(function (value, key) {
+            object[key] = value;
+        });
+        var json = JSON.stringify(object);
+        $.ajax(
+            {
+                url: actionUrl,
+                dataType: "json",
+                data: json,
+                processData: false,
+                contentType: 'application/json',
+                type: "POST",
+                success: function () {
+                    window.open("/home/login", "_self")
+
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert("Error from server: " + errorThrown);
+                }
             }
-        }
-    );
+        );
+    }
+    else {
+        $test.text(email + " is not valid :(");
+        $test.css("color", "red");
+    }
 }
 function updateProjectCreator() {
     id = $("#Id").val()
@@ -220,7 +235,6 @@ function addProject() {
             contentType: false,
             type: "POST",
             success: function (data) {
-                alert(json)
                 window.open("/home/project", "_self")
 
             },
@@ -254,9 +268,6 @@ function updateProject() {
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
-
             window.open("/home/project", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -284,8 +295,6 @@ function deleteProject(Id) {
         processData: false,
 
         success: function (data, textStatus, jQxhr) {
-
-            alert(JSON.stringify(data))
             window.open("/home/project", "_self")
         },
         error: function (jqXhr, textStatus, errorThrown) {
